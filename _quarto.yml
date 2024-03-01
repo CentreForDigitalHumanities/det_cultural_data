@@ -14,7 +14,7 @@ book:
     - part: "Data Analysis"
       chapters:
       - parts/data_analysis/organising_your_data.qmd
-      - parts/data_analysis/data_cleaning.qmd
+      - parts/data_analysis/ch1_reading_data.ipynb
       - parts/data_analysis/data_exploration.qmd
       - parts/data_analysis/data_visualization.qmd
     - summary.qmd

@@ -1,0 +1,42 @@
+.box {
+	border: 1px solid;
+    border-radius: 5px;
+	padding: 10px;
+	margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.type1 {
+	border-color: black;
+	background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+	border-color: black;
+	background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+	border-color: black;
+	background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+	border-color: black;
+	background-color: rgb(170, 200, 167); 
+}
+
+.picture {
+	width: 30px; 
+	height: 30px;
+	margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}
