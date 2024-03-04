@@ -23,7 +23,7 @@ def list_to_html(items,opt='ul',code=False):
 
     return html
     
-def question_box(question='',task='',process='',tools='',code='',wiz='',
+def question_box(question='',task='',process='',tools='',code='',wiz='',solution='',
                  code_block = False,
                  css_style_file='myutils/css/boxes.css'):
     '''
@@ -78,8 +78,11 @@ def question_box(question='',task='',process='',tools='',code='',wiz='',
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture"/>
                         <div class="ctitle">
-                            <u><h4><strong>{question}</strong></h4></u>
+                            <u><h4><strong>Question(s)</strong></h4></u>
                         </div>
+                    </div>
+                    <div class="sub-box">
+                        {question}
                     </div>
             </div>
         '''
@@ -91,8 +94,11 @@ def question_box(question='',task='',process='',tools='',code='',wiz='',
                     <div class="sub-box">
                         <img src="myutils/icons/task.png" alt="Icon" class="picture"/>
                         <div class="ctitle">
-                            <u><h4><strong>{task}</strong></h4></u>
+                            <u><h4><strong>Task(s)</strong></h4></u>
                         </div>
+                    </div>
+                    <div class="sub-box">
+                        {task}
                     </div>
             </div>
         '''
@@ -107,8 +113,24 @@ def question_box(question='',task='',process='',tools='',code='',wiz='',
                         <u><h4><strong>What to do?</strong></h4></u>
                     </div>
                 </div>
-                <div>
+                <div class="sub-box">
                     {process}
+                </div>
+            </div>    
+        '''
+
+    sub_box2b = ''
+    if solution:
+        sub_box2b = f'''
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture"/>
+                    <div class="ctitle">
+                        <u><h4><strong>Answer/Solution</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    {solution}
                 </div>
             </div>    
         '''
@@ -123,7 +145,7 @@ def question_box(question='',task='',process='',tools='',code='',wiz='',
                         <u><h4><strong>(Python) Tools</strong></h4></u>
                     </div>
                 </div>
-                <div>
+                <div class="sub-box">
                     {tools}
                 </div>            
             </div>    
@@ -140,9 +162,11 @@ def question_box(question='',task='',process='',tools='',code='',wiz='',
                         <u><h4><strong>Coding</strong></h4></u>
                     </div>
                 </div>
-                <div {sub_box}>
-                    {code}
-                </div>       
+                <div class="sub-box">
+                    <div>
+                        {code}
+                    </div>       
+                </div>
             </div>    
         '''
 
@@ -156,11 +180,13 @@ def question_box(question='',task='',process='',tools='',code='',wiz='',
                         <u><h4><strong>Expert Coding</strong></h4></u>
                     </div>
                 </div>
-                <div {sub_box}>
-                    {wiz}
-                </div>       
+                <div class="sub-box">
+                    <div>
+                        {wiz}
+                    </div>  
+                </div>
             </div>    
         '''    
     
-    html_code = f'<style>{css}</style>{sub_box1}{sub_box1b}{sub_box2}{sub_box3}{sub_box4}{sub_box4b}'
+    html_code = f'<style>{css}</style>{sub_box1}{sub_box1b}{sub_box2}{sub_box3}{sub_box4}{sub_box4b}{sub_box2b}'
     return HTML(html_code)

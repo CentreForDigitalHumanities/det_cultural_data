@@ -342,12 +342,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now that we correctly loaded our data in our working environment, it is time to figure out what the data contains. It is always a good idea to look at the dataset <a href="https://www.slavevoyages.org/voyage/about#methodology/introduction/0/en/">documentation</a> (or metadata) to understand where the data comes from, what is the source of all the different records, how data have been collected, and any other possible data related caveat. Diving into documentation is up to you, in this chapter what we want to do is understanding as much as we can from the data itself, looking at its columns, rows, and values. <br> Every dataset tells a story. You may think about it like a person with a long experience, but not really willing to talk (well, some datasets “talks” more easily than others). It is your role in this case to “interrogate” this person, let him/her to talk, to tell a story and to dive into the details of that story, getting as much information as you can. This also depends on how much do you need to know: are you fine with a simple “chat” or you need the most accurate detailes? <br> Let’s formulate some questions to begin with: - How big is the data? - What does each row represent? - What does each column represent?</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'Question: How big is the data?'</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>process <span class="op">=</span> <span class="st">'Counting the number of rows and columns and checking its size on the disk.'</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> <span class="st">'Python attribute &lt;code&gt;shape&lt;/code&gt;'</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> <span class="st">'&lt;code&gt;df.shape&lt;/code&gt;, the attribute &lt;code&gt;.shape&lt;/code&gt; containes the size of the dataframe expressed in rows and columns. </span><span class="ch">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">    When printed on the screen it will display two numbers, the first one being the number of rows and the second being the number of columns.'</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>question_box(question<span class="op">=</span>question,process<span class="op">=</span>process,tools<span class="op">=</span>tools,code<span class="op">=</span>code)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <style><style>.box {
     border: 1px solid;
@@ -452,7 +446,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>(36151, 9)</code></pre>
 </div>
@@ -460,44 +454,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Our DataFrame contains data distributed in 36151 rows and 9 columns. It is a quite big dataset. Shall we care how big is our dataset? We should as this may affect our analysis. For example, if we implement a scientific analysis that requires 1 second per row to produce an output, such program would take about 10hrs to analyse the entire dataset, and that is something we should keep in mind. That is why, in general, it is a good idea to test large analysis programs on a small sub-set of data and then, once verified that everything runs smoothly, performing the analysis on the entire dataset.</p>
 <p>Let’s continue exploring our DataFrame. We have 9 columns, we saw them displayed in our notebook and, luckily enough, their names are pretty descriptive, therefore in this case it is quite intuitive to understand what kind of information they contain. It could be useful to store the column names inside a Python variable and to display their names with a corresponding index (this will be useful later).</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>task <span class="op">=</span> <span class="st">'Display column names with an index'</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>process <span class="op">=</span> <span class="st">'Identify column names and attributing them an index (starting from zero) depending on their order in the DataFrame </span><span class="ch">\</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">(the first column index will be 0, the second 1, and so on).'</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> list_to_html([</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;pandas&lt;/code&gt; attribute &lt;code&gt;.columns&lt;/code&gt;;'</span>,</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Python &lt;code&gt;for&lt;/code&gt; loop;'</span>,</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Python function &lt;code&gt;print()&lt;/code&gt;.'</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>code_block <span class="op">=</span> <span class="st">'&lt;pre  style="display: inline-block; float: left; margin-right: 10px"&gt;i=0 </span><span class="ch">\n\</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="st">print("Index ) Column name") </span><span class="ch">\n\</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="st">for name in column_names: </span><span class="ch">\n\</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="st">    print(i,")",name) </span><span class="ch">\n\</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="st">    i = i + 1 </span><span class="ch">\</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/pre&gt;'</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> list_to_html([</span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;column_names = df.columns&lt;/code&gt;, the DataFrame attributes &lt;code&gt;.columns&lt;/code&gt; containes the column names of our </span><span class="ch">\</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="st">    DataFrame. We store these names into the variable &lt;code&gt;column_names&lt;/code&gt;;'</span>,</span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;print(column_names)&lt;/code&gt;, we use the function &lt;code&gt;print()&lt;/code&gt; to print on the screen the content of the </span><span class="ch">\</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="st">    variable &lt;code&gt;column_names&lt;/code&gt;;'</span>,</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    code_block <span class="op">+</span> <span class="st">', we first initialise (assign a value) to the Python variable &lt;code&gt;i&lt;/code&gt;, this will correspond to the first index. </span><span class="ch">\</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="st">    We then print the string "Index) Column name" as a description for what we are going to print later. We finally use a </span><span class="ch">\</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;code&gt;for&lt;/code&gt; loop to scroll the values contained in &lt;code&gt;column_names&lt;/code&gt;. What the &lt;code&gt;for&lt;/code&gt; loop does </span><span class="ch">\</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="st">    is reading one by one the values stored in &lt;code&gt;column_names&lt;/code&gt; and assigning them, one at the time, to the </span><span class="ch">\</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="st">    variable &lt;code&gt;name&lt;/code&gt;. It then performs all the instructions "inside" the loop (indented text) and it starts </span><span class="ch">\</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="st">    all over again with the next value in &lt;code&gt;column_names&lt;/code&gt; until all the values are explored. In our case, inside </span><span class="ch">\</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="st">    the loop we perform just two operations: 1) we both print the current value of the variables &lt;code&gt;i&lt;/code&gt; and </span><span class="ch">\</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;code&gt;name&lt;/code&gt; and 2) we increase the value of &lt;code&gt;i&lt;/code&gt; by 1. Why do we increase &lt;code&gt;i&lt;/code&gt;? Because we </span><span class="ch">\</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="st">    want to display the different column names according to their position in the DataFrame. Our loop automatically updates </span><span class="ch">\</span></span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="st">    the value of the variable &lt;code&gt;name&lt;/code&gt;, but it does not increase by one step the index &lt;code&gt;i&lt;/code&gt;, so we have </span><span class="ch">\</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="st">    to do it explicitly.'</span> </span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>code_block2 <span class="op">=</span> <span class="st">'&lt;pre  style="display: inline-block; margin: 10px 10px; float: left; width: 50%"&gt;</span><span class="ch">\n\</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="st">print("Index) Column name") </span><span class="ch">\n\</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a><span class="st">for i,name in enumerate(column_names): </span><span class="ch">\n\</span></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="st">    print(f"</span><span class="sc">{i}</span><span class="st">) </span><span class="sc">{name}</span><span class="st">") </span><span class="ch">\</span></span>
-<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/pre&gt;'</span> <span class="op">+</span> <span class="st">', you can substitute the previous block of code with this, it performs the same tasks (printing indices and </span><span class="ch">\</span></span>
-<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="st">column names) with less lines of code'</span></span>
-<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a>question_box(task<span class="op">=</span>task,process<span class="op">=</span>process,tools<span class="op">=</span>tools,code<span class="op">=</span>code,wiz<span class="op">=</span>code_block2,code_block<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <style><style>.box {
     border: 1px solid;
@@ -620,13 +576,13 @@ for i,name in enumerate(column_names):
 </div>
 </div>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> df.columns</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(column_names)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">0</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index ) Column name"</span>) </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> column_names: </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i,<span class="st">")"</span>,name) </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> df.columns</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(column_names)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">0</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index ) Column name"</span>) </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> column_names: </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i,<span class="st">")"</span>,name) </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Index(['Year of arrival at port of disembarkation', 'Voyage ID', 'Vessel name',
        'Voyage itinerary imputed port where began (ptdepimp) place',
@@ -648,9 +604,9 @@ Index ) Column name
 </div>
 <p>Now we have the column names nicely listed from top to bottom and with their corresponding index assigned to them. You might be tempted to start the indexing from 1, but as in Python the first element of a list (or any other series of elements) has index 0, we also started from zero. You can also obtain the same result with less lines of code, try it out!</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index) Column name"</span>) </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,name <span class="kw">in</span> <span class="bu">enumerate</span>(column_names): </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">) </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index) Column name"</span>) </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,name <span class="kw">in</span> <span class="bu">enumerate</span>(column_names): </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">) </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Index) Column name
 0) Year of arrival at port of disembarkation
@@ -666,25 +622,6 @@ Index ) Column name
 </div>
 <p>It is now time to figure out what are the rows about. Looking at the column names, we notice that the second one (index 1) is called “Voyage ID”. This indicates that this column contains a specific identifier for the ship voyage, implying that each row contains specific information about a single trip. To verify that, we need to check if all the values of the Voyage ID column are different, i.e.&nbsp;if they are unique.<br></p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>question <span class="op">=</span> <span class="st">'Are the values of the Voyage ID column unique?'</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>process <span class="op">=</span> <span class="st">'Select the column Voyage ID, go through all its 36151 values and check if there are repetitions.'</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> list_to_html([</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;pandas&lt;/code&gt; column selector method &lt;code&gt;.iloc&lt;/code&gt;;'</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;pandas&lt;/code&gt; attribute &lt;code&gt;.is_unique&lt;/code&gt;;'</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    ])</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> list_to_html([</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;voyage_id = df.iloc[:,1]&lt;/code&gt;, we apply the method &lt;code&gt;.iloc[]&lt;/code&gt; to select the second column </span><span class="ch">\</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="st">    of our DataFrame and store it in the variable &lt;code&gt;voyage_id&lt;/code&gt;. Inside the square brackets of &lt;code&gt;.iloc[]&lt;/code&gt; </span><span class="ch">\</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">    we can specify rows an columns to select in the form [&lt;selected_rows&gt;,&lt;selected_columns&gt;]. In this case, </span><span class="ch">\</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="st">    &lt;code&gt;:&lt;/code&gt; means that we select ALL the rows, so &lt;code&gt;df.iloc[:,1]&lt;/code&gt; selects all the rows of the column </span><span class="ch">\</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="st">    with index 1 (second column)'</span>,</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;print(voyage_id.is_unique)&lt;/code&gt;, we print on the screen the &lt;code&gt;pandas&lt;/code&gt; attribute &lt;code&gt;.is_unique&lt;/code&gt;. </span><span class="ch">\</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="st">    This attribute is True if, indeed, all the values of &lt;code&gt;voyage_id&lt;/code&gt; is unique, False otherwise.'</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>wiz_code <span class="op">=</span> list_to_html([</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;print(df.iloc[:,1].is_unique)&lt;/code&gt;, methods, attributes, and functions can be applied one after another in single line.'</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>question_box(question<span class="op">=</span>question,process<span class="op">=</span>process,tools<span class="op">=</span>tools,code<span class="op">=</span>code,wiz<span class="op">=</span>wiz_code)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <style><style>.box {
     border: 1px solid;
@@ -801,14 +738,13 @@ Index ) Column name
 </div>
 </div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>voyage_id <span class="op">=</span> df.iloc[:,<span class="dv">1</span>]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voyage_id.is_unique)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>voyage_id <span class="op">=</span> df.iloc[:,<span class="dv">1</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voyage_id.is_unique)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
 </div>
-<p>We verified that all the values of the Voyage ID column are unique, this means that all the rows of our DataFrame refer to a single ship voyage. Looking at the other column, we also notice that information where the voyage began, the port where slaves have been purchased, and the port where slaves have been desembarked is provided. This means that for single voyage we can intend the trip from a starting point to a slave purchase port that concludes in the port where slaves have been desembarked.</p>
-<p>At this point we know enough general information to start diving deep in the analysis of our DataFrame, we are ready to interrogate this dataset and see which kind of story it is going to tell us.</p>
+<p>We verified that all the values of the Voyage ID column are unique, this means that all the rows of our DataFrame refer to a single ship voyage. Looking at the other column, we also notice that information where the voyage began, the port where slaves have been purchased, and the port where slaves have been desembarked is provided. This means that for single voyage we can intend the trip from a starting point to a slave purchase port that concludes in the port where slaves have been desembarked.<br> Looking in particular at the fifth column (index 4, “Voyage itinerary imputed principal place of slave purchase”), we notice it contains several NaN. NaN stands for “Not a Number”, it is a value that appears when something goes wrong in one of the processes ran by our program. If something went wrong, why did not our program stop or tell us something about an occuring problem? Because problems may happen more often than you think and if our program stops working everytime it encounters a situation it cannot handle, it would most probably never finish running! In this case, most probably the record does not exists and it has either been indicated by NaN in our original .csv file or read by the <code>pandas</code> method <code>.read_csv()</code> as NaN. <br> In any case, the presence of NaN or any other missing value can severely affect our data analysis, for this reason before starting analysins the data we need to find and get rid of those value. This process is usually called “data cleaning” and that is exactly what we are going to do in the next chapter, we are going to clean our data.</p>
 
 
 

@@ -41,7 +41,12 @@
 
 .type5 {
     border-color: black;
-	background-color: #dac292;
+	background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+	background-color: rgb(255, 195, 116);
 }
 
 .picture {
