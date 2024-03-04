@@ -11,6 +11,14 @@
   align-items: center;
 }
 
+.code {
+	background: #ececec; 
+}
+
+.pre {
+	background: #ececec; 
+}
+
 .type1 {
 	border-color: black;
 	background-color: rgb(246, 255, 222); 
@@ -29,6 +37,11 @@
 .type4 {
 	border-color: black;
 	background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+	background-color: #dac292;
 }
 
 .picture {

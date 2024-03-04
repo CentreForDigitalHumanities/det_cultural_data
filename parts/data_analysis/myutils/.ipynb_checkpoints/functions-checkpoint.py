@@ -1,6 +1,11 @@
 from IPython.core.display import HTML
 from pathlib import Path
 
+def code_block(code=''):
+    html = f'<pre><code id="python_code">{code}</code></pre>' 
+
+    return html
+
 def list_to_html(items,opt='ul',code=False):
 
     if not opt in ['ol','ul']:
@@ -18,7 +23,9 @@ def list_to_html(items,opt='ul',code=False):
 
     return html
     
-def question_box(question='',task='',process='',tools='',code='',css_style_file='myutils/css/boxes.css'):
+def question_box(question='',task='',process='',tools='',code='',wiz='',
+                 code_block = False,
+                 css_style_file='myutils/css/boxes.css'):
     '''
     It takes text and html text to put into pre-defined boxes:
     - Research question (text);
@@ -42,6 +49,8 @@ def question_box(question='',task='',process='',tools='',code='',css_style_file=
     code: str
         String containing text or html to describe step by step the
         programming implementation
+    guru: str:
+        Same as code, intended to contain expert level coding
     css_style_file: str
         String with the relative path containing the css file
 
@@ -120,6 +129,7 @@ def question_box(question='',task='',process='',tools='',code='',css_style_file=
             </div>    
         '''
 
+    sub_box = 'class="sub-box"' if code_block else ''
     sub_box4 = ''
     if code:
         sub_box4 = f'''
@@ -130,11 +140,27 @@ def question_box(question='',task='',process='',tools='',code='',css_style_file=
                         <u><h4><strong>Coding</strong></h4></u>
                     </div>
                 </div>
-                <div>
+                <div {sub_box}>
                     {code}
                 </div>       
             </div>    
         '''
+
+    sub_box4b = ''
+    if wiz:
+        sub_box4b = f'''
+            <div class="box type5">
+                <div class="sub-box">
+                    <img src="myutils/icons/wiz.png" alt="Icon" class="picture"/>
+                    <div class="ctitle">
+                        <u><h4><strong>Expert Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div {sub_box}>
+                    {wiz}
+                </div>       
+            </div>    
+        '''    
     
-    html_code = f'<style>{css}</style>{sub_box1}{sub_box1b}{sub_box2}{sub_box3}{sub_box4}'
+    html_code = f'<style>{css}</style>{sub_box1}{sub_box1b}{sub_box2}{sub_box3}{sub_box4}{sub_box4b}'
     return HTML(html_code)
