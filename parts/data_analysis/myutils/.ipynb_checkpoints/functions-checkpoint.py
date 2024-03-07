@@ -23,7 +23,7 @@ def list_to_html(items,opt='ul',code=False):
 
     return html
     
-def question_box(question='',task='',process='',tools='',code='',wiz='',solution='',
+def question_box(question='',task='',process='',tools='',code='',warning='',wiz='',solution='',
                  code_block = False,
                  css_style_file='myutils/css/boxes.css'):
     '''
@@ -126,11 +126,27 @@ def question_box(question='',task='',process='',tools='',code='',wiz='',solution
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture"/>
                     <div class="ctitle">
-                        <u><h4><strong>Answer/Solution</strong></h4></u>
+                        <u><h4><strong>Answer</strong></h4></u>
                     </div>
                 </div>
                 <div class="sub-box">
                     {solution}
+                </div>
+            </div>    
+        '''
+
+    sub_box2c = ''
+    if warning:
+        sub_box2c = f'''
+            <div class="box">
+                <div class="sub-box">
+                    <img src="myutils/icons/warning.png" alt="Icon" class="picture"/>
+                    <div class="ctitle">
+                        <u><h4><strong>!!! Warning !!!</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    {warning}
                 </div>
             </div>    
         '''
@@ -188,5 +204,5 @@ def question_box(question='',task='',process='',tools='',code='',wiz='',solution
             </div>    
         '''    
     
-    html_code = f'<style>{css}</style>{sub_box1}{sub_box1b}{sub_box2}{sub_box3}{sub_box4}{sub_box4b}{sub_box2b}'
+    html_code = f'<style>{css}</style>{sub_box1}{sub_box1b}{sub_box2}{sub_box3}{sub_box4}{sub_box2c}{sub_box4b}{sub_box2b}'
     return HTML(html_code)
