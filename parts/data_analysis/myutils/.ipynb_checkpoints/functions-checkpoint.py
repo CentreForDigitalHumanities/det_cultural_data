@@ -1,8 +1,14 @@
 from IPython.core.display import HTML
 from pathlib import Path
 
-def code_block(code=''):
-    html = f'<pre><code id="python_code">{code}</code></pre>' 
+def code_block(code_block_rows):
+    html = '<pre  style="display: inline-block; float: left; margin-right: 10px">' 
+    for i,row in enumerate(code_block_rows):
+        if i != len(code_block_rows)-1 :
+            html += row + '\n'
+        else:
+            html += row
+    html += '</pre>'
 
     return html
 
