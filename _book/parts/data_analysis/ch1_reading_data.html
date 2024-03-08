@@ -194,8 +194,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/data_analysis/data_visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Visualising data</span></span></a>
+  <a href="../../parts/data_analysis/ch3_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cleaning data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch4_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analysing data</span></span></a>
   </div>
 </li>
       </ul>
@@ -203,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -240,152 +246,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> myutils.functions <span class="im">import</span> question_box, list_to_html</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>The first thing we need to do is loading the data. This means taking the file where the data is currently stored and transfer that data here, in our working environment. As we are working with Python, this means transfering all the data in a Python object. Which object? There are Python libraries (code written by other developers) that are been specifically designed to the task of data analysis. One of these libraries, or (using the Python vocabulary) <strong>packages</strong>, is called <code>pandas</code>. So what we are going to do is reading our <code>.csv</code> file (coma separated file, where columns are separated by a coma) and storing the read information into a pandas <code>DataFrame</code>. How do we do all this? Using <code>pandas</code> and python specifically designed methods and functions.</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>task <span class="op">=</span> <span class="st">'Task: Loading data'</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>process <span class="op">=</span> list_to_html([</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Localise the csv file;'</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Have a look at it;'</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Transfering data to the Python working environment.'</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    ])</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> list_to_html([</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Python &lt;code&gt;pandas&lt;/code&gt; library;'</span>,</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;pandas&gt; DataFrame to contain the data;'</span>,</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'&lt;code&gt;.read_csv()&lt;/code&gt; method.'</span>,</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    ])</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> list_to_html([</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;code&gt;import pandas as pd&lt;/code&gt;, we first import the package &lt;code&gt;pandas&lt;/code&gt; in our working environment in order to use all its functionalities. </span><span class="ch">\</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">    In order to tell Python we want to use &lt;code&gt;pandas&lt;/code&gt; functionalities we need to specify &lt;code&gt;pandas&lt;/code&gt; every time we use one of </span><span class="ch">\</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">    its functions. To make our life easier, we assign to the package an alias, a nickname, so that we do not neet to write &lt;code&gt;pandas&lt;/code&gt; </span><span class="ch">\</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">    all the times, but just the abbreviation &lt;code&gt;pd&lt;/code&gt;;"</span>,</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;code&gt;data_file = 'data/data.csv'&lt;/code&gt;, we store the relative path of our data file as a string (between single quotes) to a Python variable called &lt;code&gt;data_file&lt;/code&gt;;"</span>,</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;code&gt;df = pd.read_csv(data_file)&lt;/code&gt;, we use the &lt;code&gt;pandas&lt;/code&gt; method &lt;code&gt;.read_csv()&lt;/code&gt; to read our data file and we store the result on a Python variable called &lt;code&gt;df&lt;/code&gt; (data frame);"</span>,</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"&lt;code&gt;print(type(df))&lt;/code&gt;, we first apply the Python function &lt;code&gt;type()&lt;/code&gt; to the just initialised variable df to check what is its type. We print the result on the screen using the Python function &lt;code&gt;print()&lt;/code&gt;."</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    ])</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>question_box(task<span class="op">=</span>task,tools<span class="op">=</span>tools,process<span class="op">=</span>process,code<span class="op">=</span>code)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
-}
-
-.sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
-}
-
-.type1 {
-    border-color: black;
-    background-color: rgb(246, 255, 222); 
-}
-
-.type2 {
-    border-color: black;
-    background-color: rgb(227, 242, 193); 
-}
-
-.type3 {
-    border-color: black;
-    background-color: rgb(201, 219, 178); 
-}
-
-.type4 {
-    border-color: black;
-    background-color: rgb(170, 200, 167); 
-}
-
-.type5 {
-    border-color: black;
-    background-color: #dac292;
-}
-
-.picture {
-    width: 30px; 
-    height: 30px;
-    margin: 0 0 0px 0;
-}
-
-.ctitle {
-    margin: 0px 0px 0px 20px;
-}</style> 
-            <div class="box type1">
-                    <div class="sub-box">
-                        <img src="myutils/icons/task.png" alt="Icon" class="picture">
-                        <div class="ctitle">
-                            <u><h4 class="anchored"><strong>Task: Loading data</strong></h4></u>
-                        </div>
-                    </div>
-            </div>
-        
-            <div class="box type2">
-                <div class="sub-box">
-                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
-                    </div>
-                </div>
-                <div>
-                    <ul><li>Localise the csv file;</li><li>Have a look at it;</li><li>Transfering data to the Python working environment.</li></ul>
-                </div>
-            </div>    
-        
-            <div class="box type3">
-                <div class="sub-box">
-                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
-                    </div>
-                </div>
-                <div>
-                    <ul><li>Python <code>pandas</code> library;</li><li><pandas> DataFrame to contain the data;</pandas></li><li><code>.read_csv()</code> method.</li></ul>
-                </div>            
-            </div>    
-        
-            <div class="box type4">
-                <div class="sub-box">
-                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
-                    </div>
-                </div>
-                <div>
-                    <ul><li><code>import pandas as pd</code>, we first import the package <code>pandas</code> in our working environment in order to use all its functionalities.     In order to tell Python we want to use <code>pandas</code> functionalities we need to specify <code>pandas</code> every time we use one of     its functions. To make our life easier, we assign to the package an alias, a nickname, so that we do not neet to write <code>pandas</code>     all the times, but just the abbreviation <code>pd</code>;</li><li><code>data_file = 'data/data.csv'</code>, we store the relative path of our data file as a string (between single quotes) to a Python variable called <code>data_file</code>;</li><li><code>df = pd.read_csv(data_file)</code>, we use the <code>pandas</code> method <code>.read_csv()</code> to read our data file and we store the result on a Python variable called <code>df</code> (data frame);</li><li><code>print(type(df))</code>, we first apply the Python function <code>type()</code> to the just initialised variable df to check what is its type. We print the result on the screen using the Python function <code>print()</code>.</li></ul>
-                </div>       
-            </div>    
-        
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-error">
+<pre><code>NameError: name 'list_to_html' is not defined</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;</code></pre>
 </div>
 </div>
 <p>Nice! We managed to transfer our data into a Python object, specifically a <code>pandas.core.frame.DataFrame</code>, or simply (from now on) a DataFrame. However, a lot of things can go wrong when going from one data format to another, so it is a good idea to have a first look at the data.</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>task <span class="op">=</span> <span class="st">'Task: Have a first look at the data'</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>process <span class="op">=</span> <span class="st">'Visualize the first 10 lines of data, just to check that everything looks "ok"'</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>tools <span class="op">=</span> <span class="st">'&lt;code&gt;.head()&lt;/code&gt; method'</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> <span class="st">'&lt;code&gt;pd.head(10)&lt;/code&gt;, calling the &lt;code&gt;head(10)&lt;/code&gt; method on the DataFrame df we will visualise the first 10 lines of the DataFrame (we wrote 10, but you can use whatever number you want). </span><span class="ch">\</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">This method, as a matter of fact, shows you only the "head", the beginning, of your data.'</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>question_box(task<span class="op">=</span>task,tools<span class="op">=</span>tools,process<span class="op">=</span>process,code<span class="op">=</span>code)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <style><style>.box {
     border: 1px solid;
@@ -490,7 +367,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 

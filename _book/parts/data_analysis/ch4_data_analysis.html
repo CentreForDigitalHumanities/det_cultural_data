@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data exploration toolkit for cultural data: structure, clean, visualize, and run a preliminary analysis - 7&nbsp; Analysing data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../summary.html" rel="next">
+<link href="../../parts/data_analysis/ch3_data_cleaning.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/data_analysis/organising_your_data.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="../../parts/data_analysis/ch4_data_analysis.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analysing data</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Data exploration toolkit for cultural data: structure, clean, visualize, and run a preliminary analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/preliminaries/set_up.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting up</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/organising_your_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Organising your data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch1_reading_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch2_exploring_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exploring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch3_data_cleaning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cleaning data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch4_data_analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analysing data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#previous-steps" id="toc-previous-steps" class="nav-link active" data-scroll-target="#previous-steps"><span class="header-section-number">8</span> Previous steps</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">9</span> Data Analysis</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analysing data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="previous-steps" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Previous steps</h1>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cleaned_df <span class="op">=</span> df.drop(<span class="st">'VOYAGEID2'</span>,axis<span class="op">=</span><span class="dv">1</span>).dropna(subset<span class="op">=</span>[<span class="st">'Captives arrived at 1st port'</span>]).fillna(<span class="st">"unknown"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cleaned_col_names <span class="op">=</span> cleaned_df.columns</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>cleaned_df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year of arrival at port of disembarkation</th>
+<th data-quarto-table-cell-role="th">Voyage ID</th>
+<th data-quarto-table-cell-role="th">Vessel name</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed port where began (ptdepimp) place</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal place of slave purchase (mjbyptimp)</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place</th>
+<th data-quarto-table-cell-role="th">Captives arrived at 1st port</th>
+<th data-quarto-table-cell-role="th">Captain's name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1714.0</td>
+<td>16109</td>
+<td>Freeke Gally</td>
+<td>Bristol</td>
+<td>unknown</td>
+<td>Kingston</td>
+<td>283.0</td>
+<td>Neale, Alexander</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1714.0</td>
+<td>16111</td>
+<td>Jacob</td>
+<td>Bristol</td>
+<td>unknown</td>
+<td>Kingston</td>
+<td>130.0</td>
+<td>Nicholls, Philip</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1714.0</td>
+<td>16112</td>
+<td>Jason Gally</td>
+<td>Bristol</td>
+<td>unknown</td>
+<td>Port Royal</td>
+<td>278.0</td>
+<td>Plummer, John</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>1714.0</td>
+<td>16114</td>
+<td>Mercy Gally</td>
+<td>Bristol</td>
+<td>Africa, port unspecified</td>
+<td>Barbados, place unspecified</td>
+<td>190.0</td>
+<td>Scott, John</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>1714.0</td>
+<td>16115</td>
+<td>Mermaid Gally</td>
+<td>Bristol</td>
+<td>Cape Verde Islands</td>
+<td>Kingston</td>
+<td>72.0</td>
+<td>Banbury, John&lt;br/&gt; Copinger, James</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">8</td>
+<td>1714.0</td>
+<td>16117</td>
+<td>Peterborough</td>
+<td>Bristol</td>
+<td>Africa, port unspecified</td>
+<td>Barbados, place unspecified</td>
+<td>200.0</td>
+<td>Shawe, John&lt;br/&gt; Martin, Joseph</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">9</td>
+<td>1713.0</td>
+<td>16118</td>
+<td>Resolution</td>
+<td>Bristol</td>
+<td>Gold Coast, port unspecified</td>
+<td>Barbados, place unspecified</td>
+<td>255.0</td>
+<td>Williams, Charles</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">10</td>
+<td>1714.0</td>
+<td>16119</td>
+<td>Richard and William</td>
+<td>Bristol</td>
+<td>unknown</td>
+<td>Port Royal</td>
+<td>55.0</td>
+<td>Beckham, George&lt;br/&gt; Spring, Martin</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">11</td>
+<td>1713.0</td>
+<td>16120</td>
+<td>Rotchdale Gally</td>
+<td>Bristol</td>
+<td>Africa, port unspecified</td>
+<td>Barbados, place unspecified</td>
+<td>96.0</td>
+<td>Hitchings, John</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">12</td>
+<td>1714.0</td>
+<td>16121</td>
+<td>Tunbridge Gally</td>
+<td>Bristol</td>
+<td>Africa, port unspecified</td>
+<td>Barbados, place unspecified</td>
+<td>200.0</td>
+<td>Skinner, Peter</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index) Column name"</span>) </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,name <span class="kw">in</span> <span class="bu">enumerate</span>(cleaned_df.columns): </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i,<span class="st">")"</span>,name) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index) Column name
+0 ) Year of arrival at port of disembarkation
+1 ) Voyage ID
+2 ) Vessel name
+3 ) Voyage itinerary imputed port where began (ptdepimp) place
+4 ) Voyage itinerary imputed principal place of slave purchase (mjbyptimp) 
+5 ) Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place
+6 ) Captives arrived at 1st port
+7 ) Captain's name</code></pre>
+</div>
+</div>
+</section>
+<section id="data-analysis" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Data Analysis</h1>
+<p>It is finally time to ask questions to our data. Let’s start with some simple ones regaring the time span of our dataset.</p>
+<div class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="10">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style> 
+            <div class="box type1">
+                    <div class="sub-box">
+                        <img src="myutils/icons/question.png" alt="Icon" class="picture">
+                        <div class="ctitle">
+                            <u><h4 class="anchored" data-anchor-id="data-analysis"><strong>Question(s)</strong></h4></u>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        <ul><li>What's the year of the very first and last voyage record?</li><li>How many years does our data set span?</li><li>How does that compare to unfiltered data?</li></ul>
+                    </div>
+            </div>
+        
+            <div class="box type2">
+                <div class="sub-box">
+                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li>Going through the Year of arrival at port of disembarkation column and look for the largest and smallest number</li><li>Repeat the same procedure for the raw data set and compare</li></ul>
+                </div>
+            </div>    
+        
+            <div class="box type3">
+                <div class="sub-box">
+                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li><code>pandas</code> method <code>.iloc()</code>;</li><li>Python functions <code>min()</code> and <code>max()</code>;</li><li>Python <code>print()</code> function.</li></ul>
+                </div>            
+            </div>    
+        
+            <div class="box type4">
+                <div class="sub-box">
+                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <ul><li><code>arrival_year = cleaned_df.iloc[:,0]</code>, we use the method <code>.iloc[]</code> to select the first column     of the DataFrame <code>cleaned_df</code> and we store the column in the variable <code>arrival_year</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">first_year = min(arrival_year)
+last_year = max(arrival_year)
+year_span = last_year-first_year</pre>, we use the Python functions <code>min()</code> and <code>max()</code> to compute the minimum and     maximum values of the year column storing their values in <code>first_year</code> and <code>last_year</code>,     respectively. We also compute the different between these two values and store the result in <code>year_span</code>.</li></ul>
+                    </div>       
+                </div>
+            </div>    
+        
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arrival_year <span class="op">=</span> cleaned_df.iloc[:,<span class="dv">0</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>first_year <span class="op">=</span> <span class="bu">min</span>(arrival_year)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>last_year <span class="op">=</span> <span class="bu">max</span>(arrival_year)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>year_span <span class="op">=</span> last_year<span class="op">-</span>first_year</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_year)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(last_year)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(year_span)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1520.0
+1866.0
+346.0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>arrival_year_raw <span class="op">=</span> df.iloc[:,<span class="dv">0</span>]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>first_year_raw <span class="op">=</span> <span class="bu">min</span>(arrival_year_raw)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>last_year_raw <span class="op">=</span> <span class="bu">max</span>(arrival_year_raw)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>year_span_raw <span class="op">=</span> last_year_raw<span class="op">-</span>first_year_raw</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(first_year_raw)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(last_year_raw)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(year_span_raw)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1514.0
+1866.0
+352.0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="13">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style>
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Answer</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    Our cleaned data spands from 1520 to 1866, so 346. Comparing these numbers with our original, uncleaned, DataFrame, we can notice that the filtered data does not include the period between 1514 and 1520, so 6 years.
+                </div>
+            </div>    
+        
+</div>
+</div>
+<p>We can keep asking questions about numerical values. We focused on time in our last question, let’s focus on the number of captives this time.</p>
+<div class="cell" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="17">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style> 
+            <div class="box type1">
+                    <div class="sub-box">
+                        <img src="myutils/icons/question.png" alt="Icon" class="picture">
+                        <div class="ctitle">
+                            <u><h4 class="anchored"><strong>Question(s)</strong></h4></u>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        <ul><li>How many captives have been disembarked between 1520 and 1866?</li><li>How many captives have been disembarked on average per voyage?</li><li>How many captives have been disembarked on average per year?How does these numbers change looking at the raw data?</li></ul>
+                    </div>
+            </div>
+        
+            <div class="box type2">
+                <div class="sub-box">
+                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li>Going through the "Captives arrived at 1st port" column and compute the total number of captives</li><li>Divide the previous result by the number of voyages</li><li>Divide the total number of captives by the number of years</li><li>Adjust the previous estimate considering the average number of captives per voyage and the number of filtered rows</li></ul>
+                </div>
+            </div>    
+        
+            <div class="box type3">
+                <div class="sub-box">
+                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li><code>pandas</code> method <code>.iloc()</code>;</li><li>Python function <code>sum()</code>;</li><li>Python function <code>len()</code>;</li><li>Python function <code>round()</code>;</li><li>Python function <code>print()</code> .</li></ul>
+                </div>            
+            </div>    
+        
+            <div class="box type4">
+                <div class="sub-box">
+                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <ul><li><code>n_captives = cleaned_df.iloc[:,6]</code>, we apply the method <code>.iloc[]</code> to select the     "Captives arrived at 1st port" column and we store the column in the variable <code>n_captives</code>;</li><li><code>tot_captives = sum(n_captives)</code>, we use the Python function <code>sum()</code> to compute the sum     of all the values in <code>n_captives</code> and we stored the result in the variable <code>tot_captives</code></li><li><pre style="display: inline-block; float: left; margin-right: 10px">ave_cap_per_voyage = tot_captives/len(cleaned_df)
+ave_cap_per_year = tot_captives/year_span</pre>, we use the total number of captives just computed to calculate the average number of captives     per vorage (dividing it by the number of rows) and per year (dividing it by the year span). We store the result     in <code>ave_cap_per_voyage</code> and <code>ave_cap_per_year</code>, respectively;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">filtered_rows = len(df)-len(cleaned_df)
+tot_captives_ext = tot_captives + ave_cap_per_voyage*filtered_rows
+ave_cap_per_year = tot_captives/year_span</pre>, we compute the number of filtered rows subtracting the length of our original DataFrame <code>df</code>     by the length of our cleaned DataFrame <code>cleaned_df</code>. Multiplying this number by the average number of     captives per voyage (remember that in our DataFrames each row correspond to a voyage), we obtain an estimate of the     number of captives that have not been considered as the corresponding data is missing and, as such, it has been filtered     out from our analysis. We store this estimate in the variable <code>tot_captives_ext</code>. We then adjust our estimate     of the number of captives per years using this value and dividing it by <code>year_span_raw</code>, the year span of     our original DataFrame. We store this value in the variable <code>ave_cap_per_year_adj</code>;</li><li><code>print(round(<result>))</result></code>, we print different results related to people using the Python function     <code>round()</code> that, without any other argument, approximate decimal numbers to the closest integer.</li></ul>
+                    </div>       
+                </div>
+            </div>    
+        
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n_captives <span class="op">=</span> cleaned_df.iloc[:,<span class="dv">6</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>tot_captives <span class="op">=</span> <span class="bu">sum</span>(n_captives<span class="op">;</span>asdkjf<span class="op">;</span>askldjf<span class="op">;</span>aslkdjfa<span class="op">;</span>slkdjf</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ave_cap_per_voyage <span class="op">=</span> tot_captives<span class="op">/</span><span class="bu">len</span>(cleaned_df)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>ave_cap_per_year <span class="op">=</span> tot_captives<span class="op">/</span>year_span</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total n. of captives:'</span>,tot_captives)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Average captives per voyage'</span>,<span class="bu">round</span>(ave_cap_per_voyage))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Average captives per year'</span>,<span class="bu">round</span>(ave_cap_per_year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total n. of captives: 5082756.0
+Average captives per voyage 276
+Average captives per year 14690</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>filtered_rows <span class="op">=</span> <span class="bu">len</span>(df)<span class="op">-</span><span class="bu">len</span>(cleaned_df)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>tot_captives_ext <span class="op">=</span> tot_captives <span class="op">+</span> ave_cap_per_voyage<span class="op">*</span>filtered_rows</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ave_cap_per_year_adj <span class="op">=</span> tot_captives_ext<span class="op">/</span>year_span_raw</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Extimated total n. of captives'</span>,<span class="bu">round</span>(tot_captives_ext))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Adjusted average captives per year'</span>, <span class="bu">round</span>(ave_cap_per_year_adj))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Extimated total n. of captives 9981894
+Adjusted average captives per year 28358</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="20">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style>
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Answer</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    Our first estimate of the total number of captives was 5 082 756 in the time period between 1520 and 1866,  and a corresponding average of captives per year of 14 690. However, this estimate did not take into account filtered data. In our data filtering we excluded many rows, so many voyages. Almost 50% of the initial voyages has been filtered our. We therefore computed the average of captives per voyage and estimated the number of filtered out captives. The result is a number that almost double (as expected) our previous estimate: 9 981 894 people, with an average of 28 358 people traded per year.
+                </div>
+            </div>    
+        
+</div>
+</div>
+<p>So far we computed numbers, but data can be most effectively described using visualization. In our DataFrame we have information about three different locations: the place where the voyage started, the principal port of slave purchase, and the principal port of slave disembarkation. Let’s have a closer look at these locations.</p>
+<div class="cell" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="38">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style> 
+            <div class="box type1">
+                    <div class="sub-box">
+                        <img src="myutils/icons/question.png" alt="Icon" class="picture">
+                        <div class="ctitle">
+                            <u><h4 class="anchored"><strong>Question(s)</strong></h4></u>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        <ul><li>What is the town where most of the voyages started?</li><li>Can we sort town according to the number of voyages that started there?</li><li>How about the other two locations, place of slave purchase and disembarkation?</li></ul>
+                    </div>
+            </div>
+        
+            <div class="box type2">
+                <div class="sub-box">
+                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li>Go through the "Voyage itinerary imputed port where began (ptdepimp) place" column and count how many times     a town name occurs;</li><li>Repeat this procedure for all the towns;</li><li>Sort towns according to how many times their names show up;</li><li>Make a plot with town names on the vertical axis and how many times they have been starting point for voyages in     the orizontal axis;</li><li>Repeat the same procedure for the other two locations: port of slave purchase and disembarkation.</li></ul>
+                </div>
+            </div>    
+        
+            <div class="box type3">
+                <div class="sub-box">
+                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li><code>pandas</code> method <code>.iloc[]</code></li><li><code>pandas</code> method <code>.value_counts()</code></li><li>Python package <code>seaborn</code>;</li><li>Python package <code>matplotlib.pyplot</code>;</li><li><code>matplotlib.pyplot</code> function <code>.subplots()</code>;</li><li><code>seaborn</code> function <code>.barplot()</code></li></ul>
+                </div>            
+            </div>    
+        
+            <div class="box type4">
+                <div class="sub-box">
+                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <ul><li><code>start_port = cleaned_df.iloc[:,3]</code>, we use the <code>pandas</code> method <code>.iloc[]</code> to     select our target column. In this case it is "Voyage itinerary imputed port where began (ptdepimp) place", the     fourth column of our DataFrame (Python index 3). We store this column in the variable <code>start_port</code>;</li><li><code>start_port_counts = start_port.value_counts()</code>, we want to count how many times a certain town name     occurs in our column and the <code>pandas</code> method <code>.value_counts()</code> does exactly this. After     applying the method, we obtain a <code>pandas</code> DataFrame with a single column (a Series) having as index the     name of the town and as value the number of times that town shows up in the column <code>start_port</code>. We store     this result in <code>start_port_counts</code>;</li><li><code>start_port_counts</code>, we display the content of the variable <code>start_port_counts</code> on the screen;</li><li><code>import seaborn as sns</code>, we import the Python package <code>seaborn</code> and we give it the alias     <code>sns</code>. This means that, from now own, if we want to use a certain function belonging to this package, we     will call it using: <code>sns.<function_name>()</function_name></code>;</li><li><code>import matplotlib.pyplot as plt</code>, we import the Python package <code>matplotlib.pyplot</code> and we     give it the alias <code>plt</code>;</li><li><code>fig, new_ax = plt.subplots(nrows=1,ncols=1,figsize=(8,8))</code>, we use the <code>matplotlib.pyplot</code>     function <code>.subplots()</code> to initialise an empty plot. <code>.subplots()</code> it is generally used to create     a grid of plots and its first two arguments (<code>nrows</code> and <code>ncols</code>) specify the number of rows     and columns in this grid. In our case, we just want a single plot, therefore we specify a grid having only one column     and one row. The parameter <code>figsize</code> specifies the size of the figure in inches. In our case     (<code>(8, 8)</code>) it will be 8 inches wide and 8 inches high. This function returns two different objects: a     Figure and an Axes. The Figure is the white space where we are going to put our plot, it is our plot container. The     Axes, despite its name, it is the plot itself. We did not initialise our plot yet, so the Axes is empty, but this is     one of the standard procedure in Python: first create the space where to plot, then plot the data. Figure and Axes are     stored in the variables <code>fig</code> and <code>new_ax</code>, respectively;</li><li><code>filter = start_port_counts &gt; 50</code>, if we plot ALL our data, the plot is going to look overcrowded. For this     reason, we can specify a threeshold and plotting only towns that appear a number of times that is higher than our     threeshold. In our case, and in the specific case of this plot, this number will be 50.     <code>start_port_counts &gt; 50</code> is a Python <em>condition</em>, it basically creates an array with the same size     and features of <code>start_port_counts</code> containing boolean values (True and False) instead of numerical values.     When True and when False? If a value in <code>start_port_counts</code> is higher than 50, the corresponding boolean     value will be True, otherwise it will be False. We store this boolean array in the variable <code>filter</code> as     this can used as a mask or filter to filter out from an array with the same dimention and features only those values     corresponding to True;</li><li><code>sns.barplot(ax=ax,x=start_port_counts[filter],y=start_port_counts.index[filter])</code>, we use the     <code>seaborn</code> function <code>.barplot()</code> to create (guess what??) a barplot. The barplot will be     located in our just created Axes object, this is specified using the argument <code>ax=new_ax</code>. We need to     specify which data to plot in the horizontal <code>x</code> and <code>y</code> axis. We want to plot town name in the     y axis and town name counts in the y axis. We also want to display only those data with more than 50 counts. We can     specify this with <code>x=start_port_counts[filter]</code> and <code>y=start_port_counts.index[filter]</code>, as the     town name is specified in the <code>start_port_counts</code> index and the town counts in the     <code>start_port_counts</code> values.</li><li>We repeat the same procedure for the fifth and sixth column of our DataFrame</li></ul>
+                    </div>       
+                </div>
+            </div>    
+        
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>start_port <span class="op">=</span> cleaned_df.iloc[:,<span class="dv">3</span>]</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>start_port_counts <span class="op">=</span> start_port.value_counts()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(start_port_counts))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>start_port_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.series.Series'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>Voyage itinerary imputed port where began (ptdepimp) place
+Liverpool                       3227
+unknown                         2005
+London                          1874
+Bahia, place unspecified        1815
+Rio de Janeiro                  1464
+                                ... 
+Mangaratiba                        1
+Mediterranean coast (France)       1
+Canasí                             1
+Santa Catarina                     1
+Portland                           1
+Name: count, Length: 176, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>fig, new_ax <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">1</span>,ncols<span class="op">=</span><span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> start_port_counts <span class="op">&gt;</span> <span class="dv">50</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sns.barplot(ax<span class="op">=</span>ax,x<span class="op">=</span>start_port_counts[<span class="bu">filter</span>],y<span class="op">=</span>start_port_counts.index[<span class="bu">filter</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+<pre><code>&lt;Axes: xlabel='count', ylabel='Voyage itinerary imputed port where began (ptdepimp) place'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ch4_data_analysis_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>main_pur_port <span class="op">=</span> cleaned_df.iloc[:,<span class="dv">4</span>]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>main_pur_counts <span class="op">=</span> main_pur_port.value_counts()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>main_pur_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>Voyage itinerary imputed principal place of slave purchase (mjbyptimp) 
+Africa, port unspecified                                3177
+Luanda                                                  1447
+West Central Africa and St. Helena, port unspecified    1139
+Bonny                                                    853
+Gold Coast, port unspecified                             787
+                                                        ... 
+Petit Mesurado                                             1
+Eva                                                        1
+Pokesoe (Princes Town)                                     1
+Sassandra                                                  1
+Sugary (Siekere)                                           1
+Name: count, Length: 161, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> main_pur_counts <span class="op">&gt;</span> <span class="dv">200</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(ax<span class="op">=</span>ax,x<span class="op">=</span>main_pur_counts[<span class="bu">filter</span>],y<span class="op">=</span>main_pur_counts.index[<span class="bu">filter</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>&lt;Axes: xlabel='count', ylabel='Voyage itinerary imputed principal place of slave purchase (mjbyptimp) '&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ch4_data_analysis_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>main_dis_port <span class="op">=</span> cleaned_df.iloc[:,<span class="dv">5</span>]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>main_dis_counts <span class="op">=</span> main_dis_port.value_counts()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>main_dis_counts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place
+Bahia, place unspecified       1720
+Rio de Janeiro                 1651
+Kingston                       1576
+Barbados, place unspecified    1524
+Havana                          893
+                               ... 
+France, place unspecified         1
+Santa Marta                       1
+Dois Rios                         1
+Maceió                            1
+Bonny                             1
+Name: count, Length: 240, dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> main_dis_counts <span class="op">&gt;</span> <span class="dv">150</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>sns.barplot(ax<span class="op">=</span>ax,x<span class="op">=</span>main_dis_counts[<span class="bu">filter</span>],y<span class="op">=</span>main_dis_counts.index[<span class="bu">filter</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>&lt;Axes: xlabel='count', ylabel='Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ch4_data_analysis_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="40">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style>
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Answer</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    The ports where most of the voyages took place are Liverpool and London (with a considerable percent being unkown). Most of the places where slaves have been purchased remain unkown, the second most occuring purchanse place is Luanda (mid Africa). The most frequent places of disimbarkation are Bahia and Rio de Janeiro, on the opposite side of the Atlantic Ocean at a similar latitude.
+                </div>
+            </div>    
+        
+</div>
+</div>
+<p>Let’s try to make now a different time ov visualization, a time series, i.e.&nbsp;a plot where we see how parameters change over time</p>
+<div class="cell" data-execution_count="61">
+<div class="cell-output cell-output-display" data-execution_count="61">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style> 
+            <div class="box type1">
+                    <div class="sub-box">
+                        <img src="myutils/icons/question.png" alt="Icon" class="picture">
+                        <div class="ctitle">
+                            <u><h4 class="anchored"><strong>Question(s)</strong></h4></u>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        How does the total number of disembarkated captives change over time?
+                    </div>
+            </div>
+        
+            <div class="box type2">
+                <div class="sub-box">
+                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li>Consider the data set columns containing information about time and number of captives</li><li>Group data rows by year</li><li>Sum the number of captives per year</li><li>Make a plot with years (time) on the x axis and number of captives on the y axis</li><li>Locate the minimum and the maximum of captives per year</li></ul>
+                </div>
+            </div>    
+        
+            <div class="box type3">
+                <div class="sub-box">
+                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li><code>pandas</code> method <code>.groupby()</code>;</li><li><code>parnas</code> method <code>.mean()</code>;</li><li>Python package <code>matplotlib.pyplot</code>;</li><li>Python package <code>seaborn</code>;</li><li><code>matplotlib.pyplot</code> function <code>.subplots()</code>;</li><li><code>seaborn</code> function <code>.lineplot()</code>;</li><li><code>matplotlib.pyplot</code> function <code>.grid()</code>;</li><li><code>pandas</code> method <code>.idxmin()</code>;</li><li><code>pandas</code> method <code>.idxmax()</code>;</li><li>Python function <code>print()</code></li></ul>
+                </div>            
+            </div>    
+        
+            <div class="box type4">
+                <div class="sub-box">
+                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <ul><li><pre style="display: inline-block; float: left; margin-right: 10px">col_to_group = "Year of arrival at port of disembarkation"
+col_to_sum = "Captives arrived at 1st port"</pre>, we select the two columns in the DataFrame we are interested in, the one containing the time     information and the one containing the number of captives. We store the name of these two columns in the     variables <code>col_to_group</code> and <code>col_to_sum</code>, respectively;</li><li><code>sum_df_per_year = cleaned_df.groupby(col_to_group)[col_to_average].sum()</code>, we first apply the     method <code>.groupby()</code> to our cleaned DataFrame. <code>.groupby()</code> does exactly what it says, it     groups data according to a certain column (in our case the <code>col_to_group</code> column), this means that any     other method we are going to apply from now own, it will operate on groups on rows instead of the entire DataFrame.     For example, if we apply a method perfoming summation or average on a DataFrame grouped by year, python will     compute the sum or the average on those groups of data. In a DataFrame there are many column containing values     to sum and average, so which column is Python going to choose? We need to specify it, in our case we do that     with <code>[col_to_sum]</code>, where the column to sum contains information about the number of captives. We     finally apply the method <code>.sum()</code> to compute the sum of number of captives on DataFrame rows grouped     by year. We store the result in the variable <code>sum_df_per_year</code>;</li><li><code>sum_df_per_year</code>, we display our last result on the screen;</li><li><code>fig, my_ax = plt.subplots(nrows=1,ncols=1,figsize=(8,8))</code>, we use the function <code>.subplots()</code>     to create a single squared empty plot with size 8 inches. We obtain a Figure object (the container of our plot) and     a Axes object (an empty plot). We store these two objects in the variables <code>fig</code> and <code>my_ax</code>;</li><li><code>sns.lineplot(ax=my_ax,x=sum_df_per_year.index,y=sum_df_per_year)</code>, we use the method     <code>.lineplot()</code> to create a line plots (data points connected by a line). We plot the index of the Series     (a DataFrame with only one column) <code>sum_df_per_year</code> on the x axis and its values on the y axis.</li><li><code>plt.grid()</code>, we use the function <code>.grid()</code> to overplot a grid on our plot, with the purpose of     better describe the data by eye;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">max_index = df_per_year.idxmax()
+min_index = df_per_year.idxmin()
+print('The minimum number of captives per year is:', df_per_year[min_index],'on',min_index)
+print('The maximum number of captives per year is:', df_per_year[max_index],'on',max_index)</pre>, we apply the method <code>.idxmax()</code> to Series <code>df_per_year</code> to get the index     corresponding to the maximum of the Series values. Remember that <code>df_per_year</code> index are year and its values     are the sum of number of captives in that year. Therefore, obtaining the index corresponding to the maximum values     means obtaining the year having the maximum number of captives. We store this result in the variable     <code>max_index</code>. We can use this index to retrieve the corresponding value:     <code>df_per_year[min_index]</code>. We can repeat the same procedure for the minimum value using     <code>.idxmin()</code>. we finally print both results on the screen with the function <code>print()</code></li></ul>
+                    </div>       
+                </div>
+            </div>    
+        
+</div>
+</div>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>col_to_group <span class="op">=</span> <span class="st">'Year of arrival at port of disembarkation'</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>col_to_sum <span class="op">=</span> <span class="st">'Captives arrived at 1st port'</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>df_per_year <span class="op">=</span> cleaned_df.groupby(col_to_group)[col_to_sum].<span class="bu">sum</span>()</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df_per_year.shape)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>sum_df_per_year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(298,)</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>Year of arrival at port of disembarkation
+1520.0       44.0
+1526.0      115.0
+1527.0       46.0
+1532.0      589.0
+1534.0      354.0
+           ...   
+1862.0    11407.0
+1863.0     6739.0
+1864.0     3298.0
+1865.0      795.0
+1866.0      700.0
+Name: Captives arrived at 1st port, Length: 298, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">1</span>,figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">8</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>sns.lineplot(ax<span class="op">=</span>ax,x<span class="op">=</span>df_per_year.index,y<span class="op">=</span>df_per_year)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/xizg0003/anaconda3/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/Users/xizg0003/anaconda3/lib/python3.11/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="ch4_data_analysis_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>max_index <span class="op">=</span> df_per_year.idxmax()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>min_index <span class="op">=</span> df_per_year.idxmin()</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The minimum number of captives per year is:'</span>, df_per_year[min_index],<span class="st">'on'</span>,min_index)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The maximum number of captives per year is:'</span>, df_per_year[max_index],<span class="st">'on'</span>,max_index)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The minimum number of captives per year is: 2.0 on 1538.0
+The maximum number of captives per year is: 79472.0 on 1829.0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="65">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> <span class="st">'The total number of captives is almost constant up to 1650, with the exception of two peaks around 1600 </span><span class="ch">\</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="st">and 1622. The number increases steadily up to 1800 and decreases afterwords. The times series is not smooth, but proceeds </span><span class="ch">\</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="st">by low and high peek. The number of captives per year reaches its maximum on 1829 with almost 80 thousands slaves traded </span><span class="ch">\</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="st">that year. The minimum is 2 captives on 1538.'</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>question_box(solution<span class="op">=</span>solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="65">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style>
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Answer</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    The total number of captives is almost constant up to 1650, with the exception of two peaks around 1600 and 1622. The number increases steadily up to 1800 and decreases afterwords. The times series is not smooth, but proceeds by low and high peek. The number of captives per year reaches its maximum on 1829 with almost 80 thousands slaves traded that year. The minimum is 2 captives on 1538.
+                </div>
+            </div>    
+        
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../parts/data_analysis/ch3_data_cleaning.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cleaning data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../summary.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

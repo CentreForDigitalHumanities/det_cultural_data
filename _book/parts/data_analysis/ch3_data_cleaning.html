@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data exploration toolkit for cultural data: structure, clean, visualize, and run a preliminary analysis - 6&nbsp; Cleaning data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../parts/data_analysis/ch4_data_analysis.html" rel="next">
+<link href="../../parts/data_analysis/ch2_exploring_data.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/data_analysis/organising_your_data.html">Data Analysis</a></li><li class="breadcrumb-item"><a href="../../parts/data_analysis/ch3_data_cleaning.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cleaning data</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Data exploration toolkit for cultural data: structure, clean, visualize, and run a preliminary analysis</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Preface</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Preliminaries</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/preliminaries/set_up.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setting up</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Data Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/organising_your_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Organising your data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch1_reading_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch2_exploring_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exploring data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch3_data_cleaning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cleaning data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../parts/data_analysis/ch4_data_analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analysing data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Cleaning data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(36151, 9)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> df.columns</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year of arrival at port of disembarkation</th>
+<th data-quarto-table-cell-role="th">Voyage ID</th>
+<th data-quarto-table-cell-role="th">Vessel name</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed port where began (ptdepimp) place</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal place of slave purchase (mjbyptimp)</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place</th>
+<th data-quarto-table-cell-role="th">VOYAGEID2</th>
+<th data-quarto-table-cell-role="th">Captives arrived at 1st port</th>
+<th data-quarto-table-cell-role="th">Captain's name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1714.0</td>
+<td>16109</td>
+<td>Freeke Gally</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Kingston</td>
+<td>NaN</td>
+<td>283.0</td>
+<td>Neale, Alexander</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1713.0</td>
+<td>16110</td>
+<td>Greyhound Gally</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Jamaica, place unspecified</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Selkirk, Alexander&lt;br/&gt; Forrest, Henry</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1714.0</td>
+<td>16111</td>
+<td>Jacob</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Kingston</td>
+<td>NaN</td>
+<td>130.0</td>
+<td>Nicholls, Philip</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1714.0</td>
+<td>16112</td>
+<td>Jason Gally</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Port Royal</td>
+<td>NaN</td>
+<td>278.0</td>
+<td>Plummer, John</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1713.0</td>
+<td>16113</td>
+<td>Lawford Gally</td>
+<td>Bristol</td>
+<td>Africa, port unspecified</td>
+<td>Newcastle (Nevis)</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Stretton, Joseph</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now that we got some familiarity with our dataset, it is time to clean our data, i.e.&nbsp;to get rid of all those NaN values and anything else that might effect our data analysis. Where to start? Well, inspecting the DataFrame by eye, we see severl NaN values in the first 5 rows of our DataFrae. The first column we see NaN values is “Voyage itinerary imputed principal place of slave purchase”, the firth column (index 5). It would be nice to check if also other column have NaN values.<br> Let’s start with the first column, “Year of arrival at port of disembarkation” (index 0), let’s check if this column contains any NaN and then we will repeat the same process for all the other columns.</p>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display" data-execution_count="4">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style> 
+            <div class="box type1">
+                    <div class="sub-box">
+                        <img src="myutils/icons/question.png" alt="Icon" class="picture">
+                        <div class="ctitle">
+                            <u><h4 class="anchored"><strong>Question(s)</strong></h4></u>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        Are there any NaN values in the first column? How many are they?
+                    </div>
+            </div>
+        
+            <div class="box type2">
+                <div class="sub-box">
+                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    Go through all the 36151 entries of the first column and look for NaN values.
+                </div>
+            </div>    
+        
+            <div class="box type3">
+                <div class="sub-box">
+                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li><code>pandas</code> column selector method <code>.iloc</code>;</li><li><code>pandas</code> method <code>.is_na</code>;</li><li>Python function <code>.sum()</code>;</li><li>Python function <code>print()</code>.</li></ul>
+                </div>            
+            </div>    
+        
+            <div class="box type4">
+                <div class="sub-box">
+                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <ul><li><code>arr_year = df.iloc[:,0]</code>, we first select the first column of the DataFrame using the     <code>pandas</code> method <code>.iloc[]</code> and we store the selected column in the new     variable <code>arr_year</code> (we already used this method in the previous chapter);</li><li><code>arr_year_na = arr_year.isna()</code>, we apply the <code>pandas</code> method <code>.isna()</code>.     When we apply the <code>.isna()</code> method, we obtain a result with the same dimensions of the     object you applied it to, containing either True or False depending on if the corresponding value was     a NaN (or na, non arithmetic) value or not (indeed the result just answer the question: is this value na?).     We store the result in the variable <code>arr_year_na</code> (you are free to use a more descriptive name);</li><li><code>print(arr_year_na.sum())</code>, in Python a True is equivalent to 1 and Fale to 0. This means that     if we have an array (a list or sequence of values) containing True and False, if we sum all the values,     we would obtain the number of True values (as they count as 1 and everything else counts as 0). These     True values correspond to the caseswhen  the method <code>.isna()</code> found a NaN, so that summing     all these values means, as a matter of fact, counting how many NaNs have been found.</li></ul>
+                    </div>       
+                </div>
+            </div>    
+        
+            <div class="box type5">
+                <div class="sub-box">
+                    <img src="myutils/icons/wiz.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Expert Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <code>print(df.iloc[:,0].isna())</code>, we can apply methods and function one after another, using less coding lines and saving space in our computer memory
+                    </div>  
+                </div>
+            </div>    
+        
+</div>
+</div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>arr_year <span class="op">=</span> df.iloc[:,<span class="dv">0</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>arr_year_na <span class="op">=</span> arr_year.isna()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(arr_year_na)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Total number of NaNs in the first column:'</span>,arr_year_na.<span class="bu">sum</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0        False
+1        False
+2        False
+3        False
+4        False
+         ...  
+36146    False
+36147    False
+36148    False
+36149    False
+36150    False
+Name: Year of arrival at port of disembarkation, Length: 36151, dtype: bool
+Total number of NaNs in the first column: 1</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> <span class="st">'The first column contains 1 NaN value'</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>question_box(solution<span class="op">=</span>solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style>
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Answer</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    The first column contains 1 NaN value
+                </div>
+            </div>    
+        
+</div>
+</div>
+<p>In this way we found our that the first column has 1 NaN (or na) value, that would have been quite hard to spot by eye scrolling 36151 lines! <br> It is great that we found the 1 NaN in the first column, but where exactly is it located? What’s the corresponding Voyage ID of that value?</p>
+<div class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="7">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style> 
+            <div class="box type1">
+                    <div class="sub-box">
+                        <img src="myutils/icons/question.png" alt="Icon" class="picture">
+                        <div class="ctitle">
+                            <u><h4 class="anchored"><strong>Question(s)</strong></h4></u>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        Where is the NaN value located?
+                    </div>
+            </div>
+        
+            <div class="box type2">
+                <div class="sub-box">
+                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    Go through all the 36151 entries of the first column and look for the NaN value.
+                </div>
+            </div>    
+        
+            <div class="box type3">
+                <div class="sub-box">
+                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li>Python masking.</li></ul>
+                </div>            
+            </div>    
+        
+            <div class="box type4">
+                <div class="sub-box">
+                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <ul><li><code>df[arr_year_na]</code>, here we will use one of the most useful features when working with     DataFrames: masking. From our previous coding, arr_year_na is an object with the same shape and     features of the first column, but instead of containing years, it contains True and False values,     where True correspond to the NaN value found applying the method <code>.isna()</code>. If we consider     our DataFrame <code>df</code>, we can use this object to select data from it. What are we going to     select? Well, <code>arr_year_na</code> has a name, and that is the name of the first column, so we     will select that. We will also select only the rows where <code>arr_year_na</code> is True.</li></ul>
+                    </div>       
+                </div>
+            </div>    
+        
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df[arr_year_na]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year of arrival at port of disembarkation</th>
+<th data-quarto-table-cell-role="th">Voyage ID</th>
+<th data-quarto-table-cell-role="th">Vessel name</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed port where began (ptdepimp) place</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal place of slave purchase (mjbyptimp)</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place</th>
+<th data-quarto-table-cell-role="th">VOYAGEID2</th>
+<th data-quarto-table-cell-role="th">Captives arrived at 1st port</th>
+<th data-quarto-table-cell-role="th">Captain's name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">32248</td>
+<td>NaN</td>
+<td>91909</td>
+<td>Kitty</td>
+<td>Liverpool</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>Fisher, Joseph</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style>
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Answer</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    The row containing a NaN in the first column ("Year of arrival at port of disembarkation") has index 32248, it misses information about its itinerary (only the starting port is present) and number of captives, and its ID is 91909
+                </div>
+            </div>    
+        
+</div>
+</div>
+<p>In this way we can inspect the NaN values one by one and we can make a decision about how to handle them. In our DataFrame there are thousands of NaNs (as you will see in a minute) and going through ALL of them one by one is not a good idea. Let’s first try to figure out if the other columns have also NaNs and how many are they. The process will be quite straightforward as we already did it for one of the columns, so what we need to do now is to repeat the same procedure for all the other columns.</p>
+<div class="cell" data-execution_count="19">
+<div class="cell-output cell-output-display" data-execution_count="19">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style> 
+            <div class="box type1">
+                    <div class="sub-box">
+                        <img src="myutils/icons/question.png" alt="Icon" class="picture">
+                        <div class="ctitle">
+                            <u><h4 class="anchored"><strong>Question(s)</strong></h4></u>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        Which columns have NaNs? How many are they?
+                    </div>
+            </div>
+        
+            <div class="box type2">
+                <div class="sub-box">
+                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    Go through the DataFrame columns one by one and count the NaNs
+                </div>
+            </div>    
+        
+            <div class="box type4">
+                <div class="sub-box">
+                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <pre style="display: inline-block; float: left; margin-right: 10px">for column_name in column_names: 
+    selected_column = df[column_name] 
+    selected_column_na = selected_column.isna() 
+    n_nan = selected_column_na.sum() 
+    print(column_name,"has",n_nan,"NaN") </pre>, we start with a for loop scrolling all the elements contained in the variable <code>column_names</code>.     In this variable we previously stored all the column names. In this way the variable <code>column_name</code>     will containg a single column name for each iteration of the loop. We then use the column name to select that     specific column in our DataFrame, storing this selected column in the variable <code>selected_column</code>.     We apply the method <code>.isna()</code> to the selected column to obtain, instead of a column of numerical or     string values, a column of True and False (boolean) values. We use the method <code>.sum()</code> to sum all     the True and False values. Keeping in mind that True is equivalent to 1 and False to 0, this will result in     counting all the NaN values in the selected column. We store this last result in the variable <code>n_nan</code>.     We finally print this result, together with the name of the selected column, using the python function <code>print()</code>.
+                    </div>       
+                </div>
+            </div>    
+        
+            <div class="box type5">
+                <div class="sub-box">
+                    <img src="myutils/icons/wiz.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Expert Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <pre style="display: inline-block; float: left; margin-right: 10px">for i,column_name in enumerate(column_names): 
+        print(f"{i}) {column_name} has {df[column_name].isna().sum()} NaN") </pre>, we can apply the methods described above one after another, without storing any intermidiate result in a new     variable. We can also use the python function <code>enumerate()</code> to, not only scroll through the <code>df</code>     column names, but also for counting the loop iterations starting from the first one (index 0). The iteration index     will be stored in the variable <code>i</code>
+                    </div>  
+                </div>
+            </div>    
+        
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column_name <span class="kw">in</span> column_names:</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    selected_column <span class="op">=</span> df[column_name]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    selected_column_na <span class="op">=</span> selected_column.isna()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    n_nan <span class="op">=</span> selected_column_na.<span class="bu">sum</span>()</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(column_name,<span class="st">'has'</span>,n_nan,<span class="st">'NaN'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Year of arrival at port of disembarkation has 1 NaN
+Voyage ID has 0 NaN
+Vessel name has 1614 NaN
+Voyage itinerary imputed port where began (ptdepimp) place has 4508 NaN
+Voyage itinerary imputed principal place of slave purchase (mjbyptimp)  has 2210 NaN
+Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place has 4191 NaN
+VOYAGEID2 has 36101 NaN
+Captives arrived at 1st port has 17743 NaN
+Captain's name has 4028 NaN</code></pre>
+</div>
+</div>
+<p>and if we want to keep in mind the column index of each column…</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,column_name <span class="kw">in</span> <span class="bu">enumerate</span>(column_names): <span class="op">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">) </span><span class="sc">{</span>column_name<span class="sc">}</span><span class="ss"> has </span><span class="sc">{</span>df[column_name]<span class="sc">.</span>isna()<span class="sc">.</span><span class="bu">sum</span>()<span class="sc">}</span><span class="ss"> NaN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0) Year of arrival at port of disembarkation has 1 NaN
+1) Voyage ID has 0 NaN
+2) Vessel name has 1614 NaN
+3) Voyage itinerary imputed port where began (ptdepimp) place has 4508 NaN
+4) Voyage itinerary imputed principal place of slave purchase (mjbyptimp)  has 2210 NaN
+5) Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place has 4191 NaN
+6) VOYAGEID2 has 36101 NaN
+7) Captives arrived at 1st port has 17743 NaN
+8) Captain's name has 4028 NaN</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="13">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style>
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Answer</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    The only column that does not have NaNs is the Voyage ID column, all the others (excluding the Year of Arrival [...]) have thousands of NaNs.
+                </div>
+            </div>    
+        
+</div>
+</div>
+<p>At this point we have a general idea of the amount of data missing in our DataFrame. The following question is how to deal with this missing data? There are several things we can do, the easiest option would be just exclude it from our DataFrame. However, in order to answer a research question, we often do not need to use or explore ALL the available information and we would usually be interested in some parameters more than others. In this case our data selection could be performed looking at one or more specific columns. What to do with the rest of the NaNs? We can either leave them as they are and trying to figure out how our analysis program will “digest” these values or find good substitute for them. The value of this substitute will depend on the data type of the columns containing the NaN and on our decision. For example the NaN in the columns containing a descriptive string, like the vessel name or the starting port, could be substituted by the string “unknown”. NaNs in the “Captives arrived […]” column could be left as they are (you may be tempted to change them to 0, but zero captives is quite different from unknown number of captives) or substituted by, for example, the average of captives during the same year. <br> Each choice will have different implications to our final results, the most important thing in this stage is to clearly document our criteria for filtering NaN. In our specific case we will be mostly interested in the data containing the number of captives, so we want to filter our all those rows where the number of captives is NaN. We will then exclude the columns VOYAGEID2 as we already have a voyage ID and it is not listed in the data <a href="https://www.slavevoyages.org/voyage/about#variable-list/2/en/">variable description</a>. To resume, here there are our cleaning criteria: - All the rows not containing data about the number of captives have been removed; - All the NaN values in columns with descriptive information (e.g.&nbsp;names) have been substituted with “unknown”; - The column VOYAGEID2 has been removed from the DataFrame.</p>
+<div class="cell" data-execution_count="37">
+<div class="cell-output cell-output-display" data-execution_count="37">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style> 
+            <div class="box type1">
+                    <div class="sub-box">
+                        <img src="myutils/icons/task.png" alt="Icon" class="picture">
+                        <div class="ctitle">
+                            <u><h4 class="anchored"><strong>Task(s)</strong></h4></u>
+                        </div>
+                    </div>
+                    <div class="sub-box">
+                        Cleaning data
+                    </div>
+            </div>
+        
+            <div class="box type2">
+                <div class="sub-box">
+                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li>Remove all the data of the column VOYAGEID2;</li><li>Going through all the values of the column "Captives arrived at 1st port" and remove those rows containing NaN;</li><li>Going through all the values of the descriptive columns and changing NaN into "unknown"</li><li>Checking how much data have been filtered out by our procedures</li></ul>
+                </div>
+            </div>    
+        
+            <div class="box type3">
+                <div class="sub-box">
+                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <ul><li>Python function <code>print()</code>;</li><li><code>pandas</code> attribute <code>.columns</code>;</li><li><code>pandas</code> method <code>drop()</code>;</li><li><code>pandas</code> method <code>.head()</code>;</li><li><code>pandas</code> method <code>.dropna()</code>;</li><li><code>pandas</code> method <code>.fillna()</code>;</li><li><code>pandas</code> attribute <code>.shape</code>;</li><li>Python function <code>len()</code>;</li><li>Python operators * (multiplication), / (division), and - (subtraction)</li></ul>
+                </div>            
+            </div>    
+        
+            <div class="box type4">
+                <div class="sub-box">
+                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    <div>
+                        <ul><li><code>print(df.columns)</code>, we start printing the name of our DataFrame columns, just as a reminder. We use     the Python function <code>print()</code> and the <code>pandas</code> attribute <code>.columns</code> we already     used several times;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">column_to_remove = "VOYAGEID2" 
+column_to_remove_nan = "Captives arrived at 1st port" </pre>, we store the name of the columns we are interested in into two variables. This is not stricktly     necessary, as we could use the name of the columns directly as input for methods and functions. However, with this     extra step, our code will be more readable as we have chosed two very descriptive variable names: <code>column_to_remove</code>     will, indeed, contain the name of the column we want to remove from our DataFrame (VORAGEID2) and <code>column_to_remove_nan</code>     will contain the name of the column to use as a reference for filtering rows, all the rows haveing NaN in this column     will be removed;</li><li><code>cleaned_df_step1 = df.drop(column_to_remove,axis=1)</code>, we use the method <code>.drop()</code> to remove     a specific column. In <code>pandas</code> DataFrames each row has an index. This index is different from the index     that every Python list of objects has, i.e. an integer number starting from 0. This DataFrame index is an additional     index that can also be, not only a number, but also a string, or a label. The <code>pandas</code> method <code>.drop()</code>     can be used either to remove columns, depending on column names, or rows, depending on <code>pandas</code> index.     To indicate that we want to target the columns, and not the rows, we need specify the parameter <code>axis</code> equal     to 1 (0 would target the rows). Together with that we need to specify the name of the column we want to remove, stored     in the variable <code>column_to_remove</code>. In this way, we apply the method <code>.drop()</code> to our "dirty"     DataFrame <code>df</code> and we store the result into the variable <code>cleaned_df_step1</code>;</li><li><code>cleaned_df_step1.head(5)</code>, after every filtering operation, it is a good idea to check out the effect on     our output result. In this case we use the <code>pandas</code> method <code>.head()</code> to visualise the first five     rows of our DataFrame <code>cleaned_df_step1</code></li><li><code>cleaned_df_step2 = cleaned_df_step1.dropna(subset=[column_to_remove_nan])</code>, we use the method <code>.dropna()</code>     to filter out all the rows having NaN in a list of column. The list of columns needs to be specified in the function     parameter <code>subset</code>. In this case we have a single column name stored in the variable <code>column_to_remove_nana</code>     and to make it a list we put this variable in between square brackets <code>[ ]</code>. We apply the method to the     DataFrame <code>cleaned_df_step1</code> and store the result in <code>cleaned_df_step2</code>;</li><li><code>cleaned_df = cleaned_df_step2.fillna("unknown")</code>, we finally use the method <code>.fillna()</code> to fill all     the NaN in our DataFrame with a certain value, in this case the string (word) "unknown". We apply the method to the     DataFrame <code>cleaned_df_step2</code> and store the result into <code>cleaned_df</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">print(cleaned_df.shape) 
+n_filtered_rows = len(df)-len(cleaned_df) 
+per_cent = (n_filtered_rows/len(df))*100 </pre>, this block of Python instructions checks the size of our filtered DataFrame <code>cleaned_df</code> and     compares it with our original, raw, DataFrame <code>df</code>. We first visualise the size of <code>cleaned_df</code>     using the attribute <code>.shape</code>, then we obtain simply the number of rows of each DataFrame using the Python     function <code>len()</code>. We subtract the number of rows of the DataFrames before and after reading to check how many     rows we filtered out and we store the result in the variable <code>n_filtered_rows</code>. We finally compute the percent     of filtered rows compared to the initial size of the DataFrame.</li></ul>
+                    </div>       
+                </div>
+            </div>    
+        
+</div>
+</div>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the name of the columns first</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.columns)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Select our target columns for clearning the data</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>column_to_remove <span class="op">=</span> <span class="st">'VOYAGEID2'</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>column_to_remove_nan <span class="op">=</span> <span class="st">'Captives arrived at 1st port'</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform Data Cleaning visualising the result step by step</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># step1, removing column VOYAGEID2 from the DataFrame</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>cleaned_df_step1 <span class="op">=</span> df.drop(column_to_remove,axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>cleaned_df_step1.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index(['Year of arrival at port of disembarkation', 'Voyage ID', 'Vessel name',
+       'Voyage itinerary imputed port where began (ptdepimp) place',
+       'Voyage itinerary imputed principal place of slave purchase (mjbyptimp) ',
+       'Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place',
+       'VOYAGEID2', 'Captives arrived at 1st port', 'Captain's name'],
+      dtype='object')</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year of arrival at port of disembarkation</th>
+<th data-quarto-table-cell-role="th">Voyage ID</th>
+<th data-quarto-table-cell-role="th">Vessel name</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed port where began (ptdepimp) place</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal place of slave purchase (mjbyptimp)</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place</th>
+<th data-quarto-table-cell-role="th">Captives arrived at 1st port</th>
+<th data-quarto-table-cell-role="th">Captain's name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1714.0</td>
+<td>16109</td>
+<td>Freeke Gally</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Kingston</td>
+<td>283.0</td>
+<td>Neale, Alexander</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1713.0</td>
+<td>16110</td>
+<td>Greyhound Gally</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Jamaica, place unspecified</td>
+<td>NaN</td>
+<td>Selkirk, Alexander&lt;br/&gt; Forrest, Henry</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1714.0</td>
+<td>16111</td>
+<td>Jacob</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Kingston</td>
+<td>130.0</td>
+<td>Nicholls, Philip</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1714.0</td>
+<td>16112</td>
+<td>Jason Gally</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Port Royal</td>
+<td>278.0</td>
+<td>Plummer, John</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1713.0</td>
+<td>16113</td>
+<td>Lawford Gally</td>
+<td>Bristol</td>
+<td>Africa, port unspecified</td>
+<td>Newcastle (Nevis)</td>
+<td>NaN</td>
+<td>Stretton, Joseph</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step2, removing all the rows haveing NaN in the "Captives arrived at 1st port" column</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>cleaned_df_step2 <span class="op">=</span> cleaned_df_step1.dropna(subset<span class="op">=</span>[column_to_remove_nan])</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>cleaned_df_step2.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year of arrival at port of disembarkation</th>
+<th data-quarto-table-cell-role="th">Voyage ID</th>
+<th data-quarto-table-cell-role="th">Vessel name</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed port where began (ptdepimp) place</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal place of slave purchase (mjbyptimp)</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place</th>
+<th data-quarto-table-cell-role="th">Captives arrived at 1st port</th>
+<th data-quarto-table-cell-role="th">Captain's name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1714.0</td>
+<td>16109</td>
+<td>Freeke Gally</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Kingston</td>
+<td>283.0</td>
+<td>Neale, Alexander</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1714.0</td>
+<td>16111</td>
+<td>Jacob</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Kingston</td>
+<td>130.0</td>
+<td>Nicholls, Philip</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1714.0</td>
+<td>16112</td>
+<td>Jason Gally</td>
+<td>Bristol</td>
+<td>NaN</td>
+<td>Port Royal</td>
+<td>278.0</td>
+<td>Plummer, John</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>1714.0</td>
+<td>16114</td>
+<td>Mercy Gally</td>
+<td>Bristol</td>
+<td>Africa, port unspecified</td>
+<td>Barbados, place unspecified</td>
+<td>190.0</td>
+<td>Scott, John</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>1714.0</td>
+<td>16115</td>
+<td>Mermaid Gally</td>
+<td>Bristol</td>
+<td>Cape Verde Islands</td>
+<td>Kingston</td>
+<td>72.0</td>
+<td>Banbury, John&lt;br/&gt; Copinger, James</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step3, changing all the other NaN into unknown</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>cleaned_df <span class="op">=</span> cleaned_df_step2.fillna(<span class="st">"unknown"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>cleaned_df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Year of arrival at port of disembarkation</th>
+<th data-quarto-table-cell-role="th">Voyage ID</th>
+<th data-quarto-table-cell-role="th">Vessel name</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed port where began (ptdepimp) place</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal place of slave purchase (mjbyptimp)</th>
+<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place</th>
+<th data-quarto-table-cell-role="th">Captives arrived at 1st port</th>
+<th data-quarto-table-cell-role="th">Captain's name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1714.0</td>
+<td>16109</td>
+<td>Freeke Gally</td>
+<td>Bristol</td>
+<td>unknown</td>
+<td>Kingston</td>
+<td>283.0</td>
+<td>Neale, Alexander</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1714.0</td>
+<td>16111</td>
+<td>Jacob</td>
+<td>Bristol</td>
+<td>unknown</td>
+<td>Kingston</td>
+<td>130.0</td>
+<td>Nicholls, Philip</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1714.0</td>
+<td>16112</td>
+<td>Jason Gally</td>
+<td>Bristol</td>
+<td>unknown</td>
+<td>Port Royal</td>
+<td>278.0</td>
+<td>Plummer, John</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>1714.0</td>
+<td>16114</td>
+<td>Mercy Gally</td>
+<td>Bristol</td>
+<td>Africa, port unspecified</td>
+<td>Barbados, place unspecified</td>
+<td>190.0</td>
+<td>Scott, John</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>1714.0</td>
+<td>16115</td>
+<td>Mermaid Gally</td>
+<td>Bristol</td>
+<td>Cape Verde Islands</td>
+<td>Kingston</td>
+<td>72.0</td>
+<td>Banbury, John&lt;br/&gt; Copinger, James</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step4, checking how much data we filtered out</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cleaned_df.shape)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>n_filtered_rows <span class="op">=</span> <span class="bu">len</span>(df)<span class="op">-</span><span class="bu">len</span>(cleaned_df)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>per_cent <span class="op">=</span> (n_filtered_rows<span class="op">/</span><span class="bu">len</span>(df))<span class="op">*</span><span class="dv">100</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'We filtered out: '</span>,<span class="bu">len</span>(df)<span class="op">-</span><span class="bu">len</span>(cleaned_df),<span class="st">', corresponding to about'</span>, <span class="bu">round</span>(per_cent), <span class="st">'</span><span class="sc">% o</span><span class="st">f our initial data'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(18408, 8)
+We filtered out:  17743 , corresponding to about 49 % of our initial data</code></pre>
+</div>
+</div>
+<p>It seems that because of our filtering, almost half of our data will be excluded from the analysis. This is a quite large percent and we may decide to re-think our filtering criteria to include more data. For example, we could substitue the missing value in the Captives column with an avarage number of captived per trip. For the purpose of our workshop, we will keep the current filtering criteria and keep our filtered DataFrame as it is.</p>
+<p>At this point we obtained a “clean” DataFrame, <code>cleaned_df</code>, containing 18408 rows with values organised in 8 columns. We can now start diving deep in the analysis of our DataFrame, we are ready to interrogate this dataset and see which kind of story it is going to tell us.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../parts/data_analysis/ch2_exploring_data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exploring data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../parts/data_analysis/ch4_data_analysis.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Analysing data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
