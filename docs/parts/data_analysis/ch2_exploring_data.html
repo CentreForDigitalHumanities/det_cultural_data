@@ -365,25 +365,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now that we correctly loaded our data in our working environment, it is time to figure out what the data contains. It is always a good idea to look at the dataset <a href="https://www.slavevoyages.org/voyage/about#methodology/introduction/0/en/">documentation</a> (or metadata) to understand where the data comes from, what is the source of all the different records, how data has been collected, and any other possible data related caveat. Diving into the data documentation is up to you, in this chapter what we want to do is understanding as much as we can from the data itself, looking at its columns, rows, and values. <br> Every dataset tells a story. You may think about it like a person with a long experience, but not really willing to talk (well, some datasets “talk” more easily than others). It is your role in this case to “interrogate” the data, let it to talk, to tell a story and to dive into the details of that story, getting as much information as you can. This also depends on how much you need to know: will you be satisfied by a small “chat” or you need to know all kind of details? <br> Let’s formulate some questions to begin with.</p>
 <div class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -424,7 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -487,25 +479,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> <span class="st">'Our DataFrame contains data distributed in 36151 rows and 9 columns. '</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>question_box(solution<span class="op">=</span>solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -546,7 +530,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style>
+}</style>
             <div class="box type6">
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture">
@@ -565,25 +549,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let’s continue exploring our DataFrame. We have 9 columns, we saw them displayed in our notebook and, luckily enough, their names are pretty descriptive, therefore, in this case, it is quite intuitive to understand what kind of information they contain. It could be useful to store the column names inside a Python variable and to display their names with a corresponding index (this will be useful later).</p>
 <div class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -624,7 +600,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/task.png" alt="Icon" class="picture">
@@ -670,11 +646,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 </div>
                 <div class="sub-box">
                     <div>
-                        <ul><li><code>column_names = df.columns</code>, the DataFrame attribute <code>.columns</code> contains the column names of our     DataFrame. We store these names into the variable <code>column_names</code>;</li><li><code>print(column_names)</code>, we use the function <code>print()</code> to print on the screen the content of the     variable <code>column_names</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">i=0 
-print("Index ) Column name") 
-for name in column_names: 
-    print(i,")",name) 
-    i = i + 1 </pre>, we first initialise (assign a value) to the Python variable <code>i</code>, this will correspond to the first index.     We then print the string "Index) Column name" as a description for what we are going to print later. We finally use a     <code>for</code> loop to scroll the values contained in <code>column_names</code>. What the <code>for</code> loop does     is reading one by one the values stored in <code>column_names</code> and assigning them, one at the time, to the     variable <code>name</code>. It then performs all the instructions "inside" the loop (indented text) and, once all the     instructions are executed, it starts     all over again with the next value in <code>column_names</code> until all the values are explored. In our case, inside     the loop we perform just two operations: 1) we both print the current value of the variables <code>i</code> and     <code>name</code> and 2) we increase the value of <code>i</code> by 1. Why do we increase <code>i</code>? Because we     want to display the different column names according to their position in the DataFrame. Our loop automatically updates     the value of the variable <code>name</code>, but it does not increase by one step the index <code>i</code>, so we have     to do it explicitly.</li></ul>
+                        <ul><li><code>column_names = df.columns</code>, the DataFrame attribute <code>.columns</code> contains the column names of our     DataFrame. We store these names into the variable <code>column_names</code>;</li><li><code>print(column_names)</code>, we use the function <code>print()</code> to print on the screen the content of the     variable <code>column_names</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px"><code>i=0
+print("Index ) Column name")
+for name in column_names:
+    print(i,")",name)
+    i = i + 1</code></pre>, we first initialise (assign a value) to the Python variable <code>i</code>, this will correspond to the first index.     We then print the string "Index) Column name" as a description for what we are going to print later. We finally use a     <code>for</code> loop to scroll the values contained in <code>column_names</code>. What the <code>for</code> loop does     is reading one by one the values stored in <code>column_names</code> and assigning them, one at the time, to the     variable <code>name</code>. It then performs all the instructions "inside" the loop (indented text) and, once all the     instructions are executed, it starts     all over again with the next value in <code>column_names</code> until all the values are explored. In our case, inside     the loop we perform just two operations: 1) we both print the current value of the variables <code>i</code> and     <code>name</code> and 2) we increase the value of <code>i</code> by 1. Why do we increase <code>i</code>? Because we     want to display the different column names according to their position in the DataFrame. Our loop automatically updates     the value of the variable <code>name</code>, but it does not increase by one step the index <code>i</code>, so we have     to do it explicitly.</li></ul>
                     </div>       
                 </div>
             </div>    
@@ -745,25 +721,17 @@ Index ) Column name
 <p>It is now time to figure out what are the rows about. Looking at the column names, we notice that the second one (index 1) is called “Voyage ID”. This indicates that this column contains a specific identifier for the ship voyage, implying that each row contains specific information about a single trip. To verify that each row corresponds to a single voyage, we need to check if all the values of the Voyage ID column are different, i.e.&nbsp;if they are unique.<br></p>
 <div class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -804,7 +772,7 @@ Index ) Column name
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
