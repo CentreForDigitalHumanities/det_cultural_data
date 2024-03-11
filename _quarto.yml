@@ -1,27 +1,33 @@
 project:
   type: book
 
+  output-dir: ./docs
+
 book:
   title: "Data exploration toolkit for cultural data: structure, clean, visualize, and run a preliminary analysis"
-  author: "Stefano Rapisarda & Barbara Romero Ferron"
-  date: "26/02/2024"
+  author: "Stefano Rapisarda & Barbara Romero Ferron (RDM, UU)"
+  date: last-modified
+  search: true
   chapters:
     - index.qmd
     - preface.qmd
-    - part: "Preliminaries"
+    - part: "Preparation"
       chapters:
       - parts/preliminaries/set_up.qmd
-    - part: "Data Analysis"
+    - part: "Data Workflow"
       chapters:
       - parts/data_analysis/organising_your_data.qmd
       - parts/data_analysis/ch1_reading_data.ipynb
       - parts/data_analysis/ch2_exploring_data.ipynb
       - parts/data_analysis/ch3_data_cleaning.ipynb
       - parts/data_analysis/ch4_data_analysis.ipynb
-    - summary.qmd
-    - references.qmd
+    - parts/supplements/summary.qmd
+    - parts/supplements/what-next.qmd
+    - parts/supplements/glossaries.qmd
+    - parts/supplements/references.qmd
+  repo-url: file:///Users/xizg0003/Documents/from_my_passport/Stefano_Home/Documenti/uu_job/workshops/det_cultural_data/docs/index.html
 
-bibliography: references.bib
+bibliography: parts/supplements/references.bib
 
 format:
   html:
@@ -34,6 +40,6 @@ format:
         \makeindex
     include-after-body: 
       text: |
-        \printindexß
+        \printindex
   epub:
     cover-image: cover.png

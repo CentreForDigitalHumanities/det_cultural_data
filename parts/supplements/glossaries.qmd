@@ -1,0 +1,30 @@
+# Glossaries {.unnumbered}
+
+## Data Glossary
+
+### Controlled vocabularies
+Standardised sets of terms or phrases used to ensure consistency and accuracy in categorising and retrieving information.
+ 
+### Data cleaning 
+The process of identifying and correcting errors, inconsistencies, and inaccuracies in a dataset to improve its quality and reliability.
+ 
+### Data harmonisation 
+The process of integrating and standardising data from different sources or formats to ensure consistency and compatibility for analysis or other purposes.
+ 
+### Data models 
+Abstract representations defining the structure, relationships, and constraints of data within a system or database.
+ 
+### Enrichment
+The process of enhancing or augmenting existing data with additional information to improve its quality, usability, or value.
+ 
+### Graph database 
+A database structured around graph theory, where data entities are represented as nodes and their relationships as edges, facilitating complex and interconnected data querying.
+ 
+### ID
+Identification or identifier used to uniquely distinguish an entity within a system.
+ 
+### Normalisation 
+The process of organising data in a database to reduce redundancy and dependency by dividing large tables into smaller ones and defining relationships between them.
+ 
+### Relational database 
+A type of database management system (DBMS) organised around tables and relationships, adhering to the principles of the relational model.

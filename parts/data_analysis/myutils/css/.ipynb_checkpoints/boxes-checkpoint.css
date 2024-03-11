@@ -1,14 +1,14 @@
 .box {
-	border: 1px solid;
-    border-radius: 5px;
-	padding: 10px;
-	margin: 0px 10px 0px 10px;
+	border: 1px solid !important;
+    border-radius: 5px !important;
+	padding: 10px !important;
+	margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .code {

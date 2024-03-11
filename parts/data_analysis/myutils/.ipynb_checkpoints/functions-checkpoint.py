@@ -210,5 +210,5 @@ def question_box(question='',task='',process='',tools='',code='',warning='',wiz=
             </div>    
         '''    
     
-    html_code = f'<style>{css}</style>{sub_box1}{sub_box1b}{sub_box2}{sub_box3}{sub_box4}{sub_box2c}{sub_box4b}{sub_box2b}'
+    html_code = f'{css}{sub_box1}{sub_box1b}{sub_box2}{sub_box3}{sub_box4}{sub_box2c}{sub_box4b}{sub_box2b}'
     return HTML(html_code)
