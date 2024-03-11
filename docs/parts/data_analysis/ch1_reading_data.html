@@ -147,8 +147,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+  <a href="../../parts/supplements/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -264,25 +264,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The first thing we need to do is loading the data. This means opening the file where the data is currently stored and transfer that data here, in our working environment. As we are working with Python in this Jupyter notebook environment, this means transfering all the data into a Python object. Which object? There are Python libraries (Python code written by other developers) that have been specifically designed to perform the task of data analysis. One of these libraries, or (“Pythonically” speaking) <strong>packages</strong>, is called <code>pandas</code>. We will use one of the many <code>pandas</code> functions to read our <code>.csv</code> (coma separated values file) file and we will store the information into a pandas <code>DataFrame</code>.</p>
 <div class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -323,7 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/task.png" alt="Icon" class="picture">
@@ -388,25 +380,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We managed to transfer our data into a Python object, specifically a <code>pandas.core.frame.DataFrame</code>, or simply (from now on) a DataFrame. However, a lot of things can go wrong when going from one format to another, so it is a good idea to have a first look at the data.</p>
 <div class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -447,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/task.png" alt="Icon" class="picture">

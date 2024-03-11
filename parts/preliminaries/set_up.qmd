@@ -1,3 +1,38 @@
 # Setting up {.unnumbered}
 
-Amazing set up instructions
+## Running the analysis locally on your own computer
+
+1. Install python and jupyter notebook. For installation and setup we point at the "Introduction to Python & Data" [Installation & Setup](https://utrechtuniversity.github.io/workshop-introduction-to-python/installation-and-setup.html) page;
+
+2. Create an empty directory called "cultural_data_analysis" (or any other name you prefer);
+
+3. Inside the just created directory, create another directory called "data";
+
+4. Click on this [link](https://github.com/CentreForDigitalHumanities/det_cultural_data/blob/main/parts/data_analysis/data/data.csv), this will open a GitHub page. On the toolbar (on the right of the buttons "Raw" and copy), you will find the button for downloading the .csv file containing the data we used during our workshop. Download the file inside the
+just created data directory;
+
+5. Click on this [link](https://colab.research.google.com/drive/1Y0GqD4vsY61idbvQVFSgSU9nYVjLW4_S?usp=sharing), this will open the Jupyter-notebook in
+one of the instructor google colab environment containing the full analysis performed during the workshop. You can access the file only if you followed the workshop. At this point, you will just need to click on the "File" tab, select "download" (almost at the very end of the menu), select the "Download .ipynb" option, and download the file inside
+your project directory (the one also containing the data directory);
+
+6. Open the jupyter notebook and have fun!
+
+***!!! WARNING !!!***
+In the first cell of the Jupyter-notebook you downloaded, the instructors wrote specific Python instructions to make the notebook work in their Google colab environment. In your case, the only thing you need to do is to find out the full path of your project directory (the one containing the notebook and
+the data directory you just created) and writing this path instead of "working_directory", as described in the comments of the first cell. 
+
+## Running the analysis from remote in your Google colab
+
+1. In your personal Google Drive page, create a new directory called "cultural_data_analysis" (or any other name you prefer). For doing that, click on the "New" button on the top left corner of your browser (just below the Drive icon) and select directory;
+
+2. Go inside the just created directory and create another directory called "data";
+
+3. Click on this [link](https://github.com/CentreForDigitalHumanities/det_cultural_data/blob/main/parts/data_analysis/data/data.csv), this will open a GitHub page. On the toolbar (on the right of the buttons "Raw" and copy), you will find the button for downloading the .csv file containing the data we used during our workshop. Download the file inside the
+just created data directory;
+
+4. Click on this [link](https://colab.research.google.com/drive/1Y0GqD4vsY61idbvQVFSgSU9nYVjLW4_S?usp=sharing), this will open the Jupyter-notebook in
+google colab containing the full analysis performed during the workshop. You can access the file only if you followed the workshop. At this point, you will just need to click on the "File" tab, then click on "download" (almost at the very end of the menu), select the "Download .ipynb" option, and download the file inside your project directory (the one also containing the data directory). Alternatively, if you want to start from scratch creating a black jupyter notebook, click again on the "New" button, select "others", and then Google collaboratory. Be sure that the just created jupyter notebook is in your project directory (the one containing your data directory);
+
+***!!! WARNING !!!***
+In the first cell of the Jupyter-notebook you downloaded, the instructors wrote specific instructions to make the notebook work in their Google colab environment. In your case, the only thing you need to do is to change the value of the 
+variable ```work_dir``` in the first cell from '/det_cultural_data' to '/your_dir_name'. If the name of your directory is det_cultural_data, you do not need to change anything.

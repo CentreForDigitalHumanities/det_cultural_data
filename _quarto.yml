@@ -10,7 +10,7 @@ book:
   search: true
   chapters:
     - index.qmd
-    - preface.qmd
+    - parts/supplements/schedule.qmd
     - part: "Preparation"
       chapters:
       - parts/preliminaries/set_up.qmd

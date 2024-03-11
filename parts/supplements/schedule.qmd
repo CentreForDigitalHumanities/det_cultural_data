@@ -1,0 +1,12 @@
+# Schedule {.unnumbered}
+
+| Time | Activity |
+|---|---|
+| 13:00 | Welcome - Icebreaker |
+| 13:15 | Group activity: structuring data |
+| 13:45 | Discussion |
+| 14:00 | Introduction to data toolkit |
+| 14:20 | Data Analysis part 1 |
+| **15:00** | **Coffee break** |
+| 15:15 | Data Analysis part 2 |
+| 16:40 | Recap & Questions |

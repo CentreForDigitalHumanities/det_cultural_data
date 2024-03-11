@@ -11,14 +11,6 @@
   align-items: center !important;
 }
 
-.code {
-	background: #ececec; 
-}
-
-.pre {
-	background: #ececec; 
-}
-
 .type1 {
 	border-color: black;
 	background-color: rgb(246, 255, 222); 

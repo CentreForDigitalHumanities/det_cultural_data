@@ -147,8 +147,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+  <a href="../../parts/supplements/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -244,7 +244,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#previous-steps" id="toc-previous-steps" class="nav-link active" data-scroll-target="#previous-steps">Previous steps</a></li>
-  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis"><span class="header-section-number">6</span> Data Analysis</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a></li>
   </ul>
 </nav>
     </div>
@@ -429,30 +429,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="data-analysis" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Data Analysis</h1>
+<section id="data-analysis" class="level1 unnumbered">
+<h1 class="unnumbered">Data Analysis</h1>
 <p>It is finally time to ask questions to our data. Let’s start with some simple ones regaring the time span of our dataset.</p>
 <div class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -493,7 +485,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -539,9 +531,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 </div>
                 <div class="sub-box">
                     <div>
-                        <ul><li><code>arrival_year = cleaned_df.iloc[:,0]</code>, we use the method <code>.iloc[]</code> to select the first column     of the DataFrame <code>cleaned_df</code> and we store the column in the variable <code>arrival_year</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">first_year = min(arrival_year)
+                        <ul><li><code>arrival_year = cleaned_df.iloc[:,0]</code>, we use the method <code>.iloc[]</code> to select the first column     of the DataFrame <code>cleaned_df</code> and we store the column in the variable <code>arrival_year</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px"><code>first_year = min(arrival_year)
 last_year = max(arrival_year)
-year_span = last_year-first_year</pre>, we use the Python functions <code>min()</code> and <code>max()</code> to compute the minimum and     maximum values of the year column storing their values in <code>first_year</code> and <code>last_year</code>,     respectively. We also compute the difference between these two values and store the result in <code>year_span</code>.</li></ul>
+year_span = last_year-first_year</code></pre>, we use the Python functions <code>min()</code> and <code>max()</code> to compute the minimum and     maximum values of the year column storing their values in <code>first_year</code> and <code>last_year</code>,     respectively. We also compute the difference between these two values and store the result in <code>year_span</code>.</li></ul>
                     </div>       
                 </div>
             </div>    
@@ -580,25 +572,17 @@ year_span = last_year-first_year</pre>, we use the Python functions <code>min()<
 </div>
 <div class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -639,7 +623,7 @@ year_span = last_year-first_year</pre>, we use the Python functions <code>min()<
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style>
+}</style>
             <div class="box type6">
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture">
@@ -657,25 +641,17 @@ year_span = last_year-first_year</pre>, we use the Python functions <code>min()<
 <p>We can keep asking questions about numerical values. We focused on time in our last question, let’s focus on the number of captives this time.</p>
 <div class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display" data-execution_count="8">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -716,7 +692,7 @@ year_span = last_year-first_year</pre>, we use the Python functions <code>min()<
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -762,10 +738,10 @@ year_span = last_year-first_year</pre>, we use the Python functions <code>min()<
                 </div>
                 <div class="sub-box">
                     <div>
-                        <ul><li><code>n_captives = cleaned_df.iloc[:,6]</code>, we apply the method <code>.iloc[]</code> to select the     "Captives arrived at 1st port" column and we store the column in the variable <code>n_captives</code>;</li><li><code>tot_captives = sum(n_captives)</code>, we use the Python function <code>sum()</code> to compute the sum     of all the values in <code>n_captives</code> and we stored the result in the variable <code>tot_captives</code></li><li><pre style="display: inline-block; float: left; margin-right: 10px">ave_cap_per_voyage = tot_captives/len(cleaned_df)
-ave_cap_per_year = tot_captives/year_span</pre>, we use the total number of captives just computed to calculate the average number of captives     per vorage (dividing it by the number of rows) and per year (dividing it by the year span). We store the result     in <code>ave_cap_per_voyage</code> and <code>ave_cap_per_year</code>, respectively;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">filtered_rows = len(df)-len(cleaned_df)
+                        <ul><li><code>n_captives = cleaned_df.iloc[:,6]</code>, we apply the method <code>.iloc[]</code> to select the     "Captives arrived at 1st port" column and we store the column in the variable <code>n_captives</code>;</li><li><code>tot_captives = sum(n_captives)</code>, we use the Python function <code>sum()</code> to compute the sum     of all the values in <code>n_captives</code> and we stored the result in the variable <code>tot_captives</code></li><li><pre style="display: inline-block; float: left; margin-right: 10px"><code>ave_cap_per_voyage = tot_captives/len(cleaned_df)
+ave_cap_per_year = tot_captives/year_span</code></pre>, we use the total number of captives just computed to calculate the average number of captives     per vorage (dividing it by the number of rows) and per year (dividing it by the year span). We store the result     in <code>ave_cap_per_voyage</code> and <code>ave_cap_per_year</code>, respectively;</li><li><pre style="display: inline-block; float: left; margin-right: 10px"><code>filtered_rows = len(df)-len(cleaned_df)
 tot_captives_ext = tot_captives + ave_cap_per_voyage*filtered_rows
-ave_cap_per_year = tot_captives/year_span</pre>, we compute the number of filtered rows subtracting the length of our original DataFrame <code>df</code>     by the length of our cleaned DataFrame <code>cleaned_df</code>. Multiplying this number by the average number of     captives per voyage (remember that in our DataFrames each row corresponds to a voyage), we obtain an estimate of the     number of captives that have not been considered as the corresponding data is missing and, as such, it has been filtered     out from our analysis. We store this estimate in the variable <code>tot_captives_ext</code>. We then adjust our estimate     of the number of captives per years using this value and dividing it by <code>year_span_raw</code>, the year span of     our original DataFrame. We store this value into the variable <code>ave_cap_per_year_adj</code>;</li><li><code>print(round(<result>))</result></code>, we print different results related to people using the Python function     <code>round()</code> that, without any other argument, approximate decimal numbers to the closest integer.</li></ul>
+ave_cap_per_year = tot_captives/year_span</code></pre>, we compute the number of filtered rows subtracting the length of our original DataFrame <code>df</code>     by the length of our cleaned DataFrame <code>cleaned_df</code>. Multiplying this number by the average number of     captives per voyage (remember that in our DataFrames each row corresponds to a voyage), we obtain an estimate of the     number of captives that have not been considered as the corresponding data is missing and, as such, it has been filtered     out from our analysis. We store this estimate in the variable <code>tot_captives_ext</code>. We then adjust our estimate     of the number of captives per years using this value and dividing it by <code>year_span_raw</code>, the year span of     our original DataFrame. We store this value into the variable <code>ave_cap_per_year_adj</code>;</li><li><code>print(round(<result>))</result></code>, we print different results related to people using the Python function     <code>round()</code> that, without any other argument, approximate decimal numbers to the closest integer.</li></ul>
                     </div>       
                 </div>
             </div>    
@@ -799,25 +775,17 @@ Adjusted average captives per year 28358</code></pre>
 </div>
 <div class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display" data-execution_count="11">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -858,7 +826,7 @@ Adjusted average captives per year 28358</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style>
+}</style>
             <div class="box type6">
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture">
@@ -876,25 +844,17 @@ Adjusted average captives per year 28358</code></pre>
 <p>So far we computed numbers, but data can be most effectively described using visualization. In our DataFrame we have information about three different locations: the place where the voyage started, the principal port of slave purchase, and the principal port of slave disembarkation. Let’s have a closer look at these locations.</p>
 <div class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display" data-execution_count="12">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -935,7 +895,7 @@ Adjusted average captives per year 28358</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -1081,25 +1041,17 @@ Name: count, Length: 240, dtype: int64</code></pre>
 </div>
 <div class="cell" data-execution_count="19">
 <div class="cell-output cell-output-display" data-execution_count="19">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -1140,7 +1092,7 @@ Name: count, Length: 240, dtype: int64</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style>
+}</style>
             <div class="box type6">
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture">
@@ -1158,25 +1110,17 @@ Name: count, Length: 240, dtype: int64</code></pre>
 <p>Let’s try to make now a different type of visualization, a time series, i.e.&nbsp;a plot where we see how parameters change over time</p>
 <div class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display" data-execution_count="20">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -1217,7 +1161,7 @@ Name: count, Length: 240, dtype: int64</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -1263,11 +1207,11 @@ Name: count, Length: 240, dtype: int64</code></pre>
                 </div>
                 <div class="sub-box">
                     <div>
-                        <ul><li><pre style="display: inline-block; float: left; margin-right: 10px">col_to_group = "Year of arrival at port of disembarkation"
-col_to_sum = "Captives arrived at 1st port"</pre>, we select the two columns in the DataFrame we are interested in, the one containing the time     information and the one containing the number of captives. We store the name of these two columns in the     variables <code>col_to_group</code> and <code>col_to_sum</code>, respectively;</li><li><code>df_per_year = cleaned_df.groupby(col_to_group)[col_to_average].sum()</code>, we first apply the     method <code>.groupby()</code> to our cleaned DataFrame. <code>.groupby()</code> does exactly what it says, it     groups data according to a certain column (in our case the <code>col_to_group</code> column), this means that any     other method we are going to apply from now own, it will operate on groups of rows instead of the entire DataFrame.     For example, if we apply a method perfoming summation or average on a DataFrame grouped by year, python will     compute the sum or the average on those groups of data. In a DataFrame there are many columns containing values     to sum and average, so which column is Python going to choose? We need to specify it, in our case we do that     with <code>[col_to_sum]</code>, where the column to sum contains information about the number of captives. We     finally apply the method <code>.sum()</code> to compute the sum of number of captives on DataFrame rows grouped     by year. We store the result in the variable <code>df_per_year</code>;</li><li><code>sum_df_per_year</code>, we display our last result on the screen;</li><li><code>fig, my_ax = plt.subplots(nrows=1,ncols=1,figsize=(8,8))</code>, we use the function <code>.subplots()</code>     to create a single squared empty plot with size 8 inches. We obtain a Figure object (the container of our plot) and     a Axes object (an empty plot). We store these two objects in the variables <code>fig</code> and <code>my_ax</code>;</li><li><code>sns.lineplot(ax=my_ax,x=sum_df_per_year.index,y=sum_df_per_year)</code>, we use the method     <code>.lineplot()</code> to create a line plot (data points connected by a line). We plot the index of the Series     (a Series is a DataFrame with only one column) <code>df_per_year</code> on the x axis and its values on the y axis.</li><li><code>plt.grid()</code>, we use the function <code>.grid()</code> to overplot a grid on our plot, with the purpose of     better describe the data by eye;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">max_index = df_per_year.idxmax();
+                        <ul><li><pre style="display: inline-block; float: left; margin-right: 10px"><code>col_to_group = "Year of arrival at port of disembarkation"
+col_to_sum = "Captives arrived at 1st port"</code></pre>, we select the two columns in the DataFrame we are interested in, the one containing the time     information and the one containing the number of captives. We store the name of these two columns in the     variables <code>col_to_group</code> and <code>col_to_sum</code>, respectively;</li><li><code>df_per_year = cleaned_df.groupby(col_to_group)[col_to_average].sum()</code>, we first apply the     method <code>.groupby()</code> to our cleaned DataFrame. <code>.groupby()</code> does exactly what it says, it     groups data according to a certain column (in our case the <code>col_to_group</code> column), this means that any     other method we are going to apply from now own, it will operate on groups of rows instead of the entire DataFrame.     For example, if we apply a method perfoming summation or average on a DataFrame grouped by year, python will     compute the sum or the average on those groups of data. In a DataFrame there are many columns containing values     to sum and average, so which column is Python going to choose? We need to specify it, in our case we do that     with <code>[col_to_sum]</code>, where the column to sum contains information about the number of captives. We     finally apply the method <code>.sum()</code> to compute the sum of number of captives on DataFrame rows grouped     by year. We store the result in the variable <code>df_per_year</code>;</li><li><code>sum_df_per_year</code>, we display our last result on the screen;</li><li><code>fig, my_ax = plt.subplots(nrows=1,ncols=1,figsize=(8,8))</code>, we use the function <code>.subplots()</code>     to create a single squared empty plot with size 8 inches. We obtain a Figure object (the container of our plot) and     a Axes object (an empty plot). We store these two objects in the variables <code>fig</code> and <code>my_ax</code>;</li><li><code>sns.lineplot(ax=my_ax,x=sum_df_per_year.index,y=sum_df_per_year)</code>, we use the method     <code>.lineplot()</code> to create a line plot (data points connected by a line). We plot the index of the Series     (a Series is a DataFrame with only one column) <code>df_per_year</code> on the x axis and its values on the y axis.</li><li><code>plt.grid()</code>, we use the function <code>.grid()</code> to overplot a grid on our plot, with the purpose of     better describe the data by eye;</li><li><pre style="display: inline-block; float: left; margin-right: 10px"><code>max_index = df_per_year.idxmax();
 min_index = df_per_year.idxmin();
 print('The minimum number of captives per year is:', df_per_year[min_index],'on',min_index);
-print('The maximum number of captives per year is:', df_per_year[max_index],'on',max_index).</pre>, we apply the method <code>.idxmax()</code> to the Series <code>df_per_year</code> to get the index     corresponding to the maximum of its values. Remember that <code>df_per_year</code> indeces are year and its values     are the sum of number of captives in that year. Therefore, obtaining the index corresponding to the maximum value     means determining the year having the maximum number of captives. We store this result in the variable     <code>max_index</code>. We can use this index to retrieve the corresponding value:     <code>df_per_year[max_index]</code>. We repeat the same procedure for the minimum value using     <code>.idxmin()</code>. We finally print both results on the screen with the function <code>print()</code>.</li></ul>
+print('The maximum number of captives per year is:', df_per_year[max_index],'on',max_index).</code></pre>, we apply the method <code>.idxmax()</code> to the Series <code>df_per_year</code> to get the index     corresponding to the maximum of its values. Remember that <code>df_per_year</code> indeces are year and its values     are the sum of number of captives in that year. Therefore, obtaining the index corresponding to the maximum value     means determining the year having the maximum number of captives. We store this result in the variable     <code>max_index</code>. We can use this index to retrieve the corresponding value:     <code>df_per_year[max_index]</code>. We repeat the same procedure for the minimum value using     <code>.idxmin()</code>. We finally print both results on the screen with the function <code>print()</code>.</li></ul>
                     </div>       
                 </div>
             </div>    
@@ -1324,25 +1268,17 @@ The maximum number of captives per year is: 79472.0 on 1829.0</code></pre>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="st">that year. The minimum is 2 captives on 1538.'</span></span>
 <span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>question_box(solution<span class="op">=</span>solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -1383,7 +1319,7 @@ The maximum number of captives per year is: 79472.0 on 1829.0</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style>
+}</style>
             <div class="box type6">
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture">
@@ -1401,25 +1337,17 @@ The maximum number of captives per year is: 79472.0 on 1829.0</code></pre>
 <p>Time series are very interesting to describe the trends of phenomema at different scale. Our plot ticks are separated by 50 years, this is fine to visualise trends over centuries, but we cannot see what’s happening on decades.</p>
 <div class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display" data-execution_count="25">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -1460,7 +1388,7 @@ The maximum number of captives per year is: 79472.0 on 1829.0</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -1506,9 +1434,9 @@ The maximum number of captives per year is: 79472.0 on 1829.0</code></pre>
                 </div>
                 <div class="sub-box">
                     <div>
-                        <ul><li><code>time_filter = (df_per_year.index &gt; 1700) &amp; (df_per_year.index &lt; 1750)</code>, we start using the <code>pandas</code> Series <code>df_per_year</code>. This     series contains information about the total number of captives per year. Years are contained in its index, number of captives in its values. We want to select     data between 1700 and 1750, so with years larger than 1700 and smaller than 1750. We do that using two Python conditions: <code>df_per_year.index &gt; 1700</code> and     <code>df_per_year.index &lt; 1750</code>. As we want these two conditions to be true at the same time, we specify both of them with the symbol <code>&amp;</code> in     between. In Python, the commertial &amp; indicates a logical AND, this means that the condition before and after the AND must both be simultaneously true. We store     this condition into the variable <code>time_filter</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">fig, ax = plt.subplots(1,1,figsize=(8,8))
+                        <ul><li><code>time_filter = (df_per_year.index &gt; 1700) &amp; (df_per_year.index &lt; 1750)</code>, we start using the <code>pandas</code> Series <code>df_per_year</code>. This     series contains information about the total number of captives per year. Years are contained in its index, number of captives in its values. We want to select     data between 1700 and 1750, so with years larger than 1700 and smaller than 1750. We do that using two Python conditions: <code>df_per_year.index &gt; 1700</code> and     <code>df_per_year.index &lt; 1750</code>. As we want these two conditions to be true at the same time, we specify both of them with the symbol <code>&amp;</code> in     between. In Python, the commertial &amp; indicates a logical AND, this means that the condition before and after the AND must both be simultaneously true. We store     this condition into the variable <code>time_filter</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px"><code>fig, ax = plt.subplots(1,1,figsize=(8,8))
 sns.lineplot(ax=ax,x=df_per_year.index[time_filter],y=df_per_year[time_filter])
-plt.grid()</pre>, as we did in the previous task, we plot total number of captives versus years. This time, instead of using our full array, we want to plot only     a certain time range. This has been specified in the condition stored into <code>time_filter</code>. Therefore, compared to our previous plot, we are going to     user <code>df_per_year.index[time_filter]</code> and df_per_year[time_filter] instead of <code>df_per_year.index</code> and df_per_year, respectively.</li></ul>
+plt.grid()</code></pre>, as we did in the previous task, we plot total number of captives versus years. This time, instead of using our full array, we want to plot only     a certain time range. This has been specified in the condition stored into <code>time_filter</code>. Therefore, compared to our previous plot, we are going to     user <code>df_per_year.index[time_filter]</code> and df_per_year[time_filter] instead of <code>df_per_year.index</code> and df_per_year, respectively.</li></ul>
                     </div>       
                 </div>
             </div>    

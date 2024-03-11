@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -110,8 +144,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+  <a href="../../parts/supplements/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -218,6 +252,19 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#normalisation" id="toc-normalisation" class="nav-link" data-scroll-target="#normalisation">Normalisation</a></li>
   <li><a href="#relational-database" id="toc-relational-database" class="nav-link" data-scroll-target="#relational-database">Relational database</a></li>
   </ul></li>
+  <li><a href="#programming-glossary" id="toc-programming-glossary" class="nav-link" data-scroll-target="#programming-glossary">Programming glossary</a>
+  <ul class="collapse">
+  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
+  <li><a href="#csv" id="toc-csv" class="nav-link" data-scroll-target="#csv">csv</a></li>
+  <li><a href="#dataframe" id="toc-dataframe" class="nav-link" data-scroll-target="#dataframe">DataFrame</a></li>
+  <li><a href="#initialisation" id="toc-initialisation" class="nav-link" data-scroll-target="#initialisation">Initialisation</a></li>
+  <li><a href="#library" id="toc-library" class="nav-link" data-scroll-target="#library">Library</a></li>
+  <li><a href="#loop" id="toc-loop" class="nav-link" data-scroll-target="#loop">Loop</a></li>
+  <li><a href="#object" id="toc-object" class="nav-link" data-scroll-target="#object">Object</a></li>
+  <li><a href="#package" id="toc-package" class="nav-link" data-scroll-target="#package">Package</a></li>
+  <li><a href="#series" id="toc-series" class="nav-link" data-scroll-target="#series">Series</a></li>
+  <li><a href="#variable" id="toc-variable" class="nav-link" data-scroll-target="#variable">Variable</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -278,6 +325,54 @@ ul.task-list li input[type="checkbox"] {
 <section id="relational-database" class="level3">
 <h3 class="anchored" data-anchor-id="relational-database">Relational database</h3>
 <p>A type of database management system (DBMS) organised around tables and relationships, adhering to the principles of the relational model.</p>
+</section>
+</section>
+<section id="programming-glossary" class="level2">
+<h2 class="anchored" data-anchor-id="programming-glossary">Programming glossary</h2>
+<section id="code" class="level3">
+<h3 class="anchored" data-anchor-id="code">Code</h3>
+<p>Code is like a set of instructions that tells the computer what to do. It’s similar to a recipe for the computer. The instructions for a specific task may very according to the programming language you use, that is why you also usually specify the language you are using (e.g.&nbsp;“Python code”).</p>
+</section>
+<section id="csv" class="level3">
+<h3 class="anchored" data-anchor-id="csv">csv</h3>
+<p>CSV (coma separated values) is a way to store information, like making lists. It’s a simple way to organize data, like names and ages, using commas. A file containing data organised in this way, has usually the extention “.csv”. Even if the word “coma” is present in the acronym, data can be also separated by other symbols such as “;” or “:” and still be contained in a .csv file.</p>
+</section>
+<section id="dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="dataframe">DataFrame</h3>
+<p>A DataFrame is a Python object included in the pandas library. It is basically a table where information is organised in rows and columns. Every DataFrame row has an index that can be either a numeric value or a string (i.e.&nbsp;a label)</p>
+</section>
+<section id="initialisation" class="level3">
+<h3 class="anchored" data-anchor-id="initialisation">Initialisation</h3>
+<p>Initialise basically means getting things ready. It’s the starting point before using something in a program. Initialising a variable, in particular, means assigning a value to it for the first time:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We initialise the variable name and age for the first time with a string (a word) and a number</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">'Stefano'</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>age <span class="op">=</span> <span class="dv">28</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="library" class="level3">
+<h3 class="anchored" data-anchor-id="library">Library</h3>
+<p>See package</p>
+</section>
+<section id="loop" class="level3">
+<h3 class="anchored" data-anchor-id="loop">Loop</h3>
+<p>A loop is like a computer doing something over and over again. It’s a way to repeat a task multiple times.</p>
+</section>
+<section id="object" class="level3">
+<h3 class="anchored" data-anchor-id="object">Object</h3>
+<p>An object is like a thing in the computer’s world. It has characteristics and things it can do. For example, a dog can have a name and bark.</p>
+</section>
+<section id="package" class="level3">
+<h3 class="anchored" data-anchor-id="package">Package</h3>
+<p>A library or package is like a toolbox with ready-made tools. It’s a collection of helpful code (objects and functions) that programmers can use to make their work easier. Packages are made by the programming community and are usually organised according to certain specific tasks. You may find packages specific for time series analysis, text analysis, satellite image analysis, etc. The advantage of using a package is that you do not have to spend time and energy in finding solutions to problems already tackled by other people. Packages do not usually come automatically with the basic programming language installation (so to optimize space), but need to first be downloaded and imported. You may think at packages as building tools. Downloading a package would be similar to buying them from the shop and importing them is similar to get them ready to work (you do not need all your tools ALL the time for ANY house job, right?)</p>
+</section>
+<section id="series" class="level3">
+<h3 class="anchored" data-anchor-id="series">Series</h3>
+<p>A Series is a DataFrame with a single column. Like DataFrames, a Series is an object belonging to the pandas library. Series rows, like in a DataFrame, have indices that can be either values or labels.</p>
+</section>
+<section id="variable" class="level3">
+<h3 class="anchored" data-anchor-id="variable">Variable</h3>
+<p>A variable is like a box where you can keep and change information. It is a container for numbers or words.</p>
 
 
 </section>

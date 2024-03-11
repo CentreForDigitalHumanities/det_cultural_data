@@ -147,8 +147,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
+  <a href="../../parts/supplements/schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -370,25 +370,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now that we got some familiarity with our dataset, it is time to clean our data, i.e.&nbsp;to get rid of all those NaN values and anything else that might effect our data analysis. Where to start? Well, inspecting the DataFrame by eye, we see several NaNs in the first 5 rows of our DataFrame. The first column we see NaNs is “Voyage itinerary imputed principal place of slave purchase”, the fourth column (index 5). It would be nice to check if also other column have NaNs.<br> Let’s start with the first column, “Year of arrival at port of disembarkation” (index 0), let’s check if this column contains any NaN and then we will repeat the same process for all the other columns.</p>
 <div class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -429,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -521,25 +513,17 @@ Total number of NaNs in the first column: 1</code></pre>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> <span class="st">'The first column contains 1 NaN value'</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>question_box(solution<span class="op">=</span>solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -580,7 +564,7 @@ Total number of NaNs in the first column: 1</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style>
+}</style>
             <div class="box type6">
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture">
@@ -598,25 +582,17 @@ Total number of NaNs in the first column: 1</code></pre>
 <p>In this way we found our that the first column has 1 NaN (or na) value, that would have been quite hard to spot by eye scrolling 36151 lines! <br> It is great that we found 1 NaN in the first column, but where exactly it is located? What’s the corresponding Voyage ID of that value?</p>
 <div class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display" data-execution_count="7">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -657,7 +633,7 @@ Total number of NaNs in the first column: 1</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -752,25 +728,17 @@ Total number of NaNs in the first column: 1</code></pre>
 </div>
 <div class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display" data-execution_count="9">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -811,7 +779,7 @@ Total number of NaNs in the first column: 1</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style>
+}</style>
             <div class="box type6">
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture">
@@ -829,25 +797,17 @@ Total number of NaNs in the first column: 1</code></pre>
 <p>In this way we can inspect NaNs one by one and we can make a decision about how to handle them. In our DataFrame there are thousands of NaNs (as you will see in a minute) and going through ALL of them one by one is not a good idea. Let’s first try to figure out if the other columns have also NaNs and how many are they. The process will be quite straightforward as we already did it for one of the columns, so what we need to do now is to repeat the same procedure for all the other columns.</p>
 <div class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display" data-execution_count="10">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -888,7 +848,7 @@ Total number of NaNs in the first column: 1</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/question.png" alt="Icon" class="picture">
@@ -984,25 +944,17 @@ Captain's name has 4028 NaN</code></pre>
 </div>
 <div class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display" data-execution_count="13">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -1043,7 +995,7 @@ Captain's name has 4028 NaN</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style>
+}</style>
             <div class="box type6">
                 <div class="sub-box">
                     <img src="myutils/icons/solution.png" alt="Icon" class="picture">
@@ -1061,25 +1013,17 @@ Captain's name has 4028 NaN</code></pre>
 <p>At this point we have a general idea of the amount of data missing in our DataFrame. The following question is how to deal with this missing data? There are several things we can do, the easiest option would be just exclude it from our DataFrame. However, in order to answer a research question, we often do not need to use or explore ALL the available information and we would usually be interested in some parameters more than others. In this case our data selection could be performed looking at one or more specific columns. What to do with the rest of the NaNs? We can either leave them as they are and trying to figure out how our analysis program will “digest” these values or find good substitute for them. The value of this substitute will depend on the data type of the columns containing the NaN and on our decision. For example the NaN in the columns containing a descriptive string, like the vessel name or the starting port, could be substituted by the string “unknown”. NaNs in the “Captives arrived […]” column could be left as they are (you may be tempted to change them to 0, but zero captives is quite different from unknown number of captives) or substituted by, for example, the average of captives during the same year. <br> Each choice will have different implications to our final results, the most important thing in this stage is to clearly document our criteria for filtering NaN. In our specific case we will be mostly interested in the data containing the number of captives, so we want to filter our all those rows where the number of captives is NaN. We will then exclude the columns VOYAGEID2 as we already have a voyage ID and it is not listed in the data <a href="https://www.slavevoyages.org/voyage/about#variable-list/2/en/">variable description</a>. To resume, here there are our cleaning criteria: - All the rows not containing data about the number of captives have been removed; - All the NaN values in columns with descriptive information (e.g.&nbsp;names) have been substituted with “unknown”; - The column VOYAGEID2 has been removed from the DataFrame.</p>
 <div class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display" data-execution_count="14">
-<style><style>.box {
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 0px 10px 0px 10px;
+<style>.box {
+    border: 1px solid !important;
+    border-radius: 5px !important;
+    padding: 10px !important;
+    margin: 0px 10px 0px 10px !important;
 }
 
 .sub-box {
-  display: flex; 
-  flex-direction: row; 
-  align-items: center;
-}
-
-.code {
-    background: #ececec; 
-}
-
-.pre {
-    background: #ececec; 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important;
 }
 
 .type1 {
@@ -1120,7 +1064,7 @@ Captain's name has 4028 NaN</code></pre>
 
 .ctitle {
     margin: 0px 0px 0px 20px;
-}</style></style> 
+}</style> 
             <div class="box type1">
                     <div class="sub-box">
                         <img src="myutils/icons/task.png" alt="Icon" class="picture">
