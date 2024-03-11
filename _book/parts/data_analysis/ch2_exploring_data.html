@@ -224,7 +224,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#previous-steps" id="toc-previous-steps" class="nav-link active" data-scroll-target="#previous-steps">Previous steps</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -246,14 +252,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<div class="cell" data-execution_count="2">
+<section id="previous-steps" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="previous-steps">Previous steps</h2>
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <div>
 
 
@@ -339,9 +347,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Now that we correctly loaded our data in our working environment, it is time to figure out what the data contains. It is always a good idea to look at the dataset <a href="https://www.slavevoyages.org/voyage/about#methodology/introduction/0/en/">documentation</a> (or metadata) to understand where the data comes from, what is the source of all the different records, how data have been collected, and any other possible data related caveat. Diving into documentation is up to you, in this chapter what we want to do is understanding as much as we can from the data itself, looking at its columns, rows, and values. <br> Every dataset tells a story. You may think about it like a person with a long experience, but not really willing to talk (well, some datasets “talks” more easily than others). It is your role in this case to “interrogate” this person, let him/her to talk, to tell a story and to dive into the details of that story, getting as much information as you can. This also depends on how much do you need to know: are you fine with a simple “chat” or you need the most accurate detailes? <br> Let’s formulate some questions to begin with: - How big is the data? - What does each row represent? - What does each column represent?</p>
-<div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
+<p>Now that we correctly loaded our data in our working environment, it is time to figure out what the data contains. It is always a good idea to look at the dataset <a href="https://www.slavevoyages.org/voyage/about#methodology/introduction/0/en/">documentation</a> (or metadata) to understand where the data comes from, what is the source of all the different records, how data has been collected, and any other possible data related caveat. Diving into the data documentation is up to you, in this chapter what we want to do is understanding as much as we can from the data itself, looking at its columns, rows, and values. <br> Every dataset tells a story. You may think about it like a person with a long experience, but not really willing to talk (well, some datasets “talk” more easily than others). It is your role in this case to “interrogate” the data, let it to talk, to tell a story and to dive into the details of that story, getting as much information as you can. This also depends on how much you need to know: will you be satisfied by a small “chat” or you need to know all kind of details? <br> Let’s formulate some questions to begin with.</p>
+<div class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <style><style>.box {
     border: 1px solid;
     border-radius: 5px;
@@ -434,7 +442,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                     </div>
                 </div>
                 <div class="sub-box">
-                    Python attribute <code>shape</code>
+                    <code>pandas</code> attribute <code>shape</code>
                 </div>            
             </div>    
         
@@ -447,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 </div>
                 <div class="sub-box">
                     <div>
-                        <code>df.shape</code>, the attribute <code>.shape</code> containes the size of the dataframe expressed in rows and columns.     When printed on the screen it will display two numbers, the first one being the number of rows and the second being the number of columns.
+                        <code>df.shape</code>, the attribute <code>.shape</code> contains the size of the DataFrame expressed in rows and     columns. When printed on the screen it will display two numbers, number of rows and number of columns.
                     </div>       
                 </div>
             </div>    
@@ -460,10 +468,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>(36151, 9)</code></pre>
 </div>
 </div>
-<p>Our DataFrame contains data distributed in 36151 rows and 9 columns. It is a quite big dataset. Shall we care how big is our dataset? We should as this may affect our analysis. For example, if we implement a scientific analysis that requires 1 second per row to produce an output, such program would take about 10hrs to analyse the entire dataset, and that is something we should keep in mind. That is why, in general, it is a good idea to test large analysis programs on a small sub-set of data and then, once verified that everything runs smoothly, performing the analysis on the entire dataset.</p>
-<p>Let’s continue exploring our DataFrame. We have 9 columns, we saw them displayed in our notebook and, luckily enough, their names are pretty descriptive, therefore in this case it is quite intuitive to understand what kind of information they contain. It could be useful to store the column names inside a Python variable and to display their names with a corresponding index (this will be useful later).</p>
-<div class="cell" data-execution_count="12">
-<div class="cell-output cell-output-display" data-execution_count="12">
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> <span class="st">'Our DataFrame contains data distributed in 36151 rows and 9 columns. '</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>question_box(solution<span class="op">=</span>solution)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<style><style>.box {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+}
+
+.sub-box {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center;
+}
+
+.code {
+    background: #ececec; 
+}
+
+.pre {
+    background: #ececec; 
+}
+
+.type1 {
+    border-color: black;
+    background-color: rgb(246, 255, 222); 
+}
+
+.type2 {
+    border-color: black;
+    background-color: rgb(227, 242, 193); 
+}
+
+.type3 {
+    border-color: black;
+    background-color: rgb(201, 219, 178); 
+}
+
+.type4 {
+    border-color: black;
+    background-color: rgb(170, 200, 167); 
+}
+
+.type5 {
+    border-color: black;
+    background-color: rgb(181, 192, 208);
+}
+
+.type6 {
+    border-color: black;
+    background-color: rgb(255, 195, 116);
+}
+
+.picture {
+    width: 30px; 
+    height: 30px;
+    margin: 0 0 0px 0;
+}
+
+.ctitle {
+    margin: 0px 0px 0px 20px;
+}</style>
+            <div class="box type6">
+                <div class="sub-box">
+                    <img src="myutils/icons/solution.png" alt="Icon" class="picture">
+                    <div class="ctitle">
+                        <u><h4 class="anchored"><strong>Answer</strong></h4></u>
+                    </div>
+                </div>
+                <div class="sub-box">
+                    Our DataFrame contains data distributed in 36151 rows and 9 columns. 
+                </div>
+            </div>    
+        
+</div>
+</div>
+<p>It is a quite big dataset. Shall we care about how big is our dataset? We should as this may affect our analysis. For example, if we implement a scientific analysis that requires 1 second per row to produce an output, such program would take about 10hrs to analyse the entire dataset, and that is something we should keep in mind. That is why, in general, it is a good idea to test large analysis programs on a small sub-set of data and then, once verified that everything runs smoothly, to perform the analysis on the entire dataset.</p>
+<p>Let’s continue exploring our DataFrame. We have 9 columns, we saw them displayed in our notebook and, luckily enough, their names are pretty descriptive, therefore, in this case, it is quite intuitive to understand what kind of information they contain. It could be useful to store the column names inside a Python variable and to display their names with a corresponding index (this will be useful later).</p>
+<div class="cell" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="16">
 <style><style>.box {
     border: 1px solid;
     border-radius: 5px;
@@ -532,7 +618,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                         </div>
                     </div>
                     <div class="sub-box">
-                        Display column names with an index
+                        Display the DataFrame column names with an index
                     </div>
             </div>
         
@@ -544,7 +630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                     </div>
                 </div>
                 <div class="sub-box">
-                    Identify column names and attributing them an index (starting from zero) depending on their order in the DataFrame (the first column index will be 0, the second 1, and so on).
+                    Identify column names and assign them an index (starting from zero) depending on their order in the DataFrame (the first column index will be 0, the second 1, and so on).
                 </div>
             </div>    
         
@@ -569,11 +655,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
                 </div>
                 <div class="sub-box">
                     <div>
-                        <ul><li><code>column_names = df.columns</code>, the DataFrame attributes <code>.columns</code> containes the column names of our     DataFrame. We store these names into the variable <code>column_names</code>;</li><li><code>print(column_names)</code>, we use the function <code>print()</code> to print on the screen the content of the     variable <code>column_names</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">i=0 
+                        <ul><li><code>column_names = df.columns</code>, the DataFrame attribute <code>.columns</code> contains the column names of our     DataFrame. We store these names into the variable <code>column_names</code>;</li><li><code>print(column_names)</code>, we use the function <code>print()</code> to print on the screen the content of the     variable <code>column_names</code>;</li><li><pre style="display: inline-block; float: left; margin-right: 10px">i=0 
 print("Index ) Column name") 
 for name in column_names: 
     print(i,")",name) 
-    i = i + 1 </pre>, we first initialise (assign a value) to the Python variable <code>i</code>, this will correspond to the first index.     We then print the string "Index) Column name" as a description for what we are going to print later. We finally use a     <code>for</code> loop to scroll the values contained in <code>column_names</code>. What the <code>for</code> loop does     is reading one by one the values stored in <code>column_names</code> and assigning them, one at the time, to the     variable <code>name</code>. It then performs all the instructions "inside" the loop (indented text) and it starts     all over again with the next value in <code>column_names</code> until all the values are explored. In our case, inside     the loop we perform just two operations: 1) we both print the current value of the variables <code>i</code> and     <code>name</code> and 2) we increase the value of <code>i</code> by 1. Why do we increase <code>i</code>? Because we     want to display the different column names according to their position in the DataFrame. Our loop automatically updates     the value of the variable <code>name</code>, but it does not increase by one step the index <code>i</code>, so we have     to do it explicitly.</li></ul>
+    i = i + 1 </pre>, we first initialise (assign a value) to the Python variable <code>i</code>, this will correspond to the first index.     We then print the string "Index) Column name" as a description for what we are going to print later. We finally use a     <code>for</code> loop to scroll the values contained in <code>column_names</code>. What the <code>for</code> loop does     is reading one by one the values stored in <code>column_names</code> and assigning them, one at the time, to the     variable <code>name</code>. It then performs all the instructions "inside" the loop (indented text) and, once all the     instructions are executed, it starts     all over again with the next value in <code>column_names</code> until all the values are explored. In our case, inside     the loop we perform just two operations: 1) we both print the current value of the variables <code>i</code> and     <code>name</code> and 2) we increase the value of <code>i</code> by 1. Why do we increase <code>i</code>? Because we     want to display the different column names according to their position in the DataFrame. Our loop automatically updates     the value of the variable <code>name</code>, but it does not increase by one step the index <code>i</code>, so we have     to do it explicitly.</li></ul>
                     </div>       
                 </div>
             </div>    
@@ -596,14 +682,14 @@ for i,name in enumerate(column_names):
         
 </div>
 </div>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> df.columns</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(column_names)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">0</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index ) Column name"</span>) </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> column_names: </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i,<span class="st">")"</span>,name) </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>column_names <span class="op">=</span> df.columns</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(column_names)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>i<span class="op">=</span><span class="dv">0</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index ) Column name"</span>) </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> column_names: </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i,<span class="st">")"</span>,name) </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Index(['Year of arrival at port of disembarkation', 'Voyage ID', 'Vessel name',
        'Voyage itinerary imputed port where began (ptdepimp) place',
@@ -623,11 +709,11 @@ Index ) Column name
 8 ) Captain's name</code></pre>
 </div>
 </div>
-<p>Now we have the column names nicely listed from top to bottom and with their corresponding index assigned to them. You might be tempted to start the indexing from 1, but as in Python the first element of a list (or any other series of elements) has index 0, we also started from zero. You can also obtain the same result with less lines of code, try it out!</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index) Column name"</span>) </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,name <span class="kw">in</span> <span class="bu">enumerate</span>(column_names): </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">) </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now we have the column names nicely listed from top to bottom and with their corresponding index assigned to them. You might be tempted to start the indexing from 1, but as in Python the first element of a list (or any other series of elements) has index 0, we started counting from zero. You can obtain the same result with less lines of code, try it out!</p>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Index) Column name"</span>) </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i,name <span class="kw">in</span> <span class="bu">enumerate</span>(column_names): </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">) </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Index) Column name
 0) Year of arrival at port of disembarkation
@@ -641,9 +727,9 @@ Index ) Column name
 8) Captain's name</code></pre>
 </div>
 </div>
-<p>It is now time to figure out what are the rows about. Looking at the column names, we notice that the second one (index 1) is called “Voyage ID”. This indicates that this column contains a specific identifier for the ship voyage, implying that each row contains specific information about a single trip. To verify that, we need to check if all the values of the Voyage ID column are different, i.e.&nbsp;if they are unique.<br></p>
-<div class="cell" data-execution_count="9">
-<div class="cell-output cell-output-display" data-execution_count="9">
+<p>It is now time to figure out what are the rows about. Looking at the column names, we notice that the second one (index 1) is called “Voyage ID”. This indicates that this column contains a specific identifier for the ship voyage, implying that each row contains specific information about a single trip. To verify that each row corresponds to a single voyage, we need to check if all the values of the Voyage ID column are different, i.e.&nbsp;if they are unique.<br></p>
+<div class="cell" data-execution_count="22">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <style><style>.box {
     border: 1px solid;
     border-radius: 5px;
@@ -736,7 +822,7 @@ Index ) Column name
                     </div>
                 </div>
                 <div class="sub-box">
-                    <ul><li><code>pandas</code> column selector method <code>.iloc</code>;</li><li><code>pandas</code> attribute <code>.is_unique</code>;</li><li>Python function <code>print()</code></li></ul>
+                    <ul><li><code>pandas</code> column selector method <code>.iloc[]</code>;</li><li><code>pandas</code> attribute <code>.is_unique</code>;</li><li>Python function <code>print()</code></li></ul>
                 </div>            
             </div>    
         
@@ -749,7 +835,7 @@ Index ) Column name
                 </div>
                 <div class="sub-box">
                     <div>
-                        <ul><li><code>voyage_id = df.iloc[:,1]</code>, we apply the method <code>.iloc[]</code> to select the second column     of our DataFrame and store it in the variable <code>voyage_id</code>. Inside the square brackets of <code>.iloc[]</code>     we can specify rows an columns to select in the form [<selected_rows>,<selected_columns>]. In this case,     <code>:</code> means that we select ALL the rows, so <code>df.iloc[:,1]</code> selects all the rows of the column     with index 1 (second column)</selected_columns></selected_rows></li><li><code>print(voyage_id.is_unique)</code>, we print on the screen the <code>pandas</code> attribute <code>.is_unique</code>.     This attribute is True if, indeed, all the values of <code>voyage_id</code> is unique, False otherwise.</li></ul>
+                        <ul><li><code>voyage_id = df.iloc[:,1]</code>, we apply the method <code>.iloc[]</code> to select the second column     of our DataFrame and store it in the variable <code>voyage_id</code>. Inside the square brackets of <code>.iloc[]</code>     we can specify rows an columns to select in the form <code>[selected_rows,selected_columns]</code>. In this case,     <code>:</code> means that we select ALL the rows, so <code>df.iloc[:,1]</code> selects all the rows of the column     with index 1 (second column)</li><li><code>print(voyage_id.is_unique)</code>, we print on the screen the <code>pandas</code> attribute <code>.is_unique</code>.     This attribute is True if, indeed, all the values of <code>voyage_id</code> are unique, False otherwise.</li></ul>
                     </div>       
                 </div>
             </div>    
@@ -763,7 +849,7 @@ Index ) Column name
                 </div>
                 <div class="sub-box">
                     <div>
-                        <ul><li><code>print(df.iloc[:,1].is_unique)</code>, methods, attributes, and functions can be applied one after another in single line.</li></ul>
+                        <ul><li><code>print(df.iloc[:,1].is_unique)</code>, methods, attributes, and functions can be applied one after another     in a single line of code.</li></ul>
                     </div>  
                 </div>
             </div>    
@@ -771,15 +857,16 @@ Index ) Column name
 </div>
 </div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>voyage_id <span class="op">=</span> df.iloc[:,<span class="dv">1</span>]</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voyage_id.is_unique)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>voyage_id <span class="op">=</span> df.iloc[:,<span class="dv">1</span>]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(voyage_id.is_unique)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
 </div>
-<p>We verified that all the values of the Voyage ID column are unique, this means that all the rows of our DataFrame refer to a single ship voyage. Looking at the other column, we also notice that information where the voyage began, the port where slaves have been purchased, and the port where slaves have been desembarked is provided. This means that for single voyage we can intend the trip from a starting point to a slave purchase port that concludes in the port where slaves have been desembarked.<br> Looking in particular at the fifth column (index 4, “Voyage itinerary imputed principal place of slave purchase”), we notice it contains several NaN. NaN stands for “Not a Number”, it is a value that appears when something goes wrong in one of the processes ran by our program. If something went wrong, why did not our program stop or tell us something about an occuring problem? Because problems may happen more often than you think and if our program stops working everytime it encounters a situation it cannot handle, it would most probably never finish running! In this case, most probably the record does not exists and it has either been indicated by NaN in our original .csv file or read by the <code>pandas</code> method <code>.read_csv()</code> as NaN. <br> In any case, the presence of NaN or any other missing value can severely affect our data analysis, for this reason before starting analysins the data we need to find and get rid of those value. This process is usually called “data cleaning” and that is exactly what we are going to do in the next chapter, we are going to clean our data.</p>
+<p>We verified that all the values of the Voyage ID column are unique, this means that each of the rows of our DataFrame refers to a single ship voyage. Looking at the other columns, we also notice that information where the voyage began, the port where slaves have been purchased, and the port where slaves have been desembarked is provided.<br> Looking in particular at the fifth column (index 4, “Voyage itinerary imputed principal place of slave purchase”), we notice it contains several NaNs. NaN stands for “Not a Number”, it is a value that appears when something goes wrong in one of the processes ran by our program. If something went wrong, why did not our program stop or told us something about an occuring problem? Because problems may happen more often than you think and if our program stops working everytime it encounters a situation it cannot handle, it would most probably never finish running! In this case, most probably the record does not exist so the data set cell has been filled by NaN, either in our original .csv file or by the <code>pandas</code> method <code>.read_csv()</code>. NaN are not necesseraly something bad, as they can be easily identified and eventually corrected (or simply ignored). Incorrect or missing data may be much harder to spot and correct. <br> In any case, the presence of NaNs or any other missing value can severely affect our data analysis, for this reason before starting analysing the data we need to find and get rid of those values. This process is usually called “data cleaning” and that is exactly what we are going to do in the next chapter.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
