@@ -1,3 +1,40 @@
 # Summary {.unnumbered}
 
-This will host an amaxing summary!
+## Databases and Data Analysis
+
+In the first part of the workshop we ran through an interactive exercise to experience the main problems related to turning unstructured data into structured, organised, tabular (and in general more mathematical) data. Having food structured, machine readable, data is essential for proper data analysis. It is extremely important to keep in mind that database creation, the process at the very beginning of every data analysis, can be affected by errors, missing data, and human-decision-driven biases.
+
+In the second part of the worshop we focused on data analysis. Performing data analysis is something too often considered only in relation to programming tools. We tried to focus more on the basic principles of data analysis, highlighting the fact that analysing data basically means interrogating a data set. Some information can be very easy to retrieve, other information is hidden or requires assumptions and speculations. Python (or any other programming language) is merely a tool to translate our questions into a machine readable form. 
+Whatever is our data analysis process and the tools we use to perform it, it is extremely important to describe and document our choices, so that other researchers can reproduce the entire workflow that led to our conclusions.
+
+## General data analysis workflow
+
+1. **Define a Research question:**
+   - Understand the problem or question you are trying to address;
+   - Clearly define the goals, objectives, and sub-task to answer a research question.
+ 
+2. **Collect/Organise Data:**
+   - Collect relevant data from various sources;
+   - Ensure data quality, address any missing or inconsistent data, ensure proper data structure.
+
+3. **Clean Data:**
+   - Clean and preprocess the data to handle missing values, outliers, and errors;
+   - Standardize or normalize data formats if necessary.
+
+4. **Explore Data:**
+   - Explore the data using statistical and visual methods;
+   - Identify patterns, trends, and relationships in the data.
+
+5. **(Model):**
+   - Select appropriate models based on the analysis goals;
+   - Evaluate the model's performance using metrics relevant to the analysis;
+   - Fine-tune the model if necessary.
+
+6. **Interpret Data:**
+   - Interpret the results of the analysis in the context of the initial research question;
+   - Draw conclusions and make recommendations based on the findings.
+
+7. **Visualization and Reporting:**
+    - Create visualizations to communicate key findings;
+    - Prepare a comprehensive report summarizing the analysis process, results, and insights.
+

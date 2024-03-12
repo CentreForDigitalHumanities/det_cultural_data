@@ -24,8 +24,8 @@ book:
     - parts/supplements/summary.qmd
     - parts/supplements/what-next.qmd
     - parts/supplements/glossaries.qmd
-    - parts/supplements/references.qmd
-  repo-url: file:///Users/xizg0003/Documents/from_my_passport/Stefano_Home/Documenti/uu_job/workshops/det_cultural_data/docs/index.html
+    - parts/supplements/resources.qmd
+  repo-url: https://CentreForDigitalHumanities.github.io/det_cultural_data
 
 bibliography: parts/supplements/references.bib
 

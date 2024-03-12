@@ -1,0 +1,19 @@
+# Resources {.unnumbered}
+
+## Datasets
+
+- SlaveVoyages [website](https://www.slavevoyages.org/);
+
+- CSV exports of the Getty Provenance Index [GitHub page](https://github.com/thegetty/provenance-index-csv/tree/main);
+
+- National Gallery of Art Open Data [GitHub page](https://github.com/NationalGalleryOfArt/opendata).
+
+## Programming
+
+- Python [webpage](https://www.python.org/);
+
+- Pandas (Python Data Analysis package) [webpage](https://pandas.pydata.org/);
+
+- Matplotlib (Python visualization package) [webpage](https://matplotlib.org/);
+
+- Seaborn webpage (Python visualization package) [webpage](https://seaborn.pydata.org/).
