@@ -4,7 +4,7 @@ project:
   output-dir: ./docs
 
 book:
-  title: "Data exploration toolkit for cultural data: structure, clean, visualize, and run a preliminary analysis"
+  title: "Data exploration toolkit for cultural data"
   author: "Stefano Rapisarda & Barbara Romero Ferron (RDM, UU)"
   date: last-modified
   search: true
@@ -26,7 +26,8 @@ book:
     - parts/supplements/glossaries.qmd
     - parts/supplements/resources.qmd
   repo-url: https://CentreForDigitalHumanities.github.io/det_cultural_data
-
+  sidebar:
+    logo: course_logo.png
 bibliography: parts/supplements/references.bib
 
 format:
