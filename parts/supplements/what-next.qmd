@@ -3,7 +3,7 @@
 Congratulations! If you are reading these few lines you survived our workshop on analysing cultural data (and you even went through the documentation!).
 Our workshop was only an introduction, it would have been impossible to cover everything related to analysing cultural data in only four hours, but we hope you now have a general overview of how data analysis is performed and of all the caveats related to data base creation and analysis.
 
-What's next? You can build on top of what we have done during the workshop. Here there is a list of possible further steps, good luck!
+What's next? You can build on top of what we have discussed during the workshop. Here there is a list of possible further steps, good luck!
 
 - **More data**: try to obtain more data in .csv form and perform the data analysis on this new data. You can either get new data in the [SlaveVoyages website](https://www.slavevoyages.org/) or download any data in .csv format. Just remember to download it in the "data" directory and to change ```data_file``` into "data/your_file.csv". You can also use data in a different format (like excel sheet for example) and read it with the corresponding ```pandas``` tool;
 

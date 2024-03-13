@@ -25,7 +25,7 @@ book:
     - parts/supplements/what-next.qmd
     - parts/supplements/glossaries.qmd
     - parts/supplements/resources.qmd
-  repo-url: https://CentreForDigitalHumanities.github.io/det_cultural_data
+  repo-url: https://github.com/CentreForDigitalHumanities/det_cultural_data
   sidebar:
     logo: course_logo.png
 bibliography: parts/supplements/references.bib
@@ -43,4 +43,4 @@ format:
       text: |
         \printindex
   epub:
-    cover-image: cover.png
+    cover-image: sonya.jpeg
