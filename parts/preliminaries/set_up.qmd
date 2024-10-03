@@ -1,45 +1,31 @@
 # How to prepare for the workshop {.unnumbered}
 
-The workshop contains both interactive and lecture-like sessions. The first part of the workshop will be focused on concepts and its interactive experience do not require any prior knowledge. In the second part of the workshop, you will go through the main concepts of explorative data analysis, with data analysis being perfomed via programming (specifically python). As this is not a programming workshop and it is open to all researchers (independently from their programming background), we will do the best to explain what the programming does and how it works, but we will not teach you how to program, focusing more on the data analysis concepts and fundamental steps. With that in mind, you can decide to follow the class in three different ways:
-- **"Sit and enjoy the show":** focus on understanding and awareness. The instructor will guide you through the main concept of programming and data analysis. You can later download code and data and, following the detailed description on the website, play with data analysis yourself, at your own pace;
-- **"Following and clicking":** you can click on this [link]() to open a programming environment in a cloud. The environment already contains all you need to run the analysis, data and software. The instructor will use the same environment to go thourgh the data anlysis during class. In the environment, you can run programs, see results in your own screen, and playing with the provided data;
-- **"Give me all!":** you want to run the entire analysis in your own laptop, this is the hardest (but not as much as it seems) path! In this case follow the installation instructions in the following sessions.
+The workshop contains both interactive and lecture-like sessions. The first part of the workshop will be focused on concepts and its interactive experience does not require any prior knowledge. In the second part of the workshop, you will go through the main concepts of exploratory data analysis, with data analysis being performed via programming (specifically Python). As this is not a programming workshop and it is open to all researchers (independent of their programming background), we will do our best to explain what the programming does and how it works, but we will not teach you how to program, focusing more on the data analysis concepts and fundamental steps. With that in mind, you can decide to follow the class in three different ways:
+- **"Sit and enjoy the show":** focus on understanding and awareness. The instructor will guide you through the main concepts of programming and data analysis. You can later download code and data and (following the detailed description on this page) and play with data analysis yourself, at your own pace;
+- **"Following and clicking":** you can click on this [link]() to open a programming environment in your browser. The environment already contains all you need to run the analysis, data and software. The instructor will use the same environment to go through the data analysis during class. In the environment, you can run programs, see results in your own screen, and play with the provided data;
+- **"Give me all!":** you want to run the entire analysis in your own laptop, this is the hardest (but not as much as it seems) path! In this case follow the installation instructions in the following sections.
 
 ## Running the analysis locally on your own computer
 
+### Installing Python
 1. Install python and jupyter notebook. For installation and setup we point at the "Introduction to Python & Data" [Installation & Setup](https://utrechtuniversity.github.io/workshop-introduction-to-python/installation-and-setup.html) page;
 
-2. Create an empty directory called "cultural_data_analysis" (or any other name you prefer);
+### Downloading data and analysis code
+1. Click on this [link](https://download-directory.github.io/), this will open a window in your browser with a green page and a single empty bar. Copy the address https://github.com/CentreForDigitalHumanities/det_cultural_data/tree/main/playground, paste it inside the bar and press ENTER. As soon as your press ENTER, your computer will start to download a zip file;
+   
+2. Extract the content of the zip file: 
+   - If you are working on **Windows**, you can right-click on the zip file and, from the context menu, click on "Extract All". A dialog box will appear asking where you want to extract the files. You can either use the default folder (same location as the ZIP file) or click "Browse" to select a different folder. We recomend to create a new folder called "cultural_data_explorative_analysis" and extract your files there; 
+   - If your are working on macOS, you just need to double click on the zip file. Your computer will automatically create an unzipped directoray with the same name of the zip file. We recomend to rename this directory "cultural_data_explorative_analysis";
+  
+### Open Jupyter notebook
 
-3. Inside the just created directory, create another directory called "data";
+1. Open Anaconda Navigator from the Start Menu (Windows Users) or from the Applications folder or Launchpad (macOs Users);
+2. Click on Launch under Jupyter Notebook. This will open a web browser;
+3. Navigate to the cultural_data_explorative_analysis folder;
+4. Click on the notebook file (.ipynb) to open it.
 
-4. Click on this [link](https://github.com/CentreForDigitalHumanities/det_cultural_data/blob/main/parts/data_analysis/data/data.csv), this will open a GitHub page. On the toolbar (on the right of the buttons "Raw" and copy), you will find the button for downloading the .csv file containing the data we used during our workshop. Download the file inside the
-just created data directory;
 
-5. Click on this [link](https://github.com/CentreForDigitalHumanities/det_cultural_data/blob/main/parts/data_analysis), this will open a GitHub page. 
 
-5. Click on this [link](https://colab.research.google.com/drive/1Y0GqD4vsY61idbvQVFSgSU9nYVjLW4_S?usp=sharing), this will open the Jupyter-notebook in
-one of the instructor google colab environment containing the full analysis performed during the workshop. You can access the file only if you followed the workshop. At this point, you will just need to click on the "File" tab, select "download" (almost at the very end of the menu), select the "Download .ipynb" option, and download the file inside
-your project directory (the one also containing the data directory);
 
-6. Open the jupyter notebook and have fun!
 
-***!!! WARNING !!!***
-In the first cell of the Jupyter-notebook you downloaded, the instructors wrote specific Python instructions to make the notebook work in their Google colab environment. In your case, the only thing you need to do is to find out the full path of your project directory (the one containing the notebook and
-the data directory you just created) and writing this path instead of "working_directory", as described in the comments of the first cell. 
 
-## Running the analysis from remote in your Google colab
-
-1. In your personal Google Drive page, create a new directory called "cultural_data_analysis" (or any other name you prefer). For doing that, click on the "New" button on the top left corner of your browser (just below the Drive icon) and select directory;
-
-2. Go inside the just created directory and create another directory called "data";
-
-3. Click on this [link](https://github.com/CentreForDigitalHumanities/det_cultural_data/blob/main/parts/data_analysis/data/data.csv), this will open a GitHub page. On the toolbar (on the right of the buttons "Raw" and copy), you will find the button for downloading the .csv file containing the data we used during our workshop. Download the file inside the
-just created data directory;
-
-4. Click on this [link](https://colab.research.google.com/drive/1Y0GqD4vsY61idbvQVFSgSU9nYVjLW4_S?usp=sharing), this will open the Jupyter-notebook in
-google colab containing the full analysis performed during the workshop. You can access the file only if you followed the workshop. At this point, you will just need to click on the "File" tab, then click on "download" (almost at the very end of the menu), select the "Download .ipynb" option, and download the file inside your project directory (the one also containing the data directory). Alternatively, if you want to start from scratch creating a black jupyter notebook, click again on the "New" button, select "others", and then Google collaboratory. Be sure that the just created jupyter notebook is in your project directory (the one containing your data directory);
-
-***!!! WARNING !!!***
-In the first cell of the Jupyter-notebook you downloaded, the instructors wrote specific instructions to make the notebook work in their Google colab environment. In your case, the only thing you need to do is to change the value of the 
-variable ```work_dir``` in the first cell from '/det_cultural_data' to '/your_dir_name'. If the name of your directory is det_cultural_data, you do not need to change anything.
