@@ -2,10 +2,11 @@ project:
   type: book
 
   output-dir: ./docs
+  
 
 book:
   title: "Data exploration toolkit for cultural data"
-  author: "Stefano Rapisarda & Barbara Romero Ferron (RDM, UU)"
+  author: "Stefano Rapisarda, Barbara Romero Ferron & Chiara Livio (RDM, UU)"
   date: last-modified
   search: true
   chapters:
@@ -14,10 +15,11 @@ book:
     - part: "Preparation"
       chapters:
       - parts/preliminaries/set_up.qmd
-      - parts/preliminaries/intro_to_python.ipynb
+      - parts/preliminaries/use_of_generative_ai.qmd
     - part: "Data Workflow"
       chapters:
       - parts/data_analysis/organising_your_data.qmd
+      - parts/preliminaries/intro_to_python.ipynb
       - parts/data_analysis/ch1_reading_data.ipynb
       - parts/data_analysis/ch2_exploring_data.ipynb
       - parts/data_analysis/ch3_data_cleaning.ipynb
@@ -29,11 +31,13 @@ book:
   repo-url: https://github.com/CentreForDigitalHumanities/det_cultural_data
   sidebar:
     logo: course_logo.png
+
 bibliography: parts/supplements/references.bib
 
 format:
   html:
     theme: cosmo
+    number_sections: false
   pdf:
     documentclass: scrreport
     include-in-header: 

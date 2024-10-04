@@ -1,0 +1,192 @@
+# Tips on using generative AI {.unnumbered}
+
+We encourage the use of generative AI as a valuable learning tool for those looking to learn Python—whether you're a programming beginner or someone seeking to improve your coding skills.
+
+To maximize the effectiveness of generative AI, it's essential to tailor your prompts to the specific information you want to access. Thoughtful prompting can significantly enhance the quality of the responses you receive.
+
+When posing questions to generative AI, keep the following tips in mind:
+
+Be Specific and Unambiguous: Clearly articulate your question to avoid confusion.
+Break Down Complex Problems: Divide general inquiries into smaller, more manageable questions.
+Don’t Settle for the First Response: Explore further by asking follow-up questions to deepen your understanding.
+More specifically, consider these best practices:
+
+Use clear, concise, and unambiguous language.
+Assign a role to the AI (e.g., software engineer, teacher, data analysis expert).
+Provide context and examples to enhance understanding.
+Specify the desired output format for clarity.
+Evaluate and refine your input based on the responses you receive.
+By following these guidelines, you can harness the full potential of generative AI in your learning journey!
+
+## Study case
+
+Let's consider the very first piece of Python code you will find in this course:
+
+```
+import pandas as pd
+
+data_file = 'data/data.csv'
+df = pd.read_csv(data_file)
+
+print(type(df))
+```
+
+Let's also assume that you have no idea about how Python works, so you will use generative AI copying and pasting this piece of code and ask "explain this". This is what you might get:
+
+> **Explanation of the Code:**
+>
+> ```python
+> import pandas as pd
+> 
+> data_file = 'data/data.csv'
+> df = pd.read_csv(data_file)
+> 
+> print(type(df))
+> ```
+>
+> This code performs the following tasks:
+>
+> 1. **Importing the pandas library**: 
+>    - The line `import pandas as pd` imports the pandas library, which is used for data manipulation and analysis in Python. The alias `pd` is a common convention that makes it easier to reference pandas functions.
+>
+> 2. **Defining a file path**:
+>    - The variable `data_file` is assigned the string `'data/data.csv'`, which represents the path to a CSV (Comma-Separated Values) file named `data.csv`. This file is located in a subdirectory called `data`, relative to the current working directory.
+>
+> 3. **Reading the CSV file**:
+>    - The line `df = pd.read_csv(data_file)` uses the `read_csv()` function from the pandas library to read the CSV file specified by the `data_file` variable. The data from the CSV is loaded into a pandas DataFrame, which is a 2-dimensional labeled data structure similar to a table.
+>    - The variable `df` now holds this DataFrame, which contains the data from the CSV file.
+>
+> 4. **Printing the type of the DataFrame**:
+>    - The line `print(type(df))` prints the type of the variable `df` to the console. This is useful for confirming that the data was successfully loaded into a DataFrame.
+
+This is a comprehensive explanation of what that piece of code does, but there may still be some room for improvement, especially if we are absolute beginners and we are not familiar with some of the technical language used in the description. Furthermore, not only we want to know what the code does, but we also want to take the opportunity to learn about programming. Let's try with another prompt:
+
+*Act as a software engineer, data scientist, and teacher. I am a bachelor student with no-prior knowledge in programming. I want to understand what code does and general programming concepts. Explain the following piece of code with the following output: 1) explanation of what the code does in few words, 2) line by line explanation of what the code does, 3) a list of fundamental programming concepts present in the piece of code with futher example, 4) for each programming concept, three references (website, books, tutorials, etc) to deepen my knowledge. Finally, create a glossary of the technical programming terms in a format that I can copy and paste in my notes. [attach here code in between double quotes]*
+
+This is the response:
+
+> **Explanation of the Code:**
+> 
+> ```python
+> import pandas as pd
+> 
+> data_file = 'data/data.csv'
+> df = pd.read_csv(data_file)
+> 
+> print(type(df))
+> ```
+> 
+> This code imports the pandas library, reads a CSV file into a DataFrame, and prints the type of the DataFrame to confirm successful data loading.
+> 
+> ---
+> 
+> ### Line-by-Line Explanation of What the Code Does
+> 
+> ```python
+> import pandas as pd
+> ```
+> - **What it does**: This line imports the pandas library and assigns it the alias `pd`. 
+> - **Purpose**: The alias `pd` is used for convenience, making it easier to reference pandas functions throughout the code.
+> 
+> ```python
+> data_file = 'data/data.csv'
+> ```
+> - **What it does**: This line creates a variable named `data_file` and assigns it the string value `'data/data.csv'`, which is the path to a CSV file.
+> - **Purpose**: The variable holds the location of the file, making it easy to access and modify later.
+> 
+> ```python
+> df = pd.read_csv(data_file)
+> ```
+> - **What it does**: This line uses the `read_csv()` function from the pandas library to read the CSV file specified in the `data_file` variable and stores the resulting DataFrame in the variable `df`.
+> - **Purpose**: It loads the data from the CSV file into a DataFrame, which allows for easy data manipulation and analysis.
+> 
+> ```python
+> print(type(df))
+> ```
+> - **What it does**: This line prints the type of the variable `df` to the console.
+> - **Purpose**: It confirms that the data was loaded correctly by displaying the type of object `df` holds, which should be a pandas DataFrame.
+> 
+> ---
+> 
+> ### List of Fundamental Programming Concepts Present in the Code
+> 
+> - **Importing Libraries/Modules**: 
+>     - Description: Using external libraries to enhance the functionality of your code.
+>     - Example: `import pandas as pd` brings in the pandas library for data analysis.
+> 
+> - **Variables**:
+>     - Description: Named storage locations for data in a program.
+>     - Example: `data_file = 'data/data.csv'` creates a variable named `data_file`.
+> 
+> - **Data Types**:
+>     - Description: Categories of data that tell the compiler or interpreter how the programmer intends to use the data.
+>     - Example: The variable `data_file` is a string, while `df` becomes a DataFrame.
+> 
+> - **Functions**:
+>     - Description: A reusable block of code that performs a specific task.
+>     - Example: `pd.read_csv(data_file)` is a function call that reads the CSV file.
+> 
+> - **Print Statements**:
+>     - Description: Used to display output to the console.
+>     - Example: `print(type(df))` displays the type of the DataFrame.
+> 
+> ---
+> 
+> ### References for Each Programming Concept
+> 
+> #### Importing Libraries/Modules
+> 1. [W3Schools - Python Modules](https://www.w3schools.com/python/python_modules.asp)
+> 2. [Python Documentation - Modules](https://docs.python.org/3/tutorial/modules.html)
+> 3. **Book**: "Automate the Boring Stuff with Python" by Al Sweigart
+> 
+> #### Variables
+> 1. [W3Schools - Python Variables](https://www.w3schools.com/python/python_variables.asp)
+> 2. [Real Python - Python Variables](https://realpython.com/python-variables/)
+> 3. **Book**: "Python Crash Course" by Eric Matthes
+> 
+> #### Data Types
+> 1. [W3Schools - Python Data Types](https://www.w3schools.com/python/python_datatypes.asp)
+> 2. [GeeksforGeeks - Data Types in Python](https://www.geeksforgeeks.org/data-types-in-python/)
+> 3. **Book**: "Head First Python" by Paul Barry
+> 
+> #### Functions
+> 1. [W3Schools - Python Functions](https://www.w3schools.com/python/python_functions.asp)
+> 2. [Real Python - Defining Functions in Python](https://realpython.com/defining-functions-in-python/)
+> 3. **Book**: "Fluent Python" by Luciano Ramalho
+> 
+> #### Print Statements
+> 1. [W3Schools - Python Print Function](https://www.w3schools.com/python/python_functions_print.asp)
+> 2. [Real Python - The Python Print Function](https://realpython.com/python-print/)
+> 3. **Book**: "Learning Python" by Mark Lutz
+> 
+> ---
+> 
+> ### Glossary of Technical Programming Terms
+> 
+> ```markdown
+> **Glossary of Technical Programming Terms**
+> 
+> - **Importing Libraries/Modules**: The process of including external libraries in a program to use their functionality.
+> - **Variables**: Named storage locations in a program that hold data values.
+> - **Data Types**: Categories of data that determine the kind of operations that can be performed on that data (e.g., strings, integers, DataFrames).
+> - **Functions**: Reusable blocks of code that perform specific tasks; they can take inputs (parameters) and return outputs.
+> - **Print Statements**: Commands used to display output on the console or standard output device.
+> ```
+
+As you may notice, the generative AI ouput in now much more comprehensive. In this way we turned few lines of code in a small learning experience. There is still room for improvement, for example the concept of library (or package) is not explained and the examples provided are not more than those same lines of code you asked to explain. You may ask generative AI to be even more explicit in the explanation of technical terms and to provide different examples.
+
+## Handling errors
+
+Errors are an inherent part of programming. When you run a program, encountering an error often means that something went wrong, causing the program to stop functioning. The root cause of an error can range from simple syntax issues, such as typos, to more complex problems. Regardless of the cause, diagnosing the issue can be time-consuming. Fortunately, generative AI can help streamline this troubleshooting process.
+
+When you encounter an error, you will typically see an error message—text that explains why the error occurred. For those new to programming, these messages can seem cryptic. However, they contain valuable clues that can assist you in identifying the problem. If you lack programming experience, generative AI can help you understand the error and suggest corrective actions.
+
+Here are some general tips to consider when dealing with errors:
+
+- **Identify the Location of the Error:** Error messages often indicate the line of code where the problem occurred. Before that line, check if the program runs correctly by dividing your code into smaller chunks and running them separately.
+
+- **Don’t Ignore Error Messages:** Pay attention to the type of error message you receive. Use generative AI to explore common causes for that specific error type.
+
+- ***Check Syntax with Generative AI:** Copy and paste the portion of your code that is generating the error into generative AI and ask it to review the syntax for potential typos or mistakes.
+
+- **Provide Specific Context:** When querying generative AI, be explicit about your programming environment. Mention the programming language you are using (even though AI can often recognize it), the libraries involved, the task your program is performing, and any relevant data types you are working with.

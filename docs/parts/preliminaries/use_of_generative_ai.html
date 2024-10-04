@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data exploration toolkit for cultural data - 3&nbsp; Reading data</title>
+<title>Data exploration toolkit for cultural data - Tips on using generative AI</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../parts/data_analysis/ch2_exploring_data.html" rel="next">
-<link href="../../parts/preliminaries/intro_to_python.html" rel="prev">
+<link href="../../parts/data_analysis/organising_your_data.html" rel="next">
+<link href="../../parts/preliminaries/set_up.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -95,9 +95,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -111,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/data_analysis/organising_your_data.html">Data Workflow</a></li><li class="breadcrumb-item"><a href="../../parts/data_analysis/ch1_reading_data.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/preliminaries/set_up.html">Preparation</a></li><li class="breadcrumb-item"><a href="../../parts/preliminaries/use_of_generative_ai.html">Tips on using generative AI</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -171,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/preliminaries/use_of_generative_ai.html" class="sidebar-item-text sidebar-link">
+  <a href="../../parts/preliminaries/use_of_generative_ai.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tips on using generative AI</span></a>
   </div>
 </li>
@@ -200,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/data_analysis/ch1_reading_data.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../parts/data_analysis/ch1_reading_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
   </div>
 </li>
@@ -254,14 +251,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#study-case" id="toc-study-case" class="nav-link active" data-scroll-target="#study-case">Study case</a></li>
+  <li><a href="#handling-errors" id="toc-handling-errors" class="nav-link" data-scroll-target="#handling-errors">Handling errors</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></h1>
+<h1 class="title">Tips on using generative AI</h1>
 </div>
 
 
@@ -276,380 +280,171 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The first thing we need to do is loading the data. This means opening the file where the data is currently stored and transfer that data here, in our working environment. As we are working with Python in this Jupyter notebook environment, this means transfering all the data into a Python object. Which object? There are Python libraries (Python code written by other developers) that have been specifically designed to perform the task of data analysis. One of these libraries, or (“Pythonically” speaking) <strong>packages</strong>, is called <code>pandas</code>. We will use one of the many <code>pandas</code> functions to read our <code>.csv</code> (coma separated values file) file and we will store the information into a pandas <code>DataFrame</code>.</p>
-<div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
-<style>.box {
-    border: 1px solid !important;
-    border-radius: 5px !important;
-    padding: 10px !important;
-    margin: 0px 10px 0px 10px !important;
-}
+<p>We encourage the use of generative AI as a valuable learning tool for those looking to learn Python—whether you’re a programming beginner or someone seeking to improve your coding skills.</p>
+<p>To maximize the effectiveness of generative AI, it’s essential to tailor your prompts to the specific information you want to access. Thoughtful prompting can significantly enhance the quality of the responses you receive.</p>
+<p>When posing questions to generative AI, keep the following tips in mind:</p>
+<p>Be Specific and Unambiguous: Clearly articulate your question to avoid confusion. Break Down Complex Problems: Divide general inquiries into smaller, more manageable questions. Don’t Settle for the First Response: Explore further by asking follow-up questions to deepen your understanding. More specifically, consider these best practices:</p>
+<p>Use clear, concise, and unambiguous language. Assign a role to the AI (e.g., software engineer, teacher, data analysis expert). Provide context and examples to enhance understanding. Specify the desired output format for clarity. Evaluate and refine your input based on the responses you receive. By following these guidelines, you can harness the full potential of generative AI in your learning journey!</p>
+<section id="study-case" class="level2">
+<h2 class="anchored" data-anchor-id="study-case">Study case</h2>
+<p>Let’s consider the very first piece of Python code you will find in this course:</p>
+<pre><code>import pandas as pd
 
-.sub-box {
-  display: flex !important; 
-  flex-direction: row !important; 
-  align-items: center !important;
-}
+data_file = 'data/data.csv'
+df = pd.read_csv(data_file)
 
-.type1 {
-    border-color: black;
-    background-color: rgb(246, 255, 222); 
-}
-
-.type2 {
-    border-color: black;
-    background-color: rgb(227, 242, 193); 
-}
-
-.type3 {
-    border-color: black;
-    background-color: rgb(201, 219, 178); 
-}
-
-.type4 {
-    border-color: black;
-    background-color: rgb(170, 200, 167); 
-}
-
-.type5 {
-    border-color: black;
-    background-color: rgb(181, 192, 208);
-}
-
-.type6 {
-    border-color: black;
-    background-color: rgb(255, 195, 116);
-}
-
-.picture {
-    width: 30px; 
-    height: 30px;
-    margin: 0 0 0px 0;
-}
-
-.ctitle {
-    margin: 0px 0px 0px 20px;
-}</style> 
-            <div class="box type1">
-                    <div class="sub-box">
-                        <img src="myutils/icons/task.png" alt="Icon" class="picture">
-                        <div class="ctitle">
-                            <u><h4 class="anchored"><strong>Task(s)</strong></h4></u>
-                        </div>
-                    </div>
-                    <div class="sub-box">
-                        Loading data
-                    </div>
-            </div>
-        
-            <div class="box type2">
-                <div class="sub-box">
-                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <ul><li>Localise the csv file;</li><li>Have a look at it;</li><li>Transfer data to the Python working environment.</li></ul>
-                </div>
-            </div>    
-        
-            <div class="box type3">
-                <div class="sub-box">
-                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <ul><li><code>pandas</code> package;</li><li><code>pandas</code> method <code>.read_csv()</code>;</li><li>Python function <code>print()</code>;</li><li>Python function <code>type()</code></li></ul>
-                </div>            
-            </div>    
-        
-            <div class="box type4">
-                <div class="sub-box">
-                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <div>
-                        <ul><li><code>import pandas as pd</code>, we first import the package <code>pandas</code> in our working environment in order to use all its functionalities.     To make our life easier, we assign to the package an alias, a nickname, so that we do not neet to write     <code>pandas.function_to_use()</code> every time we need to use a <code>pandas</code> function. We need just to use     the abbreviated form <code>pd.function_to_use()</code>;</li><li><code>data_file = 'data/data.csv'</code>, we store the relative path of our data file as a string (between single     or double quotes) to the Python variable <code>data_file</code>;</li><li><code>df = pd.read_csv(data_file)</code>, we use the method <code>.read_csv()</code> to read     our data file and we store the result in the Python variable <code>df</code> (data frame);</li><li><code>print(type(df))</code>, we first apply the Python function <code>type()</code> to the just initialised variable     <code>df</code> to check what is its type. We print the result on the screen using the Python function     <code>print()</code>.</li></ul>
-                    </div>       
-                </div>
-            </div>    
-        
-</div>
-</div>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;</code></pre>
-</div>
-</div>
-<p>We managed to transfer our data into a Python object, specifically a <code>pandas.core.frame.DataFrame</code>, or simply (from now on) a DataFrame. However, a lot of things can go wrong when going from one format to another, so it is a good idea to have a first look at the data.</p>
-<div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<style>.box {
-    border: 1px solid !important;
-    border-radius: 5px !important;
-    padding: 10px !important;
-    margin: 0px 10px 0px 10px !important;
-}
-
-.sub-box {
-  display: flex !important; 
-  flex-direction: row !important; 
-  align-items: center !important;
-}
-
-.type1 {
-    border-color: black;
-    background-color: rgb(246, 255, 222); 
-}
-
-.type2 {
-    border-color: black;
-    background-color: rgb(227, 242, 193); 
-}
-
-.type3 {
-    border-color: black;
-    background-color: rgb(201, 219, 178); 
-}
-
-.type4 {
-    border-color: black;
-    background-color: rgb(170, 200, 167); 
-}
-
-.type5 {
-    border-color: black;
-    background-color: rgb(181, 192, 208);
-}
-
-.type6 {
-    border-color: black;
-    background-color: rgb(255, 195, 116);
-}
-
-.picture {
-    width: 30px; 
-    height: 30px;
-    margin: 0 0 0px 0;
-}
-
-.ctitle {
-    margin: 0px 0px 0px 20px;
-}</style> 
-            <div class="box type1">
-                    <div class="sub-box">
-                        <img src="myutils/icons/task.png" alt="Icon" class="picture">
-                        <div class="ctitle">
-                            <u><h4 class="anchored"><strong>Task(s)</strong></h4></u>
-                        </div>
-                    </div>
-                    <div class="sub-box">
-                        Have a first look at the data
-                    </div>
-            </div>
-        
-            <div class="box type2">
-                <div class="sub-box">
-                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    Visualize the first 10 lines of data, just to check that everything looks "ok";
-                </div>
-            </div>    
-        
-            <div class="box type3">
-                <div class="sub-box">
-                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <code>pandas</code> method <code>.head()</code>;
-                </div>            
-            </div>    
-        
-            <div class="box type4">
-                <div class="sub-box">
-                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <div>
-                        <code>pd.head(10)</code>, calling the <code>head(10)</code> method on the DataFrame <code>df</code> we will visualise the first 10 lines of the DataFrame (we wrote 10, but you can use whatever number you want). This method, as a matter of fact, shows you only the "head", the beginning, of the DataFrame.
-                    </div>       
-                </div>
-            </div>    
-        
-</div>
-</div>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<div>
+print(type(df))</code></pre>
+<p>Let’s also assume that you have no idea about how Python works, so you will use generative AI copying and pasting this piece of code and ask “explain this”. This is what you might get:</p>
+<blockquote class="blockquote">
+<p><strong>Explanation of the Code:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code performs the following tasks:</p>
+<ol type="1">
+<li><strong>Importing the pandas library</strong>:
+<ul>
+<li>The line <code>import pandas as pd</code> imports the pandas library, which is used for data manipulation and analysis in Python. The alias <code>pd</code> is a common convention that makes it easier to reference pandas functions.</li>
+</ul></li>
+<li><strong>Defining a file path</strong>:
+<ul>
+<li>The variable <code>data_file</code> is assigned the string <code>'data/data.csv'</code>, which represents the path to a CSV (Comma-Separated Values) file named <code>data.csv</code>. This file is located in a subdirectory called <code>data</code>, relative to the current working directory.</li>
+</ul></li>
+<li><strong>Reading the CSV file</strong>:
+<ul>
+<li>The line <code>df = pd.read_csv(data_file)</code> uses the <code>read_csv()</code> function from the pandas library to read the CSV file specified by the <code>data_file</code> variable. The data from the CSV is loaded into a pandas DataFrame, which is a 2-dimensional labeled data structure similar to a table.</li>
+<li>The variable <code>df</code> now holds this DataFrame, which contains the data from the CSV file.</li>
+</ul></li>
+<li><strong>Printing the type of the DataFrame</strong>:
+<ul>
+<li>The line <code>print(type(df))</code> prints the type of the variable <code>df</code> to the console. This is useful for confirming that the data was successfully loaded into a DataFrame.</li>
+</ul></li>
+</ol>
+</blockquote>
+<p>This is a comprehensive explanation of what that piece of code does, but there may still be some room for improvement, especially if we are absolute beginners and we are not familiar with some of the technical language used in the description. Furthermore, not only we want to know what the code does, but we also want to take the opportunity to learn about programming. Let’s try with another prompt:</p>
+<p><em>Act as a software engineer, data scientist, and teacher. I am a bachelor student with no-prior knowledge in programming. I want to understand what code does and general programming concepts. Explain the following piece of code with the following output: 1) explanation of what the code does in few words, 2) line by line explanation of what the code does, 3) a list of fundamental programming concepts present in the piece of code with futher example, 4) for each programming concept, three references (website, books, tutorials, etc) to deepen my knowledge. Finally, create a glossary of the technical programming terms in a format that I can copy and paste in my notes. [attach here code in between double quotes]</em></p>
+<p>This is the response:</p>
+<blockquote class="blockquote">
+<p><strong>Explanation of the Code:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This code imports the pandas library, reads a CSV file into a DataFrame, and prints the type of the DataFrame to confirm successful data loading.</p>
+<hr>
+<h3 id="line-by-line-explanation-of-what-the-code-does" class="anchored">Line-by-Line Explanation of What the Code Does</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>What it does</strong>: This line imports the pandas library and assigns it the alias <code>pd</code>.</li>
+<li><strong>Purpose</strong>: The alias <code>pd</code> is used for convenience, making it easier to reference pandas functions throughout the code.</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>What it does</strong>: This line creates a variable named <code>data_file</code> and assigns it the string value <code>'data/data.csv'</code>, which is the path to a CSV file.</li>
+<li><strong>Purpose</strong>: The variable holds the location of the file, making it easy to access and modify later.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>What it does</strong>: This line uses the <code>read_csv()</code> function from the pandas library to read the CSV file specified in the <code>data_file</code> variable and stores the resulting DataFrame in the variable <code>df</code>.</li>
+<li><strong>Purpose</strong>: It loads the data from the CSV file into a DataFrame, which allows for easy data manipulation and analysis.</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>What it does</strong>: This line prints the type of the variable <code>df</code> to the console.</li>
+<li><strong>Purpose</strong>: It confirms that the data was loaded correctly by displaying the type of object <code>df</code> holds, which should be a pandas DataFrame.</li>
+</ul>
+<hr>
+<h3 id="list-of-fundamental-programming-concepts-present-in-the-code" class="anchored">List of Fundamental Programming Concepts Present in the Code</h3>
+<ul>
+<li><strong>Importing Libraries/Modules</strong>:
+<ul>
+<li>Description: Using external libraries to enhance the functionality of your code.</li>
+<li>Example: <code>import pandas as pd</code> brings in the pandas library for data analysis.</li>
+</ul></li>
+<li><strong>Variables</strong>:
+<ul>
+<li>Description: Named storage locations for data in a program.</li>
+<li>Example: <code>data_file = 'data/data.csv'</code> creates a variable named <code>data_file</code>.</li>
+</ul></li>
+<li><strong>Data Types</strong>:
+<ul>
+<li>Description: Categories of data that tell the compiler or interpreter how the programmer intends to use the data.</li>
+<li>Example: The variable <code>data_file</code> is a string, while <code>df</code> becomes a DataFrame.</li>
+</ul></li>
+<li><strong>Functions</strong>:
+<ul>
+<li>Description: A reusable block of code that performs a specific task.</li>
+<li>Example: <code>pd.read_csv(data_file)</code> is a function call that reads the CSV file.</li>
+</ul></li>
+<li><strong>Print Statements</strong>:
+<ul>
+<li>Description: Used to display output to the console.</li>
+<li>Example: <code>print(type(df))</code> displays the type of the DataFrame.</li>
+</ul></li>
+</ul>
+<hr>
+<h3 id="references-for-each-programming-concept" class="anchored">References for Each Programming Concept</h3>
+<h4 id="importing-librariesmodules" class="anchored">Importing Libraries/Modules</h4>
+<ol type="1">
+<li><a href="https://www.w3schools.com/python/python_modules.asp">W3Schools - Python Modules</a></li>
+<li><a href="https://docs.python.org/3/tutorial/modules.html">Python Documentation - Modules</a></li>
+<li><strong>Book</strong>: “Automate the Boring Stuff with Python” by Al Sweigart</li>
+</ol>
+<h4 id="variables" class="anchored">Variables</h4>
+<ol type="1">
+<li><a href="https://www.w3schools.com/python/python_variables.asp">W3Schools - Python Variables</a></li>
+<li><a href="https://realpython.com/python-variables/">Real Python - Python Variables</a></li>
+<li><strong>Book</strong>: “Python Crash Course” by Eric Matthes</li>
+</ol>
+<h4 id="data-types" class="anchored">Data Types</h4>
+<ol type="1">
+<li><a href="https://www.w3schools.com/python/python_datatypes.asp">W3Schools - Python Data Types</a></li>
+<li><a href="https://www.geeksforgeeks.org/data-types-in-python/">GeeksforGeeks - Data Types in Python</a></li>
+<li><strong>Book</strong>: “Head First Python” by Paul Barry</li>
+</ol>
+<h4 id="functions" class="anchored">Functions</h4>
+<ol type="1">
+<li><a href="https://www.w3schools.com/python/python_functions.asp">W3Schools - Python Functions</a></li>
+<li><a href="https://realpython.com/defining-functions-in-python/">Real Python - Defining Functions in Python</a></li>
+<li><strong>Book</strong>: “Fluent Python” by Luciano Ramalho</li>
+</ol>
+<h4 id="print-statements" class="anchored">Print Statements</h4>
+<ol type="1">
+<li><a href="https://www.w3schools.com/python/python_functions_print.asp">W3Schools - Python Print Function</a></li>
+<li><a href="https://realpython.com/python-print/">Real Python - The Python Print Function</a></li>
+<li><strong>Book</strong>: “Learning Python” by Mark Lutz</li>
+</ol>
+<hr>
+<h3 id="glossary-of-technical-programming-terms" class="anchored">Glossary of Technical Programming Terms</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>**Glossary of Technical Programming Terms**</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Importing Libraries/Modules**: The process of including external libraries in a program to use their functionality.</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Variables**: Named storage locations in a program that hold data values.</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Data Types**: Categories of data that determine the kind of operations that can be performed on that data (e.g., strings, integers, DataFrames).</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Functions**: Reusable blocks of code that perform specific tasks; they can take inputs (parameters) and return outputs.</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Print Statements**: Commands used to display output on the console or standard output device.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</blockquote>
+<p>As you may notice, the generative AI ouput in now much more comprehensive. In this way we turned few lines of code in a small learning experience. There is still room for improvement, for example the concept of library (or package) is not explained and the examples provided are not more than those same lines of code you asked to explain. You may ask generative AI to be even more explicit in the explanation of technical terms and to provide different examples.</p>
+</section>
+<section id="handling-errors" class="level2">
+<h2 class="anchored" data-anchor-id="handling-errors">Handling errors</h2>
+<p>Errors are an inherent part of programming. When you run a program, encountering an error often means that something went wrong, causing the program to stop functioning. The root cause of an error can range from simple syntax issues, such as typos, to more complex problems. Regardless of the cause, diagnosing the issue can be time-consuming. Fortunately, generative AI can help streamline this troubleshooting process.</p>
+<p>When you encounter an error, you will typically see an error message—text that explains why the error occurred. For those new to programming, these messages can seem cryptic. However, they contain valuable clues that can assist you in identifying the problem. If you lack programming experience, generative AI can help you understand the error and suggest corrective actions.</p>
+<p>Here are some general tips to consider when dealing with errors:</p>
+<ul>
+<li><p><strong>Identify the Location of the Error:</strong> Error messages often indicate the line of code where the problem occurred. Before that line, check if the program runs correctly by dividing your code into smaller chunks and running them separately.</p></li>
+<li><p><strong>Don’t Ignore Error Messages:</strong> Pay attention to the type of error message you receive. Use generative AI to explore common causes for that specific error type.</p></li>
+<li><p>*<strong>Check Syntax with Generative AI:</strong> Copy and paste the portion of your code that is generating the error into generative AI and ask it to review the syntax for potential typos or mistakes.</p></li>
+<li><p><strong>Provide Specific Context:</strong> When querying generative AI, be explicit about your programming environment. Mention the programming language you are using (even though AI can often recognize it), the libraries involved, the task your program is performing, and any relevant data types you are working with.</p></li>
+</ul>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year of arrival at port of disembarkation</th>
-<th data-quarto-table-cell-role="th">Voyage ID</th>
-<th data-quarto-table-cell-role="th">Vessel name</th>
-<th data-quarto-table-cell-role="th">Voyage itinerary imputed port where began (ptdepimp) place</th>
-<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal place of slave purchase (mjbyptimp)</th>
-<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place</th>
-<th data-quarto-table-cell-role="th">VOYAGEID2</th>
-<th data-quarto-table-cell-role="th">Captives arrived at 1st port</th>
-<th data-quarto-table-cell-role="th">Captain's name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1714.0</td>
-<td>16109</td>
-<td>Freeke Gally</td>
-<td>Bristol</td>
-<td>NaN</td>
-<td>Kingston</td>
-<td>NaN</td>
-<td>283.0</td>
-<td>Neale, Alexander</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1713.0</td>
-<td>16110</td>
-<td>Greyhound Gally</td>
-<td>Bristol</td>
-<td>NaN</td>
-<td>Jamaica, place unspecified</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Selkirk, Alexander&lt;br/&gt; Forrest, Henry</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1714.0</td>
-<td>16111</td>
-<td>Jacob</td>
-<td>Bristol</td>
-<td>NaN</td>
-<td>Kingston</td>
-<td>NaN</td>
-<td>130.0</td>
-<td>Nicholls, Philip</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1714.0</td>
-<td>16112</td>
-<td>Jason Gally</td>
-<td>Bristol</td>
-<td>NaN</td>
-<td>Port Royal</td>
-<td>NaN</td>
-<td>278.0</td>
-<td>Plummer, John</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>1713.0</td>
-<td>16113</td>
-<td>Lawford Gally</td>
-<td>Bristol</td>
-<td>Africa, port unspecified</td>
-<td>Newcastle (Nevis)</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Stretton, Joseph</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>1714.0</td>
-<td>16114</td>
-<td>Mercy Gally</td>
-<td>Bristol</td>
-<td>Africa, port unspecified</td>
-<td>Barbados, place unspecified</td>
-<td>NaN</td>
-<td>190.0</td>
-<td>Scott, John</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>1714.0</td>
-<td>16115</td>
-<td>Mermaid Gally</td>
-<td>Bristol</td>
-<td>Cape Verde Islands</td>
-<td>Kingston</td>
-<td>NaN</td>
-<td>72.0</td>
-<td>Banbury, John&lt;br/&gt; Copinger, James</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>1713.0</td>
-<td>16116</td>
-<td>Morning Star</td>
-<td>Bristol</td>
-<td>Africa, port unspecified</td>
-<td>Charleston</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Poole, Nicholas</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>1714.0</td>
-<td>16117</td>
-<td>Peterborough</td>
-<td>Bristol</td>
-<td>Africa, port unspecified</td>
-<td>Barbados, place unspecified</td>
-<td>NaN</td>
-<td>200.0</td>
-<td>Shawe, John&lt;br/&gt; Martin, Joseph</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>1713.0</td>
-<td>16118</td>
-<td>Resolution</td>
-<td>Bristol</td>
-<td>Gold Coast, port unspecified</td>
-<td>Barbados, place unspecified</td>
-<td>NaN</td>
-<td>255.0</td>
-<td>Williams, Charles</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>Comparing what we see here with our .csv file it seems that everything went well. We have the data organised in rows and columns. Each column has a name and each row and index. Looking at our data, some values are numbers, some are names and places, some contain htmlo tags, some are NaN. It is not time yet to run data analysis, after having loaded the data we still need to correctly interpret the information it contains, then we need to “clean” it, and after that, finally, we can proceed with some data analysis. This is just the beginning, but the best is yet to come!</p>
-
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -887,13 +682,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../parts/preliminaries/intro_to_python.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Python</span></span>
+      <a href="../../parts/preliminaries/set_up.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">How to prepare for the workshop</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../parts/data_analysis/ch2_exploring_data.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../parts/data_analysis/organising_your_data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Organising your data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
