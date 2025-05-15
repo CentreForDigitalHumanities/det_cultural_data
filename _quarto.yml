@@ -26,6 +26,7 @@ book:
       - parts/data_analysis/ch4_data_analysis.ipynb
     - parts/supplements/summary.qmd
     - parts/supplements/what-next.qmd
+    - parts/supplements/datasets.qmd
     - parts/supplements/glossaries.qmd
     - parts/supplements/resources.qmd
   repo-url: https://github.com/CentreForDigitalHumanities/det_cultural_data
