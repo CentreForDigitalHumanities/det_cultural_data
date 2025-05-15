@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data exploration toolkit for cultural data - 3&nbsp; Reading data</title>
+<title>Data exploration toolkit for cultural data - 7&nbsp; Datasets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../parts/data_analysis/ch2_exploring_data.html" rel="next">
-<link href="../../parts/preliminaries/intro_to_python.html" rel="prev">
+<link href="../../parts/supplements/glossaries.html" rel="next">
+<link href="../../parts/supplements/what-next.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -95,9 +61,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -111,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/data_analysis/organising_your_data.html">Data Workflow</a></li><li class="breadcrumb-item"><a href="../../parts/data_analysis/ch1_reading_data.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../parts/supplements/datasets.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datasets</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -200,7 +163,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/data_analysis/ch1_reading_data.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../parts/data_analysis/ch1_reading_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
   </div>
 </li>
@@ -238,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/supplements/datasets.html" class="sidebar-item-text sidebar-link">
+  <a href="../../parts/supplements/datasets.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
   </div>
 </li>
@@ -267,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datasets</span></h1>
 </div>
 
 
@@ -282,378 +245,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>The first thing we need to do is loading the data. This means opening the file where the data is currently stored and transfer that data here, in our working environment. As we are working with Python in this Jupyter notebook environment, this means transfering all the data into a Python object. Which object? There are Python libraries (Python code written by other developers) that have been specifically designed to perform the task of data analysis. One of these libraries, or (“Pythonically” speaking) <strong>packages</strong>, is called <code>pandas</code>. We will use one of the many <code>pandas</code> functions to read our <code>.csv</code> (coma separated values file) file and we will store the information into a pandas <code>DataFrame</code>.</p>
-<div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
-<style>.box {
-    border: 1px solid !important;
-    border-radius: 5px !important;
-    padding: 10px !important;
-    margin: 0px 10px 0px 10px !important;
-}
-
-.sub-box {
-  display: flex !important; 
-  flex-direction: row !important; 
-  align-items: center !important;
-}
-
-.type1 {
-    border-color: black;
-    background-color: rgb(246, 255, 222); 
-}
-
-.type2 {
-    border-color: black;
-    background-color: rgb(227, 242, 193); 
-}
-
-.type3 {
-    border-color: black;
-    background-color: rgb(201, 219, 178); 
-}
-
-.type4 {
-    border-color: black;
-    background-color: rgb(170, 200, 167); 
-}
-
-.type5 {
-    border-color: black;
-    background-color: rgb(181, 192, 208);
-}
-
-.type6 {
-    border-color: black;
-    background-color: rgb(255, 195, 116);
-}
-
-.picture {
-    width: 30px; 
-    height: 30px;
-    margin: 0 0 0px 0;
-}
-
-.ctitle {
-    margin: 0px 0px 0px 20px;
-}</style> 
-            <div class="box type1">
-                    <div class="sub-box">
-                        <img src="myutils/icons/task.png" alt="Icon" class="picture">
-                        <div class="ctitle">
-                            <u><h4 class="anchored"><strong>Task(s)</strong></h4></u>
-                        </div>
-                    </div>
-                    <div class="sub-box">
-                        Loading data
-                    </div>
-            </div>
-        
-            <div class="box type2">
-                <div class="sub-box">
-                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <ul><li>Localise the csv file;</li><li>Have a look at it;</li><li>Transfer data to the Python working environment.</li></ul>
-                </div>
-            </div>    
-        
-            <div class="box type3">
-                <div class="sub-box">
-                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <ul><li><code>pandas</code> package;</li><li><code>pandas</code> method <code>.read_csv()</code>;</li><li>Python function <code>print()</code>;</li><li>Python function <code>type()</code></li></ul>
-                </div>            
-            </div>    
-        
-            <div class="box type4">
-                <div class="sub-box">
-                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <div>
-                        <ul><li><code>import pandas as pd</code>, we first import the package <code>pandas</code> in our working environment in order to use all its functionalities.     To make our life easier, we assign to the package an alias, a nickname, so that we do not neet to write     <code>pandas.function_to_use()</code> every time we need to use a <code>pandas</code> function. We need just to use     the abbreviated form <code>pd.function_to_use()</code>;</li><li><code>data_file = 'data/data.csv'</code>, we store the relative path of our data file as a string (between single     or double quotes) to the Python variable <code>data_file</code>;</li><li><code>df = pd.read_csv(data_file)</code>, we use the method <code>.read_csv()</code> to read     our data file and we store the result in the Python variable <code>df</code> (data frame);</li><li><code>print(type(df))</code>, we first apply the Python function <code>type()</code> to the just initialised variable     <code>df</code> to check what is its type. We print the result on the screen using the Python function     <code>print()</code>.</li></ul>
-                    </div>       
-                </div>
-            </div>    
-        
-</div>
-</div>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data_file <span class="op">=</span> <span class="st">'data/data.csv'</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(data_file)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(df))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;</code></pre>
-</div>
-</div>
-<p>We managed to transfer our data into a Python object, specifically a <code>pandas.core.frame.DataFrame</code>, or simply (from now on) a DataFrame. However, a lot of things can go wrong when going from one format to another, so it is a good idea to have a first look at the data.</p>
-<div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
-<style>.box {
-    border: 1px solid !important;
-    border-radius: 5px !important;
-    padding: 10px !important;
-    margin: 0px 10px 0px 10px !important;
-}
-
-.sub-box {
-  display: flex !important; 
-  flex-direction: row !important; 
-  align-items: center !important;
-}
-
-.type1 {
-    border-color: black;
-    background-color: rgb(246, 255, 222); 
-}
-
-.type2 {
-    border-color: black;
-    background-color: rgb(227, 242, 193); 
-}
-
-.type3 {
-    border-color: black;
-    background-color: rgb(201, 219, 178); 
-}
-
-.type4 {
-    border-color: black;
-    background-color: rgb(170, 200, 167); 
-}
-
-.type5 {
-    border-color: black;
-    background-color: rgb(181, 192, 208);
-}
-
-.type6 {
-    border-color: black;
-    background-color: rgb(255, 195, 116);
-}
-
-.picture {
-    width: 30px; 
-    height: 30px;
-    margin: 0 0 0px 0;
-}
-
-.ctitle {
-    margin: 0px 0px 0px 20px;
-}</style> 
-            <div class="box type1">
-                    <div class="sub-box">
-                        <img src="myutils/icons/task.png" alt="Icon" class="picture">
-                        <div class="ctitle">
-                            <u><h4 class="anchored"><strong>Task(s)</strong></h4></u>
-                        </div>
-                    </div>
-                    <div class="sub-box">
-                        Have a first look at the data
-                    </div>
-            </div>
-        
-            <div class="box type2">
-                <div class="sub-box">
-                    <img src="myutils/icons/thinking.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>What to do?</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    Visualize the first 10 lines of data, just to check that everything looks "ok";
-                </div>
-            </div>    
-        
-            <div class="box type3">
-                <div class="sub-box">
-                    <img src="myutils/icons/tools.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>(Python) Tools</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <code>pandas</code> method <code>.head()</code>;
-                </div>            
-            </div>    
-        
-            <div class="box type4">
-                <div class="sub-box">
-                    <img src="myutils/icons/code_expl.png" alt="Icon" class="picture">
-                    <div class="ctitle">
-                        <u><h4 class="anchored"><strong>Coding</strong></h4></u>
-                    </div>
-                </div>
-                <div class="sub-box">
-                    <div>
-                        <code>pd.head(10)</code>, calling the <code>head(10)</code> method on the DataFrame <code>df</code> we will visualise the first 10 lines of the DataFrame (we wrote 10, but you can use whatever number you want). This method, as a matter of fact, shows you only the "head", the beginning, of the DataFrame.
-                    </div>       
-                </div>
-            </div>    
-        
-</div>
-</div>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<div>
-
-
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Year of arrival at port of disembarkation</th>
-<th data-quarto-table-cell-role="th">Voyage ID</th>
-<th data-quarto-table-cell-role="th">Vessel name</th>
-<th data-quarto-table-cell-role="th">Voyage itinerary imputed port where began (ptdepimp) place</th>
-<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal place of slave purchase (mjbyptimp)</th>
-<th data-quarto-table-cell-role="th">Voyage itinerary imputed principal port of slave disembarkation (mjslptimp) place</th>
-<th data-quarto-table-cell-role="th">VOYAGEID2</th>
-<th data-quarto-table-cell-role="th">Captives arrived at 1st port</th>
-<th data-quarto-table-cell-role="th">Captain's name</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>1714.0</td>
-<td>16109</td>
-<td>Freeke Gally</td>
-<td>Bristol</td>
-<td>NaN</td>
-<td>Kingston</td>
-<td>NaN</td>
-<td>283.0</td>
-<td>Neale, Alexander</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>1713.0</td>
-<td>16110</td>
-<td>Greyhound Gally</td>
-<td>Bristol</td>
-<td>NaN</td>
-<td>Jamaica, place unspecified</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Selkirk, Alexander&lt;br/&gt; Forrest, Henry</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>1714.0</td>
-<td>16111</td>
-<td>Jacob</td>
-<td>Bristol</td>
-<td>NaN</td>
-<td>Kingston</td>
-<td>NaN</td>
-<td>130.0</td>
-<td>Nicholls, Philip</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>1714.0</td>
-<td>16112</td>
-<td>Jason Gally</td>
-<td>Bristol</td>
-<td>NaN</td>
-<td>Port Royal</td>
-<td>NaN</td>
-<td>278.0</td>
-<td>Plummer, John</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>1713.0</td>
-<td>16113</td>
-<td>Lawford Gally</td>
-<td>Bristol</td>
-<td>Africa, port unspecified</td>
-<td>Newcastle (Nevis)</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Stretton, Joseph</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>1714.0</td>
-<td>16114</td>
-<td>Mercy Gally</td>
-<td>Bristol</td>
-<td>Africa, port unspecified</td>
-<td>Barbados, place unspecified</td>
-<td>NaN</td>
-<td>190.0</td>
-<td>Scott, John</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>1714.0</td>
-<td>16115</td>
-<td>Mermaid Gally</td>
-<td>Bristol</td>
-<td>Cape Verde Islands</td>
-<td>Kingston</td>
-<td>NaN</td>
-<td>72.0</td>
-<td>Banbury, John&lt;br/&gt; Copinger, James</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>1713.0</td>
-<td>16116</td>
-<td>Morning Star</td>
-<td>Bristol</td>
-<td>Africa, port unspecified</td>
-<td>Charleston</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>Poole, Nicholas</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>1714.0</td>
-<td>16117</td>
-<td>Peterborough</td>
-<td>Bristol</td>
-<td>Africa, port unspecified</td>
-<td>Barbados, place unspecified</td>
-<td>NaN</td>
-<td>200.0</td>
-<td>Shawe, John&lt;br/&gt; Martin, Joseph</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>1713.0</td>
-<td>16118</td>
-<td>Resolution</td>
-<td>Bristol</td>
-<td>Gold Coast, port unspecified</td>
-<td>Barbados, place unspecified</td>
-<td>NaN</td>
-<td>255.0</td>
-<td>Williams, Charles</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>Comparing what we see here with our .csv file it seems that everything went well. We have the data organised in rows and columns. Each column has a name and each row and index. Looking at our data, some values are numbers, some are names and places, some contain htmlo tags, some are NaN. It is not time yet to run data analysis, after having loaded the data we still need to correctly interpret the information it contains, then we need to “clean” it, and after that, finally, we can proceed with some data analysis. This is just the beginning, but the best is yet to come!</p>
+<p>In this session you will find a list of links to the datasets that heve been used during the workshop. We highly incourage you to go through the data analysis we performed so far using one of these datasets.</p>
+<ul>
+<li><strong>Cooper Hewitt collection</strong>: over 30 Centuries of design online, from ancient Roman marble to Pre-Columbian texttiles, Renaissance drawings, contermporary 3D-printed chars, and digital code. <a href="https://github.com/cooperhewitt/collection">link</a></li>
+<li><strong>KU Libraries Special Collections</strong>: portraits dataset of descriptive metadata representing all the single-file documents with graphic art from the Special Collections of the KU Leuven Libraries that depict people. <a href="https://github.com/KU-Leuven-Libraries/Portraits-Collection-Dataset">link</a></li>
+<li><strong>The Magister Dixit Collection (Leuven)</strong>: 552 manuscripts of lecture notes of the Old University of Leuven (1425-1797). <a href="https://github.com/KULeuvenDigitalisering/Magister-Dixit-Collection-Dataset">link</a></li>
+<li><strong>Getty-Knoedler Stock Books</strong>: more than 40,000 records transcribed from the 11 painting stock books and enhanced with information from the 21 paintings and watercolors sales books of M. Knoedler &amp; Co.&nbsp;in New York (1872-1970). <a href="https://github.com/thegetty/provenance-index-csv/blob/main/knoedler/README.md">link</a></li>
+<li><strong>Pantheon Project: Historical Popularity Index</strong>: The Pantheon 1.0 data measures the global popularity of historical characters according to the metrics of their Wikidata pages in different languages. <a href="https://www.kaggle.com/datasets/mit/pantheon-project">link</a></li>
+</ul>
 
 
 
@@ -893,13 +492,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../parts/preliminaries/intro_to_python.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction to Python</span></span>
+      <a href="../../parts/supplements/what-next.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">What’s next?</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../parts/data_analysis/ch2_exploring_data.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exploring data</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../parts/supplements/glossaries.html" class="pagination-link">
+        <span class="nav-page-text">Glossaries</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
