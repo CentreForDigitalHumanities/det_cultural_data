@@ -3,7 +3,7 @@
 The workshop contains both interactive and lecture-like sessions. The first part of the workshop will be focused on concepts and its interactive experience does not require any prior knowledge. In the second part of the workshop, you will go through the main concepts of exploratory data analysis, with data analysis being performed via programming (specifically Python). As this is not a programming workshop and it is open to all researchers (independent of their programming background), we will do our best to explain what the programming does and how it works, but we will not teach you how to program, focusing more on the data analysis concepts and fundamental steps. With that in mind, you can decide to follow the class in three different ways:
 
 - **"Sit and enjoy the show":** focus on understanding and awareness. The instructor will guide you through the main concepts of programming and data analysis. You can later download code and data and (following the detailed description on this page) and play with data analysis yourself, at your own pace;
-- **"Following and clicking":** you can click on this [link](https://hub.binder.curvenote.dev/user/centrefordigita-t_cultural_data-6ymfvraz/doc/tree/playground) to open a programming environment in your browser. The environment already contains all you need to run the analysis, data and software. The instructor will use the same environment to go through the data analysis during class. In the environment, you can run programs, see results in your own screen, and play with the provided data;
+- **"Following and clicking":** you can go through the analysis step by step together with the instructor. Data will be shared on Google drive and you will be guided through the analysis on Google Colab. You would not need to install anything, just having a Google account;
 - **"Give me all!":** you want to run the entire analysis in your own laptop, this is the hardest (but not as much as it seems) path! In this case follow the installation instructions in the following sections.
 
 ## Running the analysis locally on your own computer
@@ -12,17 +12,23 @@ The workshop contains both interactive and lecture-like sessions. The first part
 1. Install python and jupyter notebook. For installation and setup we point at the "Introduction to Python & Data" [Installation & Setup](https://utrechtuniversity.github.io/workshop-introduction-to-python/installation-and-setup.html) page;
 
 ### Downloading data and analysis code
-1. Click on this [link](https://download-directory.github.io/), this will open a window in your browser with a green page and a single empty bar. Copy the address "https://github.com/CentreForDigitalHumanities/det_cultural_data/tree/main/playground" (without double quotes), paste it inside the bar and press ENTER. As soon as your press ENTER, your computer will start to download a zip file;
+1. Check the available Dataset in **Resources**, choose the one you are interested in, and follow the instructions in their pages for the download;
    
-2. Extract the content of the zip file: 
+2. Extract the content of the zip file (in case the downloaded file is a zip file): 
    - If you are working on **Windows**, you can right-click on the zip file and, from the context menu, click on "Extract All". A dialog box will appear asking where you want to extract the files. You can either use the default folder (same location as the ZIP file) or click "Browse" to select a different folder. We recomend to create a new folder called "cultural_data_explorative_analysis" and extract your files there; 
    - If your are working on **macOS**, you just need to double click on the zip file. Your computer will automatically create an unzipped directoray with the same name of the zip file. We recomend to rename this directory "cultural_data_explorative_analysis";
   
-### Open Jupyter notebook
+### Start Google Colab
+
+1. Put the unzipped downloaded file containing your data in a Google Drive folder;
+2. Click on the folder in the navigation panel on the left and click on the button "New" on top of the navigation panel;
+3. From the drop down menu, select first "More" and then "Google Collaboratory". A collaborative notebook will open and you are set up for using Python.
+
+### (alternative) Open Jupyter notebook
 
 1. Open Anaconda Navigator from the Start Menu (**Windows** Users) or from the Applications folder or Launchpad (**macOS** Users);
 2. Click on "Launch" under Jupyter Notebook. This will open a web browser;
-3. Navigate to the "cultural_data_explorative_analysis" folder;
+3. Navigate to the folder containing your downloaded unzipped data;
 4. Click on the notebook file (.ipynb) to open it.
 
 

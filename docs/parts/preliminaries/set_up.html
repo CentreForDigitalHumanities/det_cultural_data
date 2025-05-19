@@ -201,12 +201,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../parts/supplements/datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datasets</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../parts/supplements/glossaries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossaries</span></a>
   </div>
@@ -231,7 +225,8 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#installing-python" id="toc-installing-python" class="nav-link" data-scroll-target="#installing-python">Installing Python</a></li>
   <li><a href="#downloading-data-and-analysis-code" id="toc-downloading-data-and-analysis-code" class="nav-link" data-scroll-target="#downloading-data-and-analysis-code">Downloading data and analysis code</a></li>
-  <li><a href="#open-jupyter-notebook" id="toc-open-jupyter-notebook" class="nav-link" data-scroll-target="#open-jupyter-notebook">Open Jupyter notebook</a></li>
+  <li><a href="#start-google-colab" id="toc-start-google-colab" class="nav-link" data-scroll-target="#start-google-colab">Start Google Colab</a></li>
+  <li><a href="#alternative-open-jupyter-notebook" id="toc-alternative-open-jupyter-notebook" class="nav-link" data-scroll-target="#alternative-open-jupyter-notebook">(alternative) Open Jupyter notebook</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -259,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The workshop contains both interactive and lecture-like sessions. The first part of the workshop will be focused on concepts and its interactive experience does not require any prior knowledge. In the second part of the workshop, you will go through the main concepts of exploratory data analysis, with data analysis being performed via programming (specifically Python). As this is not a programming workshop and it is open to all researchers (independent of their programming background), we will do our best to explain what the programming does and how it works, but we will not teach you how to program, focusing more on the data analysis concepts and fundamental steps. With that in mind, you can decide to follow the class in three different ways:</p>
 <ul>
 <li><strong>“Sit and enjoy the show”:</strong> focus on understanding and awareness. The instructor will guide you through the main concepts of programming and data analysis. You can later download code and data and (following the detailed description on this page) and play with data analysis yourself, at your own pace;</li>
-<li><strong>“Following and clicking”:</strong> you can click on this <a href="https://hub.binder.curvenote.dev/user/centrefordigita-t_cultural_data-6ymfvraz/doc/tree/playground">link</a> to open a programming environment in your browser. The environment already contains all you need to run the analysis, data and software. The instructor will use the same environment to go through the data analysis during class. In the environment, you can run programs, see results in your own screen, and play with the provided data;</li>
+<li><strong>“Following and clicking”:</strong> you can go through the analysis step by step together with the instructor. Data will be shared on Google drive and you will be guided through the analysis on Google Colab. You would not need to install anything, just having a Google account;</li>
 <li><strong>“Give me all!”:</strong> you want to run the entire analysis in your own laptop, this is the hardest (but not as much as it seems) path! In this case follow the installation instructions in the following sections.</li>
 </ul>
 <section id="running-the-analysis-locally-on-your-own-computer" class="level2">
@@ -273,20 +268,28 @@ ul.task-list li input[type="checkbox"] {
 <section id="downloading-data-and-analysis-code" class="level3">
 <h3 class="anchored" data-anchor-id="downloading-data-and-analysis-code">Downloading data and analysis code</h3>
 <ol type="1">
-<li><p>Click on this <a href="https://download-directory.github.io/">link</a>, this will open a window in your browser with a green page and a single empty bar. Copy the address “https://github.com/CentreForDigitalHumanities/det_cultural_data/tree/main/playground” (without double quotes), paste it inside the bar and press ENTER. As soon as your press ENTER, your computer will start to download a zip file;</p></li>
-<li><p>Extract the content of the zip file:</p>
+<li><p>Check the available Dataset in <strong>Resources</strong>, choose the one you are interested in, and follow the instructions in their pages for the download;</p></li>
+<li><p>Extract the content of the zip file (in case the downloaded file is a zip file):</p>
 <ul>
 <li>If you are working on <strong>Windows</strong>, you can right-click on the zip file and, from the context menu, click on “Extract All”. A dialog box will appear asking where you want to extract the files. You can either use the default folder (same location as the ZIP file) or click “Browse” to select a different folder. We recomend to create a new folder called “cultural_data_explorative_analysis” and extract your files there;</li>
 <li>If your are working on <strong>macOS</strong>, you just need to double click on the zip file. Your computer will automatically create an unzipped directoray with the same name of the zip file. We recomend to rename this directory “cultural_data_explorative_analysis”;</li>
 </ul></li>
 </ol>
 </section>
-<section id="open-jupyter-notebook" class="level3">
-<h3 class="anchored" data-anchor-id="open-jupyter-notebook">Open Jupyter notebook</h3>
+<section id="start-google-colab" class="level3">
+<h3 class="anchored" data-anchor-id="start-google-colab">Start Google Colab</h3>
+<ol type="1">
+<li>Put the unzipped downloaded file containing your data in a Google Drive folder;</li>
+<li>Click on the folder in the navigation panel on the left and click on the button “New” on top of the navigation panel;</li>
+<li>From the drop down menu, select first “More” and then “Google Collaboratory”. A collaborative notebook will open and you are set up for using Python.</li>
+</ol>
+</section>
+<section id="alternative-open-jupyter-notebook" class="level3">
+<h3 class="anchored" data-anchor-id="alternative-open-jupyter-notebook">(alternative) Open Jupyter notebook</h3>
 <ol type="1">
 <li>Open Anaconda Navigator from the Start Menu (<strong>Windows</strong> Users) or from the Applications folder or Launchpad (<strong>macOS</strong> Users);</li>
 <li>Click on “Launch” under Jupyter Notebook. This will open a web browser;</li>
-<li>Navigate to the “cultural_data_explorative_analysis” folder;</li>
+<li>Navigate to the folder containing your downloaded unzipped data;</li>
 <li>Click on the notebook file (.ipynb) to open it.</li>
 </ol>
 

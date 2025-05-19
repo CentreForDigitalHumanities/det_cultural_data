@@ -2,11 +2,14 @@
 
 | Time | Activity |
 |---|---|
-| 13:00 | Welcome - Icebreaker |
-| 13:15 | Group activity: structuring data |
-| 13:45 | Discussion |
+| 13:00 | Welcome - Introduction |
+| 13:20 | Group activity: structuring data |
+| 13:50 | Discussion |
 | **14:00** | **Break** |
 | 14:10 | Introduction to data toolkit |
-| **14:50** | **Break** |
-| 15:00 | Explorative Data Analyis |
-| 16:30 | Recap & Questions |
+| 14:50 | Set up analysis environment |
+| **15:00** | **Break** |
+| 15:10 | Group activity: Data Exploration I |
+| 15:30 | Discussion |
+| 15:40 | Data Exploration II |
+| 16:40 | Recap & Questions |

@@ -1,9 +1,0 @@
-# Datasets
-
-In this session you will find a list of links to the datasets that heve been used during the workshop. We highly incourage you to go through the data analysis we performed so far using one of these datasets. 
-
-- **Cooper Hewitt collection**: over 30 Centuries of design online, from ancient Roman marble to Pre-Columbian texttiles, Renaissance drawings, contermporary 3D-printed chars, and digital code. [link](https://github.com/cooperhewitt/collection)
-- **KU Libraries Special Collections**: portraits dataset of descriptive metadata representing all the single-file documents with graphic art from the Special Collections of the KU Leuven Libraries that depict people. [link](https://github.com/KU-Leuven-Libraries/Portraits-Collection-Dataset)
-- **The Magister Dixit Collection (Leuven)**: 552 manuscripts of lecture notes of the Old University of Leuven (1425-1797). [link](https://github.com/KULeuvenDigitalisering/Magister-Dixit-Collection-Dataset)
-- **Getty-Knoedler Stock Books**: more than 40,000 records transcribed from the 11 painting stock books  and enhanced with information from the 21 paintings and watercolors sales books of M. Knoedler & Co. in New York (1872-1970). [link](https://github.com/thegetty/provenance-index-csv/blob/main/knoedler/README.md)
-- **Pantheon Project: Historical Popularity Index**: The Pantheon 1.0 data measures the global popularity of historical characters according to the metrics of their Wikidata pages in different languages. [link](https://www.kaggle.com/datasets/mit/pantheon-project)
