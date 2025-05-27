@@ -6,7 +6,13 @@ project:
 
 book:
   title: "Data exploration toolkit for cultural data"
-  author: "Chiata Livio (Utrecht University Library)\nStefano Rapisarda (Utrecht University Library)\nBarbara Romero Ferron (RDM, UU)"
+  author: 
+    - name: Chiata Livio
+      affiliation: Utrecht University Library
+    - name: Stefano Rapisarda
+      affiliation: Utrecht University Library
+    - name: Barbara Romero Ferron
+      affiliation: Leuphana University
   date: last-modified
   search: true
   chapters:
